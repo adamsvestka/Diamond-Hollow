@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,6 +10,9 @@ namespace DiamondHollow
         public Vector2 Targeting;
         private int _invincibleDuration;
         public bool Invincible => _invincibleDuration > 0;
+        public int MaxHearts { get; private set; }
+        public int Hearts { get; private set; }
+        public int Score { get; private set; }
 
         public Player(DiamondHollowGame game, Level level) : base(game, level, new Rectangle(new Point(125, 125), new Point(36))) { }
 
@@ -18,19 +22,20 @@ namespace DiamondHollow
 
             Targeting = Vector2.Zero;
             _invincibleDuration = 0;
+            MaxHearts = Hearts = 3;
 
             OnProjectileHit += OnEnemyCollision;
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (!Locked)
+            if (!Locked && Hearts > 0)
             {
                 if (Game.KeyboardState.IsKeyDown(Keys.Space) && IsOnGround) Velocity.Y = 21;
                 if (Game.KeyboardState.IsKeyDown(Keys.A)) Velocity.X = -6;
                 if (Game.KeyboardState.IsKeyDown(Keys.D)) Velocity.X = 6;
-                if (Game.ButtonPressed(MouseButton.Left))
-                    Game.Level.ProjectileController.Spawn(new ProjectileConstructor
+                if (Game.ButtonPressed(MouseButton.Left) && !Invincible)
+                    Level.ProjectileController.Spawn(new ProjectileConstructor
                     {
                         Owner = this,
                         Origin = Center + Targeting.ToPoint(),
@@ -54,8 +59,10 @@ namespace DiamondHollow
 
             Game.SpriteBatch.Begin();
 
-            DrawCrosshairs();
-            Game.Level.DrawRectangle(Bounds, Color.Blue * (Invincible ? 0.5f : 1f));
+            if (Hearts > 0) DrawCrosshairs();
+            Level.DrawRectangle(Bounds, Color.Blue * (Invincible ? 0.5f : 1f));
+            DrawHealthbar();
+            DrawScore();
 
             Game.SpriteBatch.End();
         }
@@ -65,22 +72,63 @@ namespace DiamondHollow
             var center = Bounds.Center.ToVector2();
             var size = new Vector2(4);
             var spacing = 20;
-            var count = (GraphicsDevice.Viewport.Width + GraphicsDevice.Viewport.Height) / spacing;
+            var count = (Game.Width + Game.Height) / spacing;
             for (int i = 0; i < count; i++)
             {
                 var dot = center + Targeting * i * spacing;
-                Game.Level.DrawRectangle(new Rectangle((dot - size / 2).ToPoint(), size.ToPoint()), Color.Red);
+                Level.DrawRectangle(new Rectangle((dot - size / 2).ToPoint(), size.ToPoint()), Color.Red);
             }
+        }
+
+        private void DrawHealthbar()
+        {
+            var heart = new Rectangle(13, 13, 23, 23);
+            for (int i = 0; i < MaxHearts; i++)
+            {
+                Game.SpriteBatch.Draw(Game.WhitePixel, heart, i >= Hearts ? Color.Gray : Color.Red);
+                heart.X += heart.Width + 7;
+            }
+        }
+
+        private void DrawScore()
+        {
+            var diamond = new Rectangle(new Point(13, Game.Height - Diamond.Size.Y - 13), Diamond.Size);
+            Game.SpriteBatch.Draw(Game.WhitePixel, diamond, Color.Green);
+            Game.SpriteBatch.DrawString(Game.Menlo, $"{Score}", new Vector2(diamond.Center.X + 50, diamond.Top), Color.Green);
+        }
+
+        public void Respawn()
+        {
+            Position = Level.Spawnpoint - Size.Half();
+            Velocity = Vector2.Zero;
+            Level.Camera.Scroll(Center.Y, 120, () => Hearts = MaxHearts);
         }
 
         public void OnEnemyCollision(CollisionBody enemy)
         {
             if (Invincible) return;
+            if (--Hearts == 0) { Respawn(); return; }
             _invincibleDuration = 90;
             var dir = (Center - enemy.Center).ToVector2();
             dir.X = Math.Sign(dir.X);
             dir.Y = dir.Y == 0 ? 1 : Math.Sign(dir.Y);
             Yeet(dir * 6);
+        }
+
+        public void OnItemCollision(Collectible item)
+        {
+            switch (item)
+            {
+                case Diamond:
+                    Score++;
+                    break;
+                case SmallHeart:
+                    if (Hearts < MaxHearts) Hearts++;
+                    break;
+                case LargeHeart:
+                    Hearts = ++MaxHearts;
+                    break;
+            }
         }
     }
 }

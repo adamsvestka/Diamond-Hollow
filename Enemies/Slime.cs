@@ -7,7 +7,8 @@ namespace DiamondHollow
     {
         public static new readonly Point Size = new(32);
 
-        public Slime(DiamondHollowGame game, EnemyController controller, Point position) : base(game, controller, new Rectangle(position - Size.Half(), Size))
+        public Slime(DiamondHollowGame game, EnemyController controller, Point position)
+            : base(game, controller, 20, new Rectangle(position - Size.Half(), Size))
         {
             Velocity = new Vector2(3, 0);
         }
@@ -24,11 +25,11 @@ namespace DiamondHollow
 
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
-
             Game.SpriteBatch.Begin();
             Game.Level.DrawRectangle(Bounds, Color.Red);
             Game.SpriteBatch.End();
+
+            base.Draw(gameTime);
         }
     }
 }

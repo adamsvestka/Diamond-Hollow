@@ -9,7 +9,7 @@ namespace DiamondHollow
     {
         Empty = '.',
         Wall = '#',
-        Player = 'p',
+        Spawnpoint = '*',
         SingleGem = '1',
         DounbleGem = '2',
         TripleGem = '3',
@@ -19,6 +19,9 @@ namespace DiamondHollow
         CeilingShooter = 'c',
         Spider = 'z',
         Bird = 'b',
+        LargeHeart = '+',
+        Nuke = '@',
+        Checkpoint = '$',
     }
 
     public class Level : GameScene
@@ -30,8 +33,10 @@ namespace DiamondHollow
         public Camera Camera;
         public ProjectileController ProjectileController;
         public ParticleController ParticleController;
-        public DiamondController DiamondController;
+        public CollectiblesController CollectiblesController;
         public EnemyController EnemyController;
+
+        public Point Spawnpoint = new(0);
 
         public Level(DiamondHollowGame game, string filename) : base(game, null)
         {
@@ -41,24 +46,22 @@ namespace DiamondHollow
         public override void Initialize()
         {
 
-            Camera = new Camera(Game.GraphicsDevice, this);
-
+            Camera = new Camera(Game, this);
             Player = new Player(Game, this);
             ProjectileController = new ProjectileController(Game, this);
             ParticleController = new ParticleController(Game, this);
-            DiamondController = new DiamondController(Game, this);
+            CollectiblesController = new CollectiblesController(Game, this);
             EnemyController = new EnemyController(Game, this);
 
-            AddComponent(Player);
-            AddComponent(ParticleController);
-            AddComponent(ProjectileController);
-            AddComponent(DiamondController);
-            AddComponent(EnemyController);
+            AddComponents(Player, Camera);
+            AddComponents(ParticleController, ProjectileController, CollectiblesController, EnemyController);
+
+            Camera.Track(Player);
 
             base.Initialize();
         }
 
-        private void SpawnDiamond(float x, float y) => DiamondController.Spawn(new Point((int)((x + 0.5f) * Game.TileSize), (int)((y + 0.5f) * Game.TileSize)));
+        private void SpawnDiamond(float x, float y) => CollectiblesController.SpawnDiamond(new Vector2(x + 0.5f, y + 0.5f).FromGrid().ToPoint());
         protected override void LoadContent()
         {
             var lines = File.ReadAllLines(Path.Combine(Game.Content.RootDirectory, _filename));
@@ -68,14 +71,16 @@ namespace DiamondHollow
                 for (int x = 0; x < lines[0].Length; x++)
                 {
                     var tile = (TileType)lines[lines.Length - y - 1][x];
+                    Point pos = new Vector2(x + 0.5f, y + 0.5f).FromGrid().ToPoint();
                     _grid[y, x] = TileType.Empty;
                     switch (tile)
                     {
                         case TileType.Empty or TileType.Wall:
                             _grid[y, x] = tile;
                             break;
-                        case TileType.Player:
-                            Player.Position = new Point(x, y);
+                        case TileType.Spawnpoint:
+                            Spawnpoint = new Vector2(x + 0.5f, y + 0.5f).FromGrid().ToPoint();
+                            Player.Position = Spawnpoint - Player.Size.Half();
                             break;
                         case TileType.SingleGem:
                             SpawnDiamond(x, y);
@@ -96,7 +101,7 @@ namespace DiamondHollow
                             SpawnDiamond(x + 1, y + 1);
                             break;
                         case TileType.Slime:
-                            EnemyController.SpawnSlime(new Point((int)((x + 0.5f) * Game.TileSize), (int)((y + 0.5f) * Game.TileSize)));
+                            EnemyController.SpawnSlime(pos);
                             break;
                         case TileType.WallShooter:
                             var right = _grid[y, x - 1] == TileType.Wall;
@@ -112,20 +117,22 @@ namespace DiamondHollow
                             EnemyController.SpawnSpider(new Point((int)((x + 0.5f) * Game.TileSize), zy));
                             break;
                         case TileType.Bird:
-                            EnemyController.SpawnBird(new Point((int)((x + 0.5f) * Game.TileSize), (int)((y + 0.5f) * Game.TileSize)));
+                            EnemyController.SpawnBird(pos);
+                            break;
+                        case TileType.LargeHeart:
+                            CollectiblesController.SpawnLargeHeart(pos);
+                            break;
+                        case TileType.Nuke:
+                            CollectiblesController.SpawnNuke(pos);
+                            break;
+                        case TileType.Checkpoint:
+                            CollectiblesController.SpawnRespawnAnchor(pos);
                             break;
                     }
                 }
             }
 
             base.LoadContent();
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-
-            Camera.Track(Player.Position.Y, (int)Player.Velocity.Y);
         }
 
         public override void Draw(GameTime gameTime)
@@ -147,6 +154,8 @@ namespace DiamondHollow
                     }
                 }
             }
+
+            DrawRectangle(Spawnpoint.SnapToGrid().MakeTile(), Color.LightBlue);
 
             Game.SpriteBatch.End();
 

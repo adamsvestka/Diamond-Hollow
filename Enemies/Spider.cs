@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
 
@@ -20,7 +21,8 @@ namespace DiamondHollow
         public Point Origin;
         public bool IsOnCeiling => Center == Origin;
 
-        public Spider(DiamondHollowGame game, EnemyController controller, Point position) : base(game, controller, new Rectangle(position - Size.Half(), Size))
+        public Spider(DiamondHollowGame game, EnemyController controller, Point position)
+            : base(game, controller, 20, new Rectangle(position - Size.Half(), Size))
         {
             Origin = Center;
             _state = SpiderState.Armed;
@@ -63,23 +65,19 @@ namespace DiamondHollow
 
         private bool CheckForPlayer()
         {
-            var box = Bounds;
-            for (int i = 0; i < 8 * Game.TileSize / Size.Y; i++)
-            {
-                box.Y -= Size.Y;
-                if (box.Intersects(Level.Player.Bounds)) return true;
-            }
-            return false;
+            int xdiff = Center.X - Level.Player.Center.X;
+            int ydiff = Center.Y - Level.Player.Center.Y;
+            return Math.Abs(xdiff) < Size.X / 2 + Level.Player.Size.X / 2 && 0 < ydiff && ydiff < 8 * Game.TileSize;
         }
 
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
-
             Game.SpriteBatch.Begin();
             Game.Level.DrawRectangle(Bounds, Color.Red);
             Game.Level.DrawLine(Origin.OffsetY(Size.Y / 2), Center.OffsetY(Size.Y / 2), Color.Red, 4);
             Game.SpriteBatch.End();
+
+            base.Draw(gameTime);
         }
     }
 }

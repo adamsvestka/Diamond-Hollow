@@ -8,7 +8,8 @@ namespace DiamondHollow
         public Vector2 Targeting;
         private int _shotCountdown;
 
-        public CeilingShooter(DiamondHollowGame game, EnemyController controller, Point position) : base(game, controller, new Rectangle(position - Size.Half(), Size))
+        public CeilingShooter(DiamondHollowGame game, EnemyController controller, Point position)
+            : base(game, controller, 30, new Rectangle(position - Size.Half(), Size))
         {
             Targeting = Vector2.Zero;
             _shotCountdown = 1;
@@ -40,11 +41,11 @@ namespace DiamondHollow
 
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
-
             Game.SpriteBatch.Begin();
             Game.Level.DrawRectangle(Bounds, Color.Red);
             Game.SpriteBatch.End();
+
+            base.Draw(gameTime);
         }
     }
 }

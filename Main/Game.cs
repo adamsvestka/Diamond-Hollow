@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -12,6 +13,8 @@ namespace DiamondHollow
         public Texture2D WhitePixel;
         public SpriteFont Menlo;
         public int TileSize = 50;
+        public int Height => GraphicsDevice.Viewport.Height;
+        public int Width => GraphicsDevice.Viewport.Width;
 
         public Level Level;
 
@@ -19,6 +22,7 @@ namespace DiamondHollow
         private MouseState _previousMouseState;
         public KeyboardState KeyboardState;
         public MouseState MouseState;
+        private Random _random;
 
         public DiamondHollowGame()
         {
@@ -39,6 +43,7 @@ namespace DiamondHollow
             CoordinateExtensions.Initialize(this, new Point(TileSize, TileSize));
 
             Level = new Level(this, "Levels/Level3.txt");
+            _random = new Random();
 
             Components.Add(Level);
 
@@ -66,6 +71,8 @@ namespace DiamondHollow
         public bool KeyPressed(Keys key) => KeyboardState.IsKeyDown(key) && _previousKeyboardState.IsKeyUp(key);
         public bool KeyReleased(Keys key) => KeyboardState.IsKeyUp(key) && _previousKeyboardState.IsKeyDown(key);
         public bool ButtonPressed(MouseButton button) => MouseState.IsButtonDown(button) && _previousMouseState.IsButtonUp(button);
+
+        public bool Chance(float chance) => _random.NextDouble() < chance;
 
         protected override void Update(GameTime gameTime)
         {

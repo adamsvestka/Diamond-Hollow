@@ -2,13 +2,13 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
-    public class Diamond : Collectible
+    public class SmallHeart : Collectible
     {
         public static new readonly Point Size = new(20);
 
-        public Diamond(DiamondHollowGame game, CollectiblesController controller, Point pos) : base(game, controller, new Rectangle(pos - Size.Half(), Size))
+        public SmallHeart(DiamondHollowGame game, CollectiblesController controller, Point pos) : base(game, controller, new Rectangle(pos - Size.Half(), Size))
         {
-            AttractionStrength = 3f;
+            AttractionStrength = 0f;
         }
 
         public override void Draw(GameTime gameTime)
@@ -16,7 +16,7 @@ namespace DiamondHollow
             base.Draw(gameTime);
 
             Game.SpriteBatch.Begin();
-            Game.Level.DrawRectangle(Bounds, Color.Green);
+            Game.Level.DrawRectangle(Bounds, Color.PaleVioletRed);
             Game.SpriteBatch.End();
         }
     }

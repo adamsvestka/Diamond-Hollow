@@ -22,7 +22,7 @@ namespace DiamondHollow
         private static Point _tileSize;
         public static void Initialize(DiamondHollowGame game, Point tileSize) => (_game, _tileSize, _random) = (game, tileSize, new Random());
 
-        private static int ScreenHeight => _game.GraphicsDevice.Viewport.Height;
+        private static int ScreenHeight => _game.Height;
         private static int CameraOffset => _game.Level.Camera.CameraY;
 
         public static Point ToGrid(this Point p) => new(p.X / _tileSize.X - (p.X < 0 ? 1 : 0), p.Y / _tileSize.Y - (p.Y < 0 ? 1 : 0));

@@ -6,7 +6,8 @@ namespace DiamondHollow
     {
         public static new readonly Point Size = new(72, 48);
 
-        public Bird(DiamondHollowGame game, EnemyController controller, Point position) : base(game, controller, new Rectangle(position - Size.Half(), Size))
+        public Bird(DiamondHollowGame game, EnemyController controller, Point position)
+            : base(game, controller, 40, new Rectangle(position - Size.Half(), Size))
         {
             Velocity = new Vector2(3, 0);
             Gravity = 0;
@@ -23,11 +24,11 @@ namespace DiamondHollow
 
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
-
             Game.SpriteBatch.Begin();
             Game.Level.DrawRectangle(Bounds, Color.Red);
             Game.SpriteBatch.End();
+
+            base.Draw(gameTime);
         }
     }
 }
