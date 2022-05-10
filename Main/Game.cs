@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -14,10 +13,7 @@ namespace DiamondHollow
         public SpriteFont Menlo;
         public int TileSize = 50;
 
-        public Player Player;
         public Level Level;
-        public Camera Camera;
-        public ParticleController ParticleController;
 
         private KeyboardState _previousKeyboardState;
         private MouseState _previousMouseState;
@@ -42,14 +38,9 @@ namespace DiamondHollow
 
             CoordinateExtensions.Initialize(this, new Point(TileSize, TileSize));
 
-            Level = new Level(this, "Levels/Level2.txt");
-            Player = new Player(this);
-            Camera = new Camera(GraphicsDevice, Level);
-            ParticleController = new ParticleController(this);
+            Level = new Level(this, "Levels/Level3.txt");
 
             Components.Add(Level);
-            Components.Add(Player);
-            Components.Add(ParticleController);
 
             base.Initialize();
         }

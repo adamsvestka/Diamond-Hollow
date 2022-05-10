@@ -14,26 +14,27 @@ namespace DiamondHollow
         bool? UsePhysics
     );
 
-    public class ParticleController : GameComponent
+    public class ParticleController : DHGameComponent
     {
         private readonly List<ParticleInstance> _particles;
 
-        public ParticleController(DiamondHollowGame game) : base(game)
+        public ParticleController(DiamondHollowGame game, Level level) : base(game, level)
         {
+            Level = level;
             _particles = new List<ParticleInstance>();
         }
 
-        public void SpawnParticles(ParticleConstructor data)
+        public void Spawn(ParticleConstructor data)
         {
-            var particles = new ParticleInstance(Game, data);
+            var particles = new ParticleInstance(Game, this, data);
             _particles.Add(particles);
-            Game.Components.Add(particles);
+            Level.AddComponent(particles);
         }
 
-        internal void DespawnParticles(ParticleInstance particles)
+        internal void Despawn(ParticleInstance particles)
         {
             _particles.Remove(particles);
-            Game.Components.Remove(particles);
+            Level.RemoveComponent(particles);
         }
     }
 }

@@ -8,58 +8,155 @@ namespace DiamondHollow
     public enum TileType
     {
         Empty = '.',
-        Wall = '#'
+        Wall = '#',
+        Player = 'p',
+        SingleGem = '1',
+        DounbleGem = '2',
+        TripleGem = '3',
+        QuadrupleGem = '4',
+        Slime = 's',
+        WallShooter = 'w',
+        CeilingShooter = 'c',
+        Spider = 'z',
+        Bird = 'b',
     }
 
-    public class Level : DrawableGameComponent
+    public class Level : GameScene
     {
-        private new DiamondHollowGame Game { get => (DiamondHollowGame)base.Game; }
-
         private TileType[,] _grid;
         readonly private string _filename;
 
-        public Level(DiamondHollowGame game, string filename) : base(game)
+        public Player Player;
+        public Camera Camera;
+        public ProjectileController ProjectileController;
+        public ParticleController ParticleController;
+        public DiamondController DiamondController;
+        public EnemyController EnemyController;
+
+        public Level(DiamondHollowGame game, string filename) : base(game, null)
         {
             _filename = filename;
         }
 
+        public override void Initialize()
+        {
+
+            Camera = new Camera(Game.GraphicsDevice, this);
+
+            Player = new Player(Game, this);
+            ProjectileController = new ProjectileController(Game, this);
+            ParticleController = new ParticleController(Game, this);
+            DiamondController = new DiamondController(Game, this);
+            EnemyController = new EnemyController(Game, this);
+
+            AddComponent(Player);
+            AddComponent(ParticleController);
+            AddComponent(ProjectileController);
+            AddComponent(DiamondController);
+            AddComponent(EnemyController);
+
+            base.Initialize();
+        }
+
+        private void SpawnDiamond(float x, float y) => DiamondController.Spawn(new Point((int)((x + 0.5f) * Game.TileSize), (int)((y + 0.5f) * Game.TileSize)));
         protected override void LoadContent()
         {
-            base.LoadContent();
-
             var lines = File.ReadAllLines(Path.Combine(Game.Content.RootDirectory, _filename));
             _grid = new TileType[lines.Length, lines[0].Length];
             for (int y = 0; y < lines.Length; y++)
+            {
                 for (int x = 0; x < lines[0].Length; x++)
-                    _grid[y, x] = (TileType)lines[lines.Length - y - 1][x];
+                {
+                    var tile = (TileType)lines[lines.Length - y - 1][x];
+                    _grid[y, x] = TileType.Empty;
+                    switch (tile)
+                    {
+                        case TileType.Empty or TileType.Wall:
+                            _grid[y, x] = tile;
+                            break;
+                        case TileType.Player:
+                            Player.Position = new Point(x, y);
+                            break;
+                        case TileType.SingleGem:
+                            SpawnDiamond(x, y);
+                            break;
+                        case TileType.DounbleGem:
+                            SpawnDiamond(x - 0.5f, y);
+                            SpawnDiamond(x + 0.5f, y);
+                            break;
+                        case TileType.TripleGem:
+                            SpawnDiamond(x, y - 1);
+                            SpawnDiamond(x, y);
+                            SpawnDiamond(x, y + 1);
+                            break;
+                        case TileType.QuadrupleGem:
+                            SpawnDiamond(x - 1, y - 1);
+                            SpawnDiamond(x - 1, y + 1);
+                            SpawnDiamond(x + 1, y - 1);
+                            SpawnDiamond(x + 1, y + 1);
+                            break;
+                        case TileType.Slime:
+                            EnemyController.SpawnSlime(new Point((int)((x + 0.5f) * Game.TileSize), (int)((y + 0.5f) * Game.TileSize)));
+                            break;
+                        case TileType.WallShooter:
+                            var right = _grid[y, x - 1] == TileType.Wall;
+                            int wx = right ? x * Game.TileSize + WallShooter.Size.X / 2 : (x + 1) * Game.TileSize - WallShooter.Size.X / 2;
+                            EnemyController.SpawnWallShooter(new Point(wx, (int)((y + 0.5f) * Game.TileSize)), right);
+                            break;
+                        case TileType.CeilingShooter:
+                            int cy = (y + 1) * Game.TileSize - CeilingShooter.Size.Y / 2;
+                            EnemyController.SpawnCeilingShooter(new Point((int)((x + 0.5f) * Game.TileSize), cy));
+                            break;
+                        case TileType.Spider:
+                            int zy = (y + 1) * Game.TileSize - Spider.Size.Y / 2;
+                            EnemyController.SpawnSpider(new Point((int)((x + 0.5f) * Game.TileSize), zy));
+                            break;
+                        case TileType.Bird:
+                            EnemyController.SpawnBird(new Point((int)((x + 0.5f) * Game.TileSize), (int)((y + 0.5f) * Game.TileSize)));
+                            break;
+                    }
+                }
+            }
+
+            base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            Game.Camera.Track(Game.Player.Position.Y, (int)Game.Player.Velocity.Y);
+            Camera.Track(Player.Position.Y, (int)Player.Velocity.Y);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
-
             Game.SpriteBatch.Begin();
 
             for (int y = 0; y < _grid.GetLength(0); y++)
             {
                 for (int x = 0; x < _grid.GetLength(1); x++)
                 {
-                    Game.SpriteBatch.Draw(Game.WhitePixel, new Point(x, y).FromGrid().MakeTile().ToScreen(), _grid[y, x] == TileType.Wall ? Color.Black : Color.White);
+                    switch (_grid[y, x])
+                    {
+                        case TileType.Empty:
+                            DrawRectangle(new Point(x, y).FromGrid().MakeTile(), Color.White);
+                            break;
+                        case TileType.Wall:
+                            DrawRectangle(new Point(x, y).FromGrid().MakeTile(), Color.Black);
+                            break;
+                    }
                 }
             }
 
             Game.SpriteBatch.End();
+
+            base.Draw(gameTime);
         }
 
-        public int GetHeight() => _grid.GetLength(0) * Game.TileSize;
+        public void DrawRectangle(Rectangle rect, Color color) => Game.SpriteBatch.Draw(Game.WhitePixel, rect.ToScreen(), color);
+        public void DrawLine(Point start, Point end, Color color, int width) => Game.SpriteBatch.DrawLine(start.ToScreen().ToVector2(), end.ToScreen().ToVector2(), color, width);
 
+        public int GetHeight() => _grid.GetLength(0) * Game.TileSize;
         public TileType GetTile(int x, int y) => _grid[y, x];
 
         public bool IsWall(Point p)
