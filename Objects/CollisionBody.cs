@@ -30,10 +30,11 @@ namespace DiamondHollow
         {
             base.Update(gameTime);
 
-            Vector2 mask = DisableCollisions ? new(1) : GetCollisionMask();
+            Vector2 mask = DisableCollisions ? Vector2.One : GetCollisionMask(_position, ref Velocity);
 
-            _position += mask * Velocity;
             if (mask.X == 0 || mask.Y == 0) OnCollision?.Invoke(Position);
+            _position += Velocity;
+            Velocity *= mask;
 
             if (!DisableCollisions && !DisableCollisionBox)
             {
@@ -48,22 +49,35 @@ namespace DiamondHollow
             }
         }
 
-        private Vector2 GetCollisionMask()
+        private Vector2 GetCollisionMask(in Vector2 pos, ref Vector2 vel)
         {
-            Vector2 mask = new(1, 1);
+            Vector2 a = pos, b = pos + vel;
+            var collides = (Vector2 p) => new Rectangle(p.ToPoint(), Size).Corners().Any(p => Level.IsWall(p));
+            if (!collides(b)) return Vector2.One;
 
-            if (Bounds.OffsetY((int)Velocity.Y).Corners().Any(p => Game.Level.IsWall(p)))
+            Vector2 c = (a + b) / 2;
+            while ((b - a).Length() > 0.5f)
             {
-                if (Velocity.Y < 0) _position.Y = (int)Bounds.OffsetY((int)Velocity.Y).Corners(Corner.Bottom).Average(p => p.SnapToGrid().Y) + Game.TileSize;
-                else _position.Y = (int)Bounds.OffsetY((int)Velocity.Y).Corners(Corner.Top).Average(p => p.SnapToGrid().Y) - Size.Y;
-                Velocity.Y = mask.Y = 0;
+                if (!collides(c)) a = c;
+                else b = c;
+                c = (a + b) / 2;
             }
 
-            if (Bounds.OffsetX((int)Velocity.X).Corners().Any(p => Game.Level.IsWall(p)))
+            bool collisionX = collides(a + new Vector2(Math.Sign(vel.X), 0));
+            bool collisionY = collides(a + new Vector2(0, Math.Sign(vel.Y)));
+
+            var mask = new Vector2(collisionX ? 0 : 1, collisionY ? 0 : 1);
+            if (collisionX)
             {
-                if (Velocity.X < 0) _position.X = (int)Bounds.OffsetX((int)Velocity.X).Corners(Corner.Left).Average(p => p.SnapToGrid().X) + Game.TileSize;
-                else _position.X = (int)Bounds.OffsetX((int)Velocity.X).Corners(Corner.Right).Average(p => p.SnapToGrid().X) - Size.X;
-                Velocity.X = mask.X = 0;
+                vel.X = 0;
+                mask.Y = GetCollisionMask(a, ref vel).Y;
+                vel.X = a.X - pos.X;
+            }
+            if (collisionY)
+            {
+                vel.Y = 0;
+                mask.X = GetCollisionMask(a, ref vel).X;
+                vel.Y = a.Y - pos.Y;
             }
 
             return mask;

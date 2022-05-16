@@ -3,29 +3,17 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
-    public enum CameraState
-    {
-        Tracking,
-        Scrolling,
-    }
-
-    public delegate void OnScrollComplete();
-
-    record struct CameraScrollingState(float From, float To, float Duration, OnScrollComplete callback)
-    {
-        public float Elapsed { get; set; } = default;
-    }
-
     public class Camera : DHGameComponent
     {
+        private enum CameraState { Tracking, Scrolling }
+        private enum Countdowns { Scroll }
 
         public int CameraY { get; private set; }
         public int VelocityY { get; private set; }
 
         private CameraState _state;
         private CollisionBody _trackingBody;
-        private CameraScrollingState _scrollingState;
-
+        private (int From, int To) _scrollingState;
 
         public Camera(DiamondHollowGame game, Level level) : base(game, level)
         {
@@ -39,7 +27,7 @@ namespace DiamondHollow
             switch (_state)
             {
                 case CameraState.Tracking:
-                    int screenHeight = Game.Height;
+                    int screenHeight = Game.WindowHeight;
                     int delta = _trackingBody.Center.Y + (int)_trackingBody.Velocity.Y - CameraY - screenHeight / 2;
 
                     if (Math.Abs(VelocityY) < 2.5) VelocityY = 0;
@@ -48,23 +36,19 @@ namespace DiamondHollow
                     else if (delta < -screenHeight / 4) VelocityY = Math.Min(-(int)Math.Pow((delta + screenHeight / 4) / -25, 2), VelocityY);
                     CameraY += VelocityY;
 
-                    int levelHeight = Level.GetHeight() - Game.Height;
+                    int levelHeight = Level.GetHeight() - Game.WindowHeight;
                     if (CameraY < 0) CameraY = 0;
                     else if (CameraY > levelHeight) CameraY = levelHeight;
 
                     break;
 
+                case CameraState.Scrolling when IsCountdownDone((int)Countdowns.Scroll):
+                    _state = CameraState.Tracking;
+                    break;
+
                 case CameraState.Scrolling:
-                    if (_scrollingState.Elapsed == _scrollingState.Duration)
-                    {
-                        _state = CameraState.Tracking;
-                        _scrollingState.callback?.Invoke();
-                        break;
-                    }
-
-                    float t = 0.5f - (float)Math.Cos(_scrollingState.Elapsed++ / _scrollingState.Duration * Math.PI) / 2f;
+                    float t = 0.5f - (float)Math.Cos(GetCountdownProgress((int)Countdowns.Scroll) * Math.PI) / 2f;
                     CameraY = (int)(_scrollingState.From + (_scrollingState.To - _scrollingState.From) * t);
-
                     break;
             }
         }
@@ -75,11 +59,12 @@ namespace DiamondHollow
             _trackingBody = body;
         }
 
-        public void Scroll(int posY, int duration, OnScrollComplete callback)
+        public void Scroll(int posY, int duration, Action callback)
         {
             _state = CameraState.Scrolling;
-            _scrollingState = new CameraScrollingState(CameraY, Math.Max(posY - Game.Height / 2, 0), duration, callback);
             VelocityY = 0;
+            _scrollingState = (CameraY, Math.Max(posY - Game.WindowHeight / 2, 0));
+            CreateCountdown((int)Countdowns.Scroll, duration, false, 0, callback);
         }
     }
 }

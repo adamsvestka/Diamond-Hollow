@@ -16,11 +16,13 @@ namespace DiamondHollow
                 {
                     var angle = MathHelper.ToRadians(i);
                     var velocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
+                    Level.Player.Invincible = true;
                     Level.ProjectileController.Spawn(new ProjectileConstructor
                     {
                         Owner = Level.Player,
                         Origin = Center,
                         Direction = velocity,
+                        Damage = (int)(30 * Level.Modifier),
                         Color = Color.BlueViolet,
                         Speed = 15,
                     });

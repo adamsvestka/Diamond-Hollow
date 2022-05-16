@@ -9,12 +9,14 @@ namespace DiamondHollow
 
         private readonly Color _color;
         public readonly CollisionBody Owner;
+        public readonly int Damage;
 
         public Projectile(DiamondHollowGame game, ProjectileController controller, ProjectileConstructor data)
             : base(game, controller.Level, new Rectangle(data.Origin - (data.Size ?? _defaultSize).Half(), data.Size ?? _defaultSize))
         {
             Controller = controller;
             Owner = data.Owner;
+            Damage = data.Damage ?? 10;
             _color = data.Color ?? Color.Red;
             DisableCollisionBox = true;
             Velocity = data.Direction * (data.Speed ?? 10);

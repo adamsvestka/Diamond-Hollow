@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
@@ -11,11 +12,12 @@ namespace DiamondHollow
         public Enemy(DiamondHollowGame game, EnemyController controller, int maxHealth, Rectangle bounds) : base(game, controller.Level, bounds)
         {
             Controller = controller;
-            Health = MaxHealth = maxHealth;
+            Health = MaxHealth = (int)(maxHealth * Level.Modifier / 5f) * 10;
             Friction = 0;
             OnProjectileHit += proj =>
             {
-                if ((Health -= 10) == 0)
+                if (proj.Owner != Level.Player) return;
+                if ((Health -= proj.Damage) <= 0)
                 {
                     Controller.Despawn(this);
                     Level.ParticleController.Spawn(new ParticleConstructor
@@ -29,8 +31,8 @@ namespace DiamondHollow
                         LifeSpanVariance = 15,
                         UsePhysics = true,
                     });
-                    Level.CollectiblesController.SpawnDiamondCluster(Center, 5, 10);
-                    if (Game.Chance(0.1f)) Level.CollectiblesController.SpawnSmallHeart(Center);
+                    Level.CollectiblesController.SpawnDiamondCluster(Center, (int)(10 * Level.Modifier), 15);
+                    if (Game.Chance(0.05f)) Level.CollectiblesController.SpawnSmallHeart(Center);
                 }
             };
         }

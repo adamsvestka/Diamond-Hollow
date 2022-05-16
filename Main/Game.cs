@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -13,8 +15,8 @@ namespace DiamondHollow
         public Texture2D WhitePixel;
         public SpriteFont Menlo;
         public int TileSize = 50;
-        public int Height => GraphicsDevice.Viewport.Height;
-        public int Width => GraphicsDevice.Viewport.Width;
+        public int WindowHeight => GraphicsDevice.Viewport.Height;
+        public int WindowWidth => GraphicsDevice.Viewport.Width;
 
         public Level Level;
 
@@ -22,7 +24,7 @@ namespace DiamondHollow
         private MouseState _previousMouseState;
         public KeyboardState KeyboardState;
         public MouseState MouseState;
-        private Random _random;
+        private readonly Random _random;
 
         public DiamondHollowGame()
         {
@@ -31,6 +33,7 @@ namespace DiamondHollow
             IsMouseVisible = true;
             _previousKeyboardState = Keyboard.GetState();
             _previousMouseState = Mouse.GetState();
+            _random = new Random();
         }
 
         protected override void Initialize()
@@ -42,8 +45,7 @@ namespace DiamondHollow
 
             CoordinateExtensions.Initialize(this, new Point(TileSize, TileSize));
 
-            Level = new Level(this, "Levels/Level3.txt");
-            _random = new Random();
+            Level = new Level(this, "Levels/Components");
 
             Components.Add(Level);
 
@@ -73,6 +75,8 @@ namespace DiamondHollow
         public bool ButtonPressed(MouseButton button) => MouseState.IsButtonDown(button) && _previousMouseState.IsButtonUp(button);
 
         public bool Chance(float chance) => _random.NextDouble() < chance;
+        public TElem Choice<TElem>(IEnumerable<TElem> sequence) => sequence.ElementAt(_random.Next(0, sequence.Count()));
+        public float Random() => (float)_random.NextDouble();
 
         protected override void Update(GameTime gameTime)
         {

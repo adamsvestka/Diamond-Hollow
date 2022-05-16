@@ -4,16 +4,29 @@ namespace DiamondHollow
 {
     public class CeilingShooter : Enemy
     {
+        private enum Countdowns { Shoot }
+
         public static new readonly Point Size = new(32);
         public Vector2 Targeting;
-        private int _shotCountdown;
 
-        public CeilingShooter(DiamondHollowGame game, EnemyController controller, Point position)
-            : base(game, controller, 30, new Rectangle(position - Size.Half(), Size))
+        public CeilingShooter(DiamondHollowGame game, EnemyController controller, Point position) : base(game, controller, 30, new Rectangle(position - Size.Half(), Size))
         {
             Targeting = Vector2.Zero;
-            _shotCountdown = 1;
             Gravity = 0;
+
+            CreateCountdown((int)Countdowns.Shoot, (int)(250 / Level.Modifier), true, 0, () =>
+            {
+                if (Targeting.Y > 0) return;
+                Level.ProjectileController.Spawn(new ProjectileConstructor
+                {
+                    Owner = this,
+                    Origin = Center,
+                    Direction = Targeting,
+                    Size = new Point(20),
+                    Speed = 5 * Level.Modifier,
+                    Color = Color.Red,
+                });
+            });
         }
 
         public override void Update(GameTime gameTime)
@@ -22,21 +35,6 @@ namespace DiamondHollow
 
             Targeting = (Level.Player.Center - Center).ToVector2();
             Targeting.Normalize();
-
-            if (--_shotCountdown == 0)
-            {
-                _shotCountdown = 250;
-                if (Targeting.Y > 0) return;
-                Level.ProjectileController.Spawn(new ProjectileConstructor
-                {
-                    Owner = this,
-                    Origin = Center + Targeting.ToPoint(),
-                    Direction = Targeting,
-                    Size = new Point(20),
-                    Speed = 5,
-                    Color = Color.Red,
-                });
-            }
         }
 
         public override void Draw(GameTime gameTime)

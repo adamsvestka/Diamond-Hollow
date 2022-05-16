@@ -27,8 +27,7 @@ namespace DiamondHollow
             {
                 var diamond = new Diamond(Game, this, position)
                 {
-                    Velocity = Vector2.Zero.RandomOffset(dispersion),
-                    
+                    Velocity = Vector2.Zero.RandomOffset(dispersion)
                 };
                 diamond.OnCollect += Level.Player.OnItemCollision;
                 _collectibles.Add(diamond);

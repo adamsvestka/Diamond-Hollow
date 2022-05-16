@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
@@ -14,11 +13,11 @@ namespace DiamondHollow
         DounbleGem = '2',
         TripleGem = '3',
         QuadrupleGem = '4',
-        Slime = 's',
-        WallShooter = 'w',
-        CeilingShooter = 'c',
-        Spider = 'z',
-        Bird = 'b',
+        Slime = 's', Slime2 = 'S',
+        WallShooter = 'w', WallShooter2 = 'W',
+        CeilingShooter = 'c', CeilingShooter2 = 'C',
+        Spider = 'z', Spider2 = 'Z',
+        Bird = 'b', Bird2 = 'B',
         LargeHeart = '+',
         Nuke = '@',
         Checkpoint = '$',
@@ -27,7 +26,7 @@ namespace DiamondHollow
     public class Level : GameScene
     {
         private TileType[,] _grid;
-        readonly private string _filename;
+        private readonly LevelGenerator _levelGenerator;
 
         public Player Player;
         public Camera Camera;
@@ -36,16 +35,26 @@ namespace DiamondHollow
         public CollectiblesController CollectiblesController;
         public EnemyController EnemyController;
 
-        public Point Spawnpoint = new(0);
+        public Point Spawnpoint;
+        public float Difficulty => 1f + (float)(Player?.Position.Y ?? 0f) / Game.TileSize / 100f;
+        public float Modifier => Math.Clamp(Difficulty / 4f, 0.5f, 2f);
 
         public Level(DiamondHollowGame game, string filename) : base(game, null)
         {
-            _filename = filename;
+            _levelGenerator = new LevelGenerator(game, this, filename);
+            Spawnpoint = Point.Zero;
+        }
+
+        protected override void LoadContent()
+        {
+            _grid = new TileType[0, 0];
+            _levelGenerator.LoadNext(ref _grid);
+
+            base.LoadContent();
         }
 
         public override void Initialize()
         {
-
             Camera = new Camera(Game, this);
             Player = new Player(Game, this);
             ProjectileController = new ProjectileController(Game, this);
@@ -61,78 +70,14 @@ namespace DiamondHollow
             base.Initialize();
         }
 
-        private void SpawnDiamond(float x, float y) => CollectiblesController.SpawnDiamond(new Vector2(x + 0.5f, y + 0.5f).FromGrid().ToPoint());
-        protected override void LoadContent()
+        public override void Update(GameTime gameTime)
         {
-            var lines = File.ReadAllLines(Path.Combine(Game.Content.RootDirectory, _filename));
-            _grid = new TileType[lines.Length, lines[0].Length];
-            for (int y = 0; y < lines.Length; y++)
+            if (Player.Position.Y + 2 * Game.WindowHeight > GetHeight())
             {
-                for (int x = 0; x < lines[0].Length; x++)
-                {
-                    var tile = (TileType)lines[lines.Length - y - 1][x];
-                    Point pos = new Vector2(x + 0.5f, y + 0.5f).FromGrid().ToPoint();
-                    _grid[y, x] = TileType.Empty;
-                    switch (tile)
-                    {
-                        case TileType.Empty or TileType.Wall:
-                            _grid[y, x] = tile;
-                            break;
-                        case TileType.Spawnpoint:
-                            Spawnpoint = new Vector2(x + 0.5f, y + 0.5f).FromGrid().ToPoint();
-                            Player.Position = Spawnpoint - Player.Size.Half();
-                            break;
-                        case TileType.SingleGem:
-                            SpawnDiamond(x, y);
-                            break;
-                        case TileType.DounbleGem:
-                            SpawnDiamond(x - 0.5f, y);
-                            SpawnDiamond(x + 0.5f, y);
-                            break;
-                        case TileType.TripleGem:
-                            SpawnDiamond(x, y - 1);
-                            SpawnDiamond(x, y);
-                            SpawnDiamond(x, y + 1);
-                            break;
-                        case TileType.QuadrupleGem:
-                            SpawnDiamond(x - 1, y - 1);
-                            SpawnDiamond(x - 1, y + 1);
-                            SpawnDiamond(x + 1, y - 1);
-                            SpawnDiamond(x + 1, y + 1);
-                            break;
-                        case TileType.Slime:
-                            EnemyController.SpawnSlime(pos);
-                            break;
-                        case TileType.WallShooter:
-                            var right = _grid[y, x - 1] == TileType.Wall;
-                            int wx = right ? x * Game.TileSize + WallShooter.Size.X / 2 : (x + 1) * Game.TileSize - WallShooter.Size.X / 2;
-                            EnemyController.SpawnWallShooter(new Point(wx, (int)((y + 0.5f) * Game.TileSize)), right);
-                            break;
-                        case TileType.CeilingShooter:
-                            int cy = (y + 1) * Game.TileSize - CeilingShooter.Size.Y / 2;
-                            EnemyController.SpawnCeilingShooter(new Point((int)((x + 0.5f) * Game.TileSize), cy));
-                            break;
-                        case TileType.Spider:
-                            int zy = (y + 1) * Game.TileSize - Spider.Size.Y / 2;
-                            EnemyController.SpawnSpider(new Point((int)((x + 0.5f) * Game.TileSize), zy));
-                            break;
-                        case TileType.Bird:
-                            EnemyController.SpawnBird(pos);
-                            break;
-                        case TileType.LargeHeart:
-                            CollectiblesController.SpawnLargeHeart(pos);
-                            break;
-                        case TileType.Nuke:
-                            CollectiblesController.SpawnNuke(pos);
-                            break;
-                        case TileType.Checkpoint:
-                            CollectiblesController.SpawnRespawnAnchor(pos);
-                            break;
-                    }
-                }
+                _levelGenerator.LoadNext(ref _grid);
             }
 
-            base.LoadContent();
+            base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)

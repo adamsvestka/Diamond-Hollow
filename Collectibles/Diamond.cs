@@ -8,7 +8,7 @@ namespace DiamondHollow
 
         public Diamond(DiamondHollowGame game, CollectiblesController controller, Point pos) : base(game, controller, new Rectangle(pos - Size.Half(), Size))
         {
-            AttractionStrength = 3f;
+            AttractionStrength = 4f;
         }
 
         public override void Draw(GameTime gameTime)

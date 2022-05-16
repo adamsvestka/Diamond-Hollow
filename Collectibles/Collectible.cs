@@ -18,16 +18,18 @@ namespace DiamondHollow
 
         public override void Update(GameTime gameTime)
         {
-            var distance = (Level.Player.Center - Center).ToVector2().Length() / Game.TileSize;
-            if (distance < 1)
+            float distance = (Level.Player.Center - Center).ToVector2().Length() / Game.TileSize;
+            if (distance < (Level.Player.Size.X + Size.X) * 0.7f / Game.TileSize)
             {
                 OnCollect?.Invoke(this);
                 Controller.Despawn(this);
             }
             else if (distance < AttractionStrength)
             {
-                var strength = (AttractionStrength - distance) / 10;
-                Velocity = (Level.Player.Center.ToVector2() - Center.ToVector2()) * strength;
+                float strength = (float)Math.Pow(AttractionStrength - distance, 2);
+                Vector2 direction = Level.Player.Center.ToVector2() - Center.ToVector2();
+                direction.Normalize();
+                Velocity = direction * strength;
             }
             else Velocity *= 0.9f;
 

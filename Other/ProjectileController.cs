@@ -8,6 +8,7 @@ namespace DiamondHollow
         CollisionBody Owner,
         Point Origin,
         Vector2 Direction,
+        int? Damage,
         float? Speed,
         Point? Size,
         Color? Color

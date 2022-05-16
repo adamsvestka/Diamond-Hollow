@@ -4,35 +4,28 @@ namespace DiamondHollow
 {
     public class WallShooter : Enemy
     {
+        private enum Countdowns { Shoot }
+
         public static new readonly Point Size = new(32);
         public Vector2 Targeting;
-        private int _shotCountdown;
 
-        public WallShooter(DiamondHollowGame game, EnemyController controller, Point position, bool facingRight)
-            : base(game, controller, 20, new Rectangle(position - Size.Half(), Size))
+        public WallShooter(DiamondHollowGame game, EnemyController controller, Point position, bool facingRight) : base(game, controller, 20, new Rectangle(position - Size.Half(), Size))
         {
             Targeting = new Vector2(facingRight ? 1 : -1, 0);
-            _shotCountdown = 1;
             Gravity = 0;
-        }
 
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-
-            if (--_shotCountdown == 0)
+            CreateCountdown((int)Countdowns.Shoot, (int)(250 / Level.Modifier), true, 100, () =>
             {
-                _shotCountdown = 250;
                 Level.ProjectileController.Spawn(new ProjectileConstructor
                 {
                     Owner = this,
-                    Origin = Center + Targeting.ToPoint(),
+                    Origin = Center,
                     Direction = Targeting,
                     Size = new Point(20),
-                    Speed = 5,
+                    Speed = 5 * Level.Modifier,
                     Color = Color.Red,
                 });
-            }
+            });
         }
 
         public override void Draw(GameTime gameTime)

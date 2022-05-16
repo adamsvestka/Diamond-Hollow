@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -7,9 +6,14 @@ namespace DiamondHollow
 {
     public class Player : PhysicsBody
     {
+        private enum Countdowns { Invincible, Shoot }
+
+        public bool Invincible
+        {
+            get => !IsCountdownDone((int)Countdowns.Invincible);
+            set => ResetCountdown((int)Countdowns.Invincible);
+        }
         public Vector2 Targeting;
-        private int _invincibleDuration;
-        public bool Invincible => _invincibleDuration > 0;
         public int MaxHearts { get; private set; }
         public int Hearts { get; private set; }
         public int Score { get; private set; }
@@ -21,9 +25,10 @@ namespace DiamondHollow
             base.Initialize();
 
             Targeting = Vector2.Zero;
-            _invincibleDuration = 0;
             MaxHearts = Hearts = 3;
 
+            CreateCountdown((int)Countdowns.Invincible, 90, false, 90);
+            CreateCountdown((int)Countdowns.Shoot, 30, false);
             OnProjectileHit += OnEnemyCollision;
         }
 
@@ -34,7 +39,8 @@ namespace DiamondHollow
                 if (Game.KeyboardState.IsKeyDown(Keys.Space) && IsOnGround) Velocity.Y = 21;
                 if (Game.KeyboardState.IsKeyDown(Keys.A)) Velocity.X = -6;
                 if (Game.KeyboardState.IsKeyDown(Keys.D)) Velocity.X = 6;
-                if (Game.ButtonPressed(MouseButton.Left) && !Invincible)
+                if (Game.MouseState.IsButtonDown(MouseButton.Left) && !Invincible && IsCountdownDone((int)Countdowns.Shoot))
+                {
                     Level.ProjectileController.Spawn(new ProjectileConstructor
                     {
                         Owner = this,
@@ -43,9 +49,9 @@ namespace DiamondHollow
                         Color = Color.Purple,
                         Speed = 15,
                     });
+                    ResetCountdown((int)Countdowns.Shoot);
+                }
             }
-
-            if (Invincible) _invincibleDuration--;
 
             base.Update(gameTime);
 
@@ -60,11 +66,18 @@ namespace DiamondHollow
             Game.SpriteBatch.Begin();
 
             if (Hearts > 0) DrawCrosshairs();
-            Level.DrawRectangle(Bounds, Color.Blue * (Invincible ? 0.5f : 1f));
+            Level.DrawRectangle(Bounds, Color.Blue * (Invincible || Hearts == 0 ? 0.5f : 1f));
             DrawHealthbar();
             DrawScore();
+            DrawDebug();
 
             Game.SpriteBatch.End();
+        }
+
+        private void DrawDebug()
+        {
+            Game.SpriteBatch.DrawString(Game.Menlo, $"Difficulty: {Level.Difficulty}", new Vector2(10, 50), Color.LightBlue);
+            Game.SpriteBatch.DrawString(Game.Menlo, $"Modifier: {Level.Modifier}", new Vector2(10, 70), Color.LightBlue);
         }
 
         private void DrawCrosshairs()
@@ -72,7 +85,7 @@ namespace DiamondHollow
             var center = Bounds.Center.ToVector2();
             var size = new Vector2(4);
             var spacing = 20;
-            var count = (Game.Width + Game.Height) / spacing;
+            var count = (Game.WindowWidth + Game.WindowHeight) / spacing;
             for (int i = 0; i < count; i++)
             {
                 var dot = center + Targeting * i * spacing;
@@ -92,13 +105,24 @@ namespace DiamondHollow
 
         private void DrawScore()
         {
-            var diamond = new Rectangle(new Point(13, Game.Height - Diamond.Size.Y - 13), Diamond.Size);
+            var diamond = new Rectangle(new Point(13, Game.WindowHeight - Diamond.Size.Y - 13), Diamond.Size);
             Game.SpriteBatch.Draw(Game.WhitePixel, diamond, Color.Green);
             Game.SpriteBatch.DrawString(Game.Menlo, $"{Score}", new Vector2(diamond.Center.X + 50, diamond.Top), Color.Green);
         }
 
-        public void Respawn()
+        public void Die()
         {
+            Level.ParticleController.Spawn(new ParticleConstructor
+            {
+                Position = Center,
+                Color = Color.Blue,
+                Count = 100,
+                DispersionSpeed = 1.5f,
+                SpawnRadius = 10,
+                LifeSpan = 40,
+                LifeSpanVariance = 15,
+                UsePhysics = true,
+            });
             Position = Level.Spawnpoint - Size.Half();
             Velocity = Vector2.Zero;
             Level.Camera.Scroll(Center.Y, 120, () => Hearts = MaxHearts);
@@ -106,13 +130,19 @@ namespace DiamondHollow
 
         public void OnEnemyCollision(CollisionBody enemy)
         {
-            if (Invincible) return;
-            if (--Hearts == 0) { Respawn(); return; }
-            _invincibleDuration = 90;
-            var dir = (Center - enemy.Center).ToVector2();
+            if (Invincible || Hearts == 0) return;
+            if (--Hearts == 0)
+            {
+                Die();
+                return;
+            }
+
+            Invincible = true;
+
+            Vector2 dir = (Center - enemy.Center).ToVector2();
             dir.X = Math.Sign(dir.X);
             dir.Y = dir.Y == 0 ? 1 : Math.Sign(dir.Y);
-            Yeet(dir * 6);
+            Yeet(dir * 10);
         }
 
         public void OnItemCollision(Collectible item)
