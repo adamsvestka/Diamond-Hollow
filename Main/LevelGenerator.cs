@@ -49,7 +49,7 @@ namespace DiamondHollow
 
         private void ResetCheckpoint(int y) => NextCheckpoint = y + (1 + Game.Random() * (float)Math.Sqrt(Level.Difficulty)) * 50;
 
-        public void LoadNext(ref TileType[,] oldGrid)
+        public void LoadNext(ref TileType[,] grid)
         {
             var segment = Game.Choice(Segments[NextConnector]);
             string[] data = segment.Data;
@@ -59,11 +59,7 @@ namespace DiamondHollow
             // data = File.ReadAllLines(Path.Combine(Game.Content.RootDirectory, "Levels/Level2.txt"));
 
             int Width = data[0].Length;
-            TileType[,] grid = new TileType[Height + data.Length, Width];
-
-            for (int y = 0; y < Height; y++)
-                for (int x = 0; x < Width; x++)
-                    grid[y, x] = oldGrid[y, x];
+            Helpers.ResizeArray(ref grid, Height + data.Length, Width);
 
             for (int y = Height; y < Height + data.Length; y++)
             {
@@ -138,7 +134,7 @@ namespace DiamondHollow
 
             NextConnector = segment.Next;
             Height += data.Length;
-            oldGrid = grid;
+            // oldGrid = grid;
         }
     }
 }

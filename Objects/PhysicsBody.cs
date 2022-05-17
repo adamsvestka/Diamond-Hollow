@@ -17,7 +17,7 @@ namespace DiamondHollow
         {
             if (!DisableCollisions)
             {
-                if (IsOnGround = Game.Level.IsOnGround(Bounds))
+                if (IsOnGround = Level.IsOnGround(Bounds))
                 {
                     if (Math.Abs(Velocity.X -= Math.Sign(Velocity.X) * Friction) < Friction) Velocity.X = 0;
                 }

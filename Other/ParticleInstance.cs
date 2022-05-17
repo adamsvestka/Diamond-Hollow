@@ -47,7 +47,7 @@ namespace DiamondHollow
             {
                 particle.Life--;
                 particle.Body.Update(gameTime);
-                if (Game.Level.IsWall(particle.Body.Position)) particle.Life = 0;
+                if (Level.IsWall(particle.Body.Position)) particle.Life = 0;
                 return particle;
             }).Where(particle => particle.Life > 0).ToList();
 
@@ -62,7 +62,7 @@ namespace DiamondHollow
 
             foreach (var particle in _particles)
             {
-                Game.Level.DrawRectangle(particle.Body.Bounds, particle.Color);
+                Level.DrawRectangle(particle.Body.Bounds, particle.Color);
             }
 
             Game.SpriteBatch.End();

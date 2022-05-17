@@ -11,6 +11,12 @@ namespace DiamondHollow
         {
             Level = level;
             _collectibles = new List<Collectible>();
+
+            Level.AddComponents(
+                Diamond.Animator = new(Game, Level, "Sprites/Diamond", 20, new(4, 4, 8, 8)),
+                SmallHeart.Animator = new(Game, Level, "Sprites/Heart1", 20, new(3, 3, 10, 10)),
+                LargeHeart.Animator = new(Game, Level, "Sprites/Heart2", 20, new(1, 2, 14, 14))
+            );
         }
 
         public void SpawnDiamond(Point position)

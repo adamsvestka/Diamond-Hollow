@@ -4,7 +4,9 @@ namespace DiamondHollow
 {
     public class SmallHeart : Collectible
     {
-        public static new readonly Point Size = new(20);
+        public static new readonly Point Size = new(30);
+
+        public static Animator Animator;
 
         public SmallHeart(DiamondHollowGame game, CollectiblesController controller, Point pos) : base(game, controller, new Rectangle(pos - Size.Half(), Size))
         {
@@ -15,9 +17,7 @@ namespace DiamondHollow
         {
             base.Draw(gameTime);
 
-            Game.SpriteBatch.Begin();
-            Game.Level.DrawRectangle(Bounds, Color.PaleVioletRed);
-            Game.SpriteBatch.End();
+            Animator.DrawBatch(Bounds.ToScreen());
         }
     }
 }

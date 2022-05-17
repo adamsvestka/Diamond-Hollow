@@ -28,7 +28,7 @@ namespace DiamondHollow
             base.Draw(gameTime);
 
             Game.SpriteBatch.Begin();
-            Game.Level.DrawRectangle(Bounds, _color);
+            Level.DrawRectangle(Bounds, _color);
             Game.SpriteBatch.End();
         }
     }

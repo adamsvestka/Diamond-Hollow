@@ -29,7 +29,7 @@ namespace DiamondHollow
                 float strength = (float)Math.Pow(AttractionStrength - distance, 2);
                 Vector2 direction = Level.Player.Center.ToVector2() - Center.ToVector2();
                 direction.Normalize();
-                Velocity = direction * strength;
+                Velocity = Velocity * 0.7f + direction * strength * 0.3f;
             }
             else Velocity *= 0.9f;
 

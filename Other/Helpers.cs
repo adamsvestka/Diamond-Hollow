@@ -6,6 +6,19 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DiamondHollow
 {
+    public static class Helpers
+    {
+        public static void ResizeArray<T>(ref T[,] array, int newColumns, int newRows)
+        {
+            var newArray = new T[newColumns, newRows];
+            int rows = array.GetLength(1);
+            int columns = array.GetLength(0);
+            for (int x = 0; x < columns; x++)
+                Array.Copy(array, x * rows, newArray, x * newRows, rows);
+            array = newArray;
+        }
+    }
+
     [Flags]
     public enum Corner
     {
@@ -28,7 +41,7 @@ namespace DiamondHollow
         public static Point ToGrid(this Point p) => new(p.X / _tileSize.X - (p.X < 0 ? 1 : 0), p.Y / _tileSize.Y - (p.Y < 0 ? 1 : 0));
         public static Point FromGrid(this Point p) => new(p.X * _tileSize.X, p.Y * _tileSize.Y);
         public static Point SnapToGrid(this Point p) => FromGrid(ToGrid(p));
-        
+
         public static Vector2 ToGrid(this Vector2 v) => new(v.X / _tileSize.X, v.Y / _tileSize.Y);
         public static Vector2 FromGrid(this Vector2 v) => new(v.X * _tileSize.X, v.Y * _tileSize.Y);
         public static Vector2 SnapToGrid(this Vector2 v) => FromGrid(ToGrid(v));
@@ -39,10 +52,10 @@ namespace DiamondHollow
         public static Point Offset(this Point p, int x, int y) => new(p.X + x, p.Y + y);
         public static Point OffsetX(this Point p, int x) => new(p.X + x, p.Y);
         public static Point OffsetY(this Point p, int y) => new(p.X, p.Y + y);
-        public static Rectangle Offset(this Rectangle r, Point p) => new(r.X + p.X, r.Y + p.Y, r.Width, r.Height);
-        public static Rectangle Offset(this Rectangle r, int x, int y) => new(r.X + x, r.Y + y, r.Width, r.Height);
         public static Rectangle OffsetX(this Rectangle r, int x) => new(r.X + x, r.Y, r.Width, r.Height);
         public static Rectangle OffsetY(this Rectangle r, int y) => new(r.X, r.Y + y, r.Width, r.Height);
+
+        public static Point Scale(this Point p, int s) => new(p.X * s, p.Y * s);
 
         public static Rectangle MakeTile(this Point p) => new(p, _tileSize);
         public static Point Half(this Point p) => new(p.X / 2, p.Y / 2);
@@ -96,7 +109,8 @@ namespace DiamondHollow
 
     public static class MouseButtonExtensions
     {
-        private static ButtonState GetButtonState(this MouseState state, MouseButton button) => button switch {
+        private static ButtonState GetButtonState(this MouseState state, MouseButton button) => button switch
+        {
             MouseButton.Left => state.LeftButton,
             MouseButton.Right => state.RightButton,
             MouseButton.Middle => state.MiddleButton,

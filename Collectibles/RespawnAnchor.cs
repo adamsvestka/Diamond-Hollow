@@ -20,7 +20,7 @@ namespace DiamondHollow
             base.Draw(gameTime);
 
             Game.SpriteBatch.Begin();
-            Game.Level.DrawRectangle(Bounds, Color.Goldenrod);
+            Level.DrawRectangle(Bounds, Color.Goldenrod);
             Game.SpriteBatch.End();
         }
     }

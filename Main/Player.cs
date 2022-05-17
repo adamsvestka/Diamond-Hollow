@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace DiamondHollow
@@ -18,6 +19,8 @@ namespace DiamondHollow
         public int Hearts { get; private set; }
         public int Score { get; private set; }
 
+        private Texture2D _barTexture1, _barTexture2, _grayHeartTexture;
+
         public Player(DiamondHollowGame game, Level level) : base(game, level, new Rectangle(new Point(125, 125), new Point(36))) { }
 
         public override void Initialize()
@@ -30,6 +33,15 @@ namespace DiamondHollow
             CreateCountdown((int)Countdowns.Invincible, 90, false, 90);
             CreateCountdown((int)Countdowns.Shoot, 30, false);
             OnProjectileHit += OnEnemyCollision;
+        }
+
+        protected override void LoadContent()
+        {
+            base.LoadContent();
+
+            _barTexture1 = Game.Content.Load<Texture2D>("Sprites/Bar1");
+            _barTexture2 = Game.Content.Load<Texture2D>("Sprites/Bar2");
+            _grayHeartTexture = Game.Content.Load<Texture2D>("Sprites/Heart1Empty");
         }
 
         public override void Update(GameTime gameTime)
@@ -63,13 +75,12 @@ namespace DiamondHollow
         {
             base.Draw(gameTime);
 
-            Game.SpriteBatch.Begin();
+            Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
             if (Hearts > 0) DrawCrosshairs();
             Level.DrawRectangle(Bounds, Color.Blue * (Invincible || Hearts == 0 ? 0.5f : 1f));
-            DrawHealthbar();
-            DrawScore();
-            DrawDebug();
+            DrawHUD();
+            // DrawDebug();
 
             Game.SpriteBatch.End();
         }
@@ -93,21 +104,21 @@ namespace DiamondHollow
             }
         }
 
-        private void DrawHealthbar()
+        private void DrawHUD()
         {
-            var heart = new Rectangle(13, 13, 23, 23);
+            var heart = new Rectangle(new Point(13, 7), SmallHeart.Size);
+            // Game.SpriteBatch.Draw(_barTexture2, new Rectangle(4, 6, 164, 36), Color.White);
             for (int i = 0; i < MaxHearts; i++)
             {
-                Game.SpriteBatch.Draw(Game.WhitePixel, heart, i >= Hearts ? Color.Gray : Color.Red);
+                if (i < Hearts) SmallHeart.Animator.Draw(heart);
+                else Game.SpriteBatch.Draw(_grayHeartTexture, heart, new Rectangle(3, 3, 10, 10), Color.White);
                 heart.X += heart.Width + 7;
             }
-        }
 
-        private void DrawScore()
-        {
-            var diamond = new Rectangle(new Point(13, Game.WindowHeight - Diamond.Size.Y - 13), Diamond.Size);
-            Game.SpriteBatch.Draw(Game.WhitePixel, diamond, Color.Green);
-            Game.SpriteBatch.DrawString(Game.Menlo, $"{Score}", new Vector2(diamond.Center.X + 50, diamond.Top), Color.Green);
+            var diamond = new Rectangle(new Point(25, Game.WindowHeight - Diamond.Size.Y - 13), Diamond.Size);
+            Game.SpriteBatch.Draw(_barTexture1, new Rectangle(4, Game.WindowHeight - 42, 164, 36), Color.White * 0.9f);
+            Diamond.Animator.Draw(diamond);
+            Game.SpriteBatch.DrawString(Game.Menlo, $"{Score}", new Vector2(diamond.Center.X + 50, diamond.Top + 2), Color.Black);
         }
 
         public void Die()

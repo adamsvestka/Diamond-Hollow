@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace DiamondHollow
 {
@@ -27,6 +30,9 @@ namespace DiamondHollow
     {
         private TileType[,] _grid;
         private readonly LevelGenerator _levelGenerator;
+        private Point[][] _tileMap;
+        private Point[,] _drawingCache;
+        private Texture2D _tileset;
 
         public Player Player;
         public Camera Camera;
@@ -48,7 +54,12 @@ namespace DiamondHollow
         protected override void LoadContent()
         {
             _grid = new TileType[0, 0];
-            _levelGenerator.LoadNext(ref _grid);
+            _drawingCache = new Point[0, 0];
+
+            GenerateTileMap();
+            LoadNextMapSegment();
+
+            _tileset = Game.Content.Load<Texture2D>("Sprites/Tileset");
 
             base.LoadContent();
         }
@@ -74,7 +85,7 @@ namespace DiamondHollow
         {
             if (Player.Position.Y + 2 * Game.WindowHeight > GetHeight())
             {
-                _levelGenerator.LoadNext(ref _grid);
+                LoadNextMapSegment();
             }
 
             base.Update(gameTime);
@@ -82,19 +93,23 @@ namespace DiamondHollow
 
         public override void Draw(GameTime gameTime)
         {
-            Game.SpriteBatch.Begin();
+            Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap);
 
-            for (int y = 0; y < _grid.GetLength(0); y++)
+            int bottom = Math.Max(Camera.CameraY / Game.TileSize, 0);
+            int top = Math.Min(bottom + Game.WindowHeight / Game.TileSize + 1, GetHeight());
+
+            for (int y = bottom; y < top; y++)
             {
                 for (int x = 0; x < _grid.GetLength(1); x++)
                 {
                     switch (_grid[y, x])
                     {
                         case TileType.Empty:
-                            DrawRectangle(new Point(x, y).FromGrid().MakeTile(), Color.White);
+                            // DrawRectangle(new Point(x, y).FromGrid().MakeTile(), Color.White);
                             break;
                         case TileType.Wall:
-                            DrawRectangle(new Point(x, y).FromGrid().MakeTile(), Color.Black);
+                            Point pos = _drawingCache[y, x];
+                            Game.SpriteBatch.Draw(_tileset, new Point(x, y).FromGrid().MakeTile().ToScreen(), new Rectangle(pos.X * 32, pos.Y * 32, 32, 32), Color.White);
                             break;
                     }
                 }
@@ -107,6 +122,36 @@ namespace DiamondHollow
             base.Draw(gameTime);
         }
 
+        private void LoadNextMapSegment()
+        {
+            _levelGenerator.LoadNext(ref _grid);
+            int height = Math.Max(_drawingCache.GetLength(0) - 1, 0);
+            int height2 = _grid.GetLength(0);
+            int width = _grid.GetLength(1);
+
+            Helpers.ResizeArray(ref _drawingCache, height2, width);
+
+            for (int y = height; y < height2; y++)
+                for (int x = 0; x < width; x++)
+                    if (_grid[y, x] == TileType.Wall)
+                        _drawingCache[y, x] = Game.Choice(_tileMap[CollectSurroundingTiles(new Point(x, y))]);
+        }
+
+        private byte CollectSurroundingTiles(Point point)
+        {
+            byte data = 0, i = 7;
+            for (int y = point.Y + 1; y >= point.Y - 1; y--)
+            {
+                for (int x = point.X - 1; x <= point.X + 1; x++)
+                {
+                    if (x == point.X && y == point.Y) continue;
+                    if (IsWall(new Point(x, y).FromGrid())) data |= (byte)(1 << i);
+                    i--;
+                }
+            }
+            return data;
+        }
+
         public void DrawRectangle(Rectangle rect, Color color) => Game.SpriteBatch.Draw(Game.WhitePixel, rect.ToScreen(), color);
         public void DrawLine(Point start, Point end, Color color, int width) => Game.SpriteBatch.DrawLine(start.ToScreen().ToVector2(), end.ToScreen().ToVector2(), color, width);
 
@@ -115,81 +160,101 @@ namespace DiamondHollow
 
         public bool IsWall(Point p)
         {
-            try
-            {
-                var coords = p.ToGrid();
-                return _grid[coords.Y, coords.X] == TileType.Wall;
-            }
-            catch
-            {
-                return true;
-            }
+            var c = p.ToGrid();
+            return c.X < 0 || c.X >= _grid.GetLength(1)
+                || c.Y < 0 || c.Y >= _grid.GetLength(0)
+                || _grid[c.Y, c.X] == TileType.Wall;
         }
         public bool IsWall(int x, int y) => IsWall(new Point(x, y));
         public bool IsOnGround(Rectangle box) => IsWall(box.Location.OffsetY(-1)) || IsWall(box.Location.Offset(box.Width - 1, -1));
 
-        public IEnumerable<Point> Raycast(Vector2 origin, Vector2 direction, float distance = 1e6f)
+        private IEnumerable<string> GeneratePermutations(string repr)
         {
-            Vector2 delta = new(Math.Abs(direction.X), Math.Abs(direction.Y));
+            int i = repr.IndexOf('.');
+            if (i == -1) return new[] { repr };
+            return GeneratePermutations(repr[0..i] + "x" + repr[(i + 1)..]).Concat(GeneratePermutations(repr[0..i] + " " + repr[(i + 1)..]));
+        }
+        private void AddTileVariant(string repr, params (int x, int y)[] c)
+        {
+            foreach (var k in GeneratePermutations(repr.Replace("|", "")))
+            {
+                int i = Convert.ToInt32(k.Remove(4, 1).Replace('x', '1').Replace(' ', '0'), 2);
+                _tileMap[i] = c.Select(p => new Point(p.x, p.y)).ToArray();
+            }
+        }
+        private void GenerateTileMap()
+        {
+            _tileMap = new Point[256][];
+            for (int i = 0; i < 256; i++) _tileMap[i] = new[] { Point.Zero };
 
-            Point curr = origin.ToPoint();
-            Point target = (origin + direction * distance).ToPoint();
+            // Single
+            AddTileVariant(". .| x |. .", (2, 8));
 
-            Point inc = new();
-            double error;
-            int n = 1;
+            // Horizontal
+            AddTileVariant(". .| x |.x.", (0, 8), (7, 0));
+            AddTileVariant(".x.| x |.x.", (0, 9), (8, 4));
+            AddTileVariant(".x.| x |. .", (0, 10), (7, 1));
 
-            if (direction.X == 0)
-            {
-                inc.X = 0;
-                error = double.PositiveInfinity;
-            }
-            else if (direction.X > 0)
-            {
-                inc.X = 1;
-                n += target.X - curr.X;
-                error = (Math.Ceiling(origin.X) - origin.X) * delta.Y;
-            }
-            else
-            {
-                inc.X = -1;
-                n += curr.X - target.X;
-                error = (origin.X - Math.Floor(origin.X)) * delta.Y;
-            }
+            // Vertical
+            AddTileVariant(". .| xx|. .", (0, 12), (9, 0));
+            AddTileVariant(". .|xxx|. .", (1, 12));
+            AddTileVariant(". .|xx |. .", (2, 12), (10, 0));
 
-            if (direction.Y == 0)
-            {
-                inc.Y = 0;
-                error -= double.PositiveInfinity;
-            }
-            else if (direction.Y > 0)
-            {
-                inc.Y = 1;
-                n += target.Y - curr.Y;
-                error -= (Math.Ceiling(origin.Y) - origin.Y) * delta.X;
-            }
-            else
-            {
-                inc.Y = -1;
-                n += curr.Y - target.Y;
-                error -= (origin.Y - Math.Floor(origin.Y)) * delta.X;
-            }
+            // Box outer
+            AddTileVariant(". .| xx|.xx", (0, 0));
+            AddTileVariant(". .|xxx|xxx", (1, 0));
+            AddTileVariant(". .|xx |xx.", (2, 0));
+            AddTileVariant(".xx| xx|.xx", (0, 1), (4, 10), (4, 11), (4, 12), (13, 14));
+            AddTileVariant("xxx|xxx|xxx", (1, 1));
+            AddTileVariant("xx.|xx |xx.", (2, 1), (8, 10), (8, 11), (8, 12), (15, 14));
+            AddTileVariant(".xx| xx|. .", (0, 2), (13, 15));
+            AddTileVariant("xxx|xxx|. .", (1, 2));
+            AddTileVariant("xx.|xx |. .", (2, 2), (15, 15));
 
-            for (; n > 0 && !IsWall(curr.FromGrid()); n--)
-            {
-                yield return curr;
+            // Box inner
+            AddTileVariant("xxx|xxx|xx ", (0, 4));
+            AddTileVariant("xxx|xxx|x x", (1, 4));
+            AddTileVariant("xxx|xxx| xx", (2, 4));
+            AddTileVariant("xxx|xx |xxx", (0, 5));
+            AddTileVariant("xxx| xx|xxx", (2, 5));
+            AddTileVariant("xx |xxx|xxx", (0, 6));
+            AddTileVariant("x x|xxx|xxx", (1, 6));
+            AddTileVariant(" xx|xxx|xxx", (2, 6));
 
-                if (error > 0)
-                {
-                    curr.Y += inc.Y;
-                    error -= delta.X;
-                }
-                else
-                {
-                    curr.X += inc.X;
-                    error += delta.Y;
-                }
-            }
+            // +
+            AddTileVariant(" x |xxx| x ", (10, 13));
+
+            // Extruded Ts
+            AddTileVariant(" x |xxx|xxx", (6, 9));
+            AddTileVariant("xx |xxx|xx ", (8, 13));
+            AddTileVariant("xxx|xxx| x ", (9, 11));
+            AddTileVariant(" xx|xxx| xx", (10, 5));
+
+            // Thin Ts
+            AddTileVariant(" x |xxx|. .", (10, 15));
+            AddTileVariant(".x | xx|.x ", (4, 7));
+            AddTileVariant(". .|xxx| x ", (8, 3));
+            AddTileVariant(" x.|xx | x.", (15, 9));
+
+            // Corner Ls
+            AddTileVariant(" x |xx |  .", (11, 11));
+            AddTileVariant(" x | xx|.  ", (4, 15));
+            AddTileVariant(".  | xx| x ", (10, 11));
+            AddTileVariant("  .|xx | x ", (15, 3));
+
+            // Notched slab
+            AddTileVariant(" xx|xxx|. .", (6, 15));
+            AddTileVariant("xx |xxx|. .", (8, 15));
+            AddTileVariant(".x | xx|.xx", (4, 9));
+            AddTileVariant(".xx| xx|.x ", (4, 13));
+            AddTileVariant(". .|xxx|xx ", (10, 3));
+            AddTileVariant(". .|xxx| xx", (13, 3));
+            AddTileVariant(" x.|xx |xx.", (15, 5));
+            AddTileVariant("xx.|xx | x.", (15, 7));
+
+            Console.WriteLine(_tileMap.Count(t => t.Contains(Point.Zero)));
+            int j = 0;
+            _tileMap.Select(e => (j++, e)).Where(e => e.e.Contains(Point.Zero)).Select(e => Convert.ToString(e.Item1, 2).PadLeft(8, '0').Replace('0', ' ').Replace('1', 'x').Insert(4, "x").Insert(6, "|").Insert(3, "|")).ToList().ForEach(Console.WriteLine);
         }
     }
 }

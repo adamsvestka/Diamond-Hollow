@@ -9,6 +9,9 @@ namespace DiamondHollow
         public int MaxHealth { get; init; }
         public int Health { get; private set; }
 
+        protected float HeartDropChance = 0.05f;
+        protected int DiamondDropCount = 10;
+
         public Enemy(DiamondHollowGame game, EnemyController controller, int maxHealth, Rectangle bounds) : base(game, controller.Level, bounds)
         {
             Controller = controller;
@@ -31,8 +34,8 @@ namespace DiamondHollow
                         LifeSpanVariance = 15,
                         UsePhysics = true,
                     });
-                    Level.CollectiblesController.SpawnDiamondCluster(Center, (int)(10 * Level.Modifier), 15);
-                    if (Game.Chance(0.05f)) Level.CollectiblesController.SpawnSmallHeart(Center);
+                    Level.CollectiblesController.SpawnDiamondCluster(Center, (int)(DiamondDropCount * Level.Modifier), 15);
+                    if (Game.Chance(HeartDropChance)) Level.CollectiblesController.SpawnSmallHeart(Center);
                 }
             };
         }
@@ -54,9 +57,9 @@ namespace DiamondHollow
 
             int width = 40;
             var bar = new Rectangle(Center.X - width / 2, Center.Y + Size.Y / 2 + 10, width, 10);
-            Game.Level.DrawRectangle(bar, Color.Gray);
+            Level.DrawRectangle(bar, Color.Gray);
             bar.Width = (int)(width * (Health / (float)MaxHealth));
-            Game.Level.DrawRectangle(bar, Color.Red);
+            Level.DrawRectangle(bar, Color.Red);
 
             Game.SpriteBatch.End();
         }

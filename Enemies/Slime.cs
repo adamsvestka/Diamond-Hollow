@@ -25,7 +25,7 @@ namespace DiamondHollow
         public override void Draw(GameTime gameTime)
         {
             Game.SpriteBatch.Begin();
-            Game.Level.DrawRectangle(Bounds, Color.Red);
+            Level.DrawRectangle(Bounds, Color.Red);
             Game.SpriteBatch.End();
 
             base.Draw(gameTime);
