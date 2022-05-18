@@ -19,7 +19,7 @@ namespace DiamondHollow
         public int Hearts { get; private set; }
         public int Score { get; private set; }
 
-        private Texture2D _barTexture1, _barTexture2, _grayHeartTexture;
+        private Texture2D _barTexture, _grayHeartTexture, _swordTextures;
 
         public Player(DiamondHollowGame game, Level level) : base(game, level, new Rectangle(new Point(125, 125), new Point(36))) { }
 
@@ -39,9 +39,9 @@ namespace DiamondHollow
         {
             base.LoadContent();
 
-            _barTexture1 = Game.Content.Load<Texture2D>("Sprites/Bar1");
-            _barTexture2 = Game.Content.Load<Texture2D>("Sprites/Bar2");
+            _barTexture = Game.Content.Load<Texture2D>("Sprites/Bar1");
             _grayHeartTexture = Game.Content.Load<Texture2D>("Sprites/Heart1Empty");
+            _swordTextures = Game.Content.Load<Texture2D>("Sprites/Swords");
         }
 
         public override void Update(GameTime gameTime)
@@ -85,11 +85,11 @@ namespace DiamondHollow
             Game.SpriteBatch.End();
         }
 
-        private void DrawDebug()
-        {
-            Game.SpriteBatch.DrawString(Game.Menlo, $"Difficulty: {Level.Difficulty}", new Vector2(10, 50), Color.LightBlue);
-            Game.SpriteBatch.DrawString(Game.Menlo, $"Modifier: {Level.Modifier}", new Vector2(10, 70), Color.LightBlue);
-        }
+        // private void DrawDebug()
+        // {
+        //     Game.SpriteBatch.DrawString(Game.Menlo, $"Difficulty: {Level.Difficulty}", new Vector2(10, 50), Color.LightBlue);
+        //     Game.SpriteBatch.DrawString(Game.Menlo, $"Modifier: {Level.Modifier}", new Vector2(10, 70), Color.LightBlue);
+        // }
 
         private void DrawCrosshairs()
         {
@@ -107,16 +107,23 @@ namespace DiamondHollow
         private void DrawHUD()
         {
             var heart = new Rectangle(new Point(13, 7), SmallHeart.Size);
-            // Game.SpriteBatch.Draw(_barTexture2, new Rectangle(4, 6, 164, 36), Color.White);
             for (int i = 0; i < MaxHearts; i++)
             {
                 if (i < Hearts) SmallHeart.Animator.Draw(heart);
                 else Game.SpriteBatch.Draw(_grayHeartTexture, heart, new Rectangle(3, 3, 10, 10), Color.White);
                 heart.X += heart.Width + 7;
             }
+            var sword = new Rectangle(new Point(13, 7 + SmallHeart.Size.Y + 7), new Point(32));
+            for (int i = 0; i < (int)Level.Difficulty; i++)
+            {
+                Game.SpriteBatch.Draw(_swordTextures, sword, new Rectangle(0 * 16, 9 * 16, 16, 16), Color.White);
+                sword.X += heart.Width + 7;
+            }
+            if (Level.Difficulty % 1 > 0.66f) Game.SpriteBatch.Draw(_swordTextures, sword, new Rectangle(2 * 16, 9 * 16, 16, 16), Color.White);
+            else if (Level.Difficulty % 1 > 0.33f) Game.SpriteBatch.Draw(_swordTextures, sword, new Rectangle(2 * 16, 1 * 16, 16, 16), Color.White);
 
             var diamond = new Rectangle(new Point(25, Game.WindowHeight - Diamond.Size.Y - 13), Diamond.Size);
-            Game.SpriteBatch.Draw(_barTexture1, new Rectangle(4, Game.WindowHeight - 42, 164, 36), Color.White * 0.9f);
+            Game.SpriteBatch.Draw(_barTexture, new Rectangle(4, Game.WindowHeight - 42, 164, 36), Color.White * 0.9f);
             Diamond.Animator.Draw(diamond);
             Game.SpriteBatch.DrawString(Game.Menlo, $"{Score}", new Vector2(diamond.Center.X + 50, diamond.Top + 2), Color.Black);
         }

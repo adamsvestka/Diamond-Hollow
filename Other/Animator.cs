@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -5,61 +8,94 @@ namespace DiamondHollow
 {
     public class Animator : DHGameComponent
     {
-        private Texture2D _texture;
-        private readonly string _filename;
-        private int _time;
+        public record struct Animation(Texture2D[] Textures, Rectangle Cutout, Point Offset, int Frames)
+        {
+            public Animation(Texture2D[] textures, Rectangle? cutout) : this(textures, cutout ?? Rectangle.Empty, Point.Zero, 0)
+            {
+                var Texture = Textures[0];
+                if (Texture.Width >= Texture.Height)
+                {
+                    Frames = Texture.Width / Texture.Height;
+                    Offset = new(Texture.Height, 0);
+                }
+                else
+                {
+                    Frames = Texture.Height / Texture.Width;
+                    Offset = new(0, Texture.Width);
+                }
+                if (Cutout == Rectangle.Empty) Cutout = new(0, 0, Offset.X + Offset.Y, Offset.X + Offset.Y);
+            }
+            public Rectangle GetFrame(int frame) => new(Offset.Scale(frame) + Cutout.Location, Cutout.Size);
+        }
 
-        private Rectangle _cutout;
-        private Point _offset;
-        private int _frames;
+        private readonly List<(string, string[], Rectangle)> _files;
+        private int _time;
         private readonly int _duration;
+
+        private readonly Dictionary<string, Animation> _states;
+        private string _current;
+        private Action _complete;
+        public Animation Anim => _states[_current];
+        public Rectangle Frame => Anim.GetFrame(_time / _duration);
 
         public Animator(DiamondHollowGame game, Level level, string filename, int duration, Rectangle? cutout = null) : base(game, level)
         {
-            _filename = filename;
+            _files = new() { ("default", new[] { filename }, cutout ?? Rectangle.Empty) };
             _duration = duration;
-            _cutout = cutout ?? new(0, 0, 0, 0);
+            _states = new();
         }
+
+        public void AddState(string name, Rectangle? cutout, params string[] filenames)
+        {
+            _files.Add((name, filenames, cutout ?? Rectangle.Empty));
+        }
+
+        public bool HasState(string name) => _states.ContainsKey(name);
 
         protected override void LoadContent()
         {
             base.LoadContent();
 
-            _texture = Game.Content.Load<Texture2D>(_filename);
             _time = 0;
 
-            if (_texture.Width >= _texture.Height)
+            foreach (var (state, filenames, cutout) in _files)
             {
-                _frames = _texture.Width / _texture.Height;
-                _offset = new(_texture.Height, 0);
+                _states.Add(state, new(filenames.Select(Game.Content.Load<Texture2D>).ToArray(), cutout));
             }
-            else
-            {
-                _frames = _texture.Height / _texture.Width;
-                _offset = new(0, _texture.Width);
-            }
+            _current = "default";
+        }
 
-            if (_cutout.Width == 0) _cutout = new(0, 0, _offset.X + _offset.Y, _offset.X + _offset.Y);
+        public void PlayState(string state, Action callback = null)
+        {
+            _current = state;
+            _complete = callback;
+            _time %= _duration;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            _time++;
+            if (++_time >= _duration * Anim.Frames)
+            {
+                _time = 0;
+                _complete?.Invoke();
+                _current = "default";
+            }
         }
 
-        private Rectangle AnimationCutout => new(_offset.Scale(_time / _duration % _frames) + _cutout.Location, _cutout.Size);
-
-        public void Draw(Rectangle bounds)
+        public void Draw(Rectangle bounds, bool flipped = false)
         {
-            Game.SpriteBatch.Draw(_texture, bounds, AnimationCutout, Color.White);
+            foreach (var texture in Anim.Textures)
+            {
+                Game.SpriteBatch.Draw(texture, bounds, Frame, Color.White, 0, Vector2.Zero, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+            }
         }
 
-        public void DrawBatch(Rectangle bounds)
+        public void DrawBatch(Rectangle bounds, bool flipped = false)
         {
             Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            Draw(bounds);
+            Draw(bounds, flipped);
             Game.SpriteBatch.End();
         }
     }

@@ -56,9 +56,12 @@ namespace DiamondHollow
         public static Rectangle OffsetY(this Rectangle r, int y) => new(r.X, r.Y + y, r.Width, r.Height);
 
         public static Point Scale(this Point p, int s) => new(p.X * s, p.Y * s);
+        public static Rectangle Grow(this Rectangle r, int s) => new(r.X - s, r.Y - s, r.Width + s * 2, r.Height + s * 2);
 
         public static Rectangle MakeTile(this Point p) => new(p, _tileSize);
         public static Point Half(this Point p) => new(p.X / 2, p.Y / 2);
+        public static float Length(this Point p) => (float)Math.Sqrt(p.X * p.X + p.Y * p.Y);
+        public static int LengthSquared(this Point p) => p.X * p.X + p.Y * p.Y;
 
         public static IEnumerable<Point> Corners(this Rectangle r, Corner mask = Corner.Top | Corner.Right | Corner.Bottom | Corner.Left)
         {

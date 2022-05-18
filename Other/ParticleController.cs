@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace DiamondHollow
 {
     public record struct ParticleConstructor(
         Point Position,
         Color Color,
+        Texture2D Texture,
         int Count,
         float? SpawnRadius,
         float? DispersionSpeed,

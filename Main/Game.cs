@@ -74,9 +74,22 @@ namespace DiamondHollow
         public bool KeyReleased(Keys key) => KeyboardState.IsKeyUp(key) && _previousKeyboardState.IsKeyDown(key);
         public bool ButtonPressed(MouseButton button) => MouseState.IsButtonDown(button) && _previousMouseState.IsButtonUp(button);
 
+        public float Random() => (float)_random.NextDouble();
         public bool Chance(float chance) => _random.NextDouble() < chance;
         public TElem Choice<TElem>(IEnumerable<TElem> sequence) => sequence.ElementAt(_random.Next(0, sequence.Count()));
-        public float Random() => (float)_random.NextDouble();
+        public TElem WeightedChoice<TElem>(IEnumerable<TElem> sequence, IEnumerable<int> weights)
+        {
+            int totalWeight = weights.Sum();
+            float random = Random() * totalWeight;
+            int currentWeight = 0;
+            for (int i = 0; i < sequence.Count(); i++)
+            {
+                currentWeight += weights.ElementAt(i);
+                if (currentWeight > random)
+                    return sequence.ElementAt(i);
+            }
+            return sequence.Last();
+        }
 
         protected override void Update(GameTime gameTime)
         {
@@ -88,13 +101,6 @@ namespace DiamondHollow
             if (KeyboardState.IsKeyDown(Keys.Escape)) Exit();
 
             base.Update(gameTime);
-        }
-
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            base.Draw(gameTime);
         }
     }
 }

@@ -49,7 +49,7 @@ namespace DiamondHollow
             }
         }
 
-        private Vector2 GetCollisionMask(in Vector2 pos, ref Vector2 vel)
+        private Vector2 GetCollisionMask(in Vector2 pos, ref Vector2 vel, int depth = 3)
         {
             Vector2 a = pos, b = pos + vel;
             var collides = (Vector2 p) => new Rectangle(p.ToPoint(), Size).Corners().Any(p => Level.IsWall(p));
@@ -67,17 +67,20 @@ namespace DiamondHollow
             bool collisionY = collides(a + new Vector2(0, Math.Sign(vel.Y)));
 
             var mask = new Vector2(collisionX ? 0 : 1, collisionY ? 0 : 1);
-            if (collisionX)
+            if (depth > 0)
             {
-                vel.X = 0;
-                mask.Y = GetCollisionMask(a, ref vel).Y;
-                vel.X = a.X - pos.X;
-            }
-            if (collisionY)
-            {
-                vel.Y = 0;
-                mask.X = GetCollisionMask(a, ref vel).X;
-                vel.Y = a.Y - pos.Y;
+                if (collisionX)
+                {
+                    vel.X = 0;
+                    mask.Y = GetCollisionMask(a, ref vel, depth - 1).Y;
+                    vel.X = a.X - pos.X;
+                }
+                if (collisionY)
+                {
+                    vel.Y = 0;
+                    mask.X = GetCollisionMask(a, ref vel, depth - 1).X;
+                    vel.Y = a.Y - pos.Y;
+                }
             }
 
             return mask;

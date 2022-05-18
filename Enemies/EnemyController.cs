@@ -52,6 +52,7 @@ namespace DiamondHollow
         {
             _enemies.Remove(enemy);
             Level.RemoveComponent(enemy);
+            if (enemy.Animator != null) Level.RemoveComponent(enemy.Animator);
         }
     }
 }

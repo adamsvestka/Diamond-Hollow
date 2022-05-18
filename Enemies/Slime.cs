@@ -5,11 +5,18 @@ namespace DiamondHollow
 {
     public class Slime : Enemy
     {
-        public static new readonly Point Size = new(32);
+        public static new readonly Point Size = new(48);
 
         public Slime(DiamondHollowGame game, EnemyController controller, Point position) : base(game, controller, 20, new Rectangle(position - Size.Half(), Size))
         {
             Velocity = new Vector2(3, 0) * Level.Modifier;
+
+            Animator = new(Game, Level, "Sprites/Slime", 10, new(19, 24, 24, 24));
+            Animator.AddState("attack", new(19, 24, 24, 24), "Sprites/SlimeAbility", "Sprites/SlimeAbilityFX");
+            Animator.AddState("hit", new(19, 24, 24, 24), "Sprites/SlimeHit");
+            Animator.AddState("death", new(19, 24, 24, 24), "Sprites/SlimeDeath");
+
+            Level.AddComponent(Animator);
         }
 
         public override void Update(GameTime gameTime)
@@ -19,14 +26,12 @@ namespace DiamondHollow
 
             base.Update(gameTime);
 
-            if (Velocity == Vector2.Zero) Velocity = -prev;
+            if (Velocity == Vector2.Zero && !Dead) Velocity = -prev;
         }
 
         public override void Draw(GameTime gameTime)
         {
-            Game.SpriteBatch.Begin();
-            Level.DrawRectangle(Bounds, Color.Red);
-            Game.SpriteBatch.End();
+            Animator.DrawBatch(Bounds.ToScreen(), Velocity.X < 0);
 
             base.Draw(gameTime);
         }

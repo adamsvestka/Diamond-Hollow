@@ -15,7 +15,8 @@ namespace DiamondHollow
             Level.AddComponents(
                 Diamond.Animator = new(Game, Level, "Sprites/Diamond", 20, new(4, 4, 8, 8)),
                 SmallHeart.Animator = new(Game, Level, "Sprites/Heart1", 20, new(3, 3, 10, 10)),
-                LargeHeart.Animator = new(Game, Level, "Sprites/Heart2", 20, new(1, 2, 14, 14))
+                LargeHeart.Animator = new(Game, Level, "Sprites/Heart2", 20, new(1, 2, 14, 14)),
+                RespawnAnchor.Animator = new(Game, Level, "Sprites/Star", 20, new(4, 4, 24, 24))
             );
         }
 

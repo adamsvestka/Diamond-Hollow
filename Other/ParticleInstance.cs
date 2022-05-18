@@ -21,11 +21,27 @@ namespace DiamondHollow
             Controller = controller;
             _particles = new();
             Random = new();
+
+            Color[] colorData;
+            if (data.Texture != null)
+            {
+                colorData = new Color[data.Texture.Width * data.Texture.Height];
+                data.Texture.GetData(colorData);
+            }
+            else colorData = new Color[1] { data.Color };
+            var sampleColor = () =>
+            {
+                Color c;
+                do c = colorData[Random.Next(colorData.Length) % colorData.Length];
+                while (c.A == 0);
+                return c;
+            };
+
             for (int i = 0; i < data.Count; i++)
             {
                 _particles.Add(new Particle
                 {
-                    Color = data.Color,
+                    Color = sampleColor(),
                     Body = new(Game, Level, new Rectangle(data.Position.RandomOffset(data.SpawnRadius ?? 10) - new Point(2), new Point(4)))
                     {
                         Velocity = Vector2.Zero.RandomOffset(data.DispersionSpeed ?? 3),

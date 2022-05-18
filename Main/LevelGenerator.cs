@@ -116,7 +116,7 @@ namespace DiamondHollow
                         case TileType.LargeHeart when Game.Chance(0.2f):
                             Level.CollectiblesController.SpawnLargeHeart(pos);
                             break;
-                        case TileType.Nuke when Game.Chance(0.4f):
+                        case TileType.Nuke when Game.Chance(0.5f * Level.Modifier):
                             Level.CollectiblesController.SpawnNuke(pos);
                             break;
                         case TileType.Checkpoint when y > NextCheckpoint:
@@ -134,7 +134,6 @@ namespace DiamondHollow
 
             NextConnector = segment.Next;
             Height += data.Length;
-            // oldGrid = grid;
         }
     }
 }

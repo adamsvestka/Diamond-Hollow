@@ -7,6 +7,7 @@ namespace DiamondHollow
     {
         public CollectiblesController Controller;
         public float AttractionStrength = 0f;
+        public float? PickupDistance = null;
 
         public event Action<Collectible> OnCollect;
 
@@ -19,7 +20,7 @@ namespace DiamondHollow
         public override void Update(GameTime gameTime)
         {
             float distance = (Level.Player.Center - Center).ToVector2().Length() / Game.TileSize;
-            if (distance < (Level.Player.Size.X + Size.X) * 0.7f / Game.TileSize)
+            if (distance < (PickupDistance ?? (Level.Player.Size.X + Size.X) * 0.7f / Game.TileSize))
             {
                 OnCollect?.Invoke(this);
                 Controller.Despawn(this);

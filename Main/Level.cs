@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -30,9 +29,11 @@ namespace DiamondHollow
     {
         private TileType[,] _grid;
         private readonly LevelGenerator _levelGenerator;
-        private Point[][] _tileMap;
-        private Point[,] _drawingCache;
-        private Texture2D _tileset;
+        private Point[][] _platformTileMap;
+        private Point[,] _platformTileCache, _backgroundCache;
+        public Texture2D _platformTileset, _backgroundTileset;
+        public Dictionary<Point, Point> _backgroundTileMap;
+        private int[] _backgroundTileMapWeights;
 
         public Player Player;
         public Camera Camera;
@@ -42,7 +43,7 @@ namespace DiamondHollow
         public EnemyController EnemyController;
 
         public Point Spawnpoint;
-        public float Difficulty => 1f + (float)(Player?.Position.Y ?? 0f) / Game.TileSize / 100f;
+        public float Difficulty => 1f + (float)(Camera?.CameraY ?? 0f) / Game.TileSize / 100f;
         public float Modifier => Math.Clamp(Difficulty / 4f, 0.5f, 2f);
 
         public Level(DiamondHollowGame game, string filename) : base(game, null)
@@ -54,12 +55,14 @@ namespace DiamondHollow
         protected override void LoadContent()
         {
             _grid = new TileType[0, 0];
-            _drawingCache = new Point[0, 0];
+            _platformTileCache = new Point[0, 0];
+            _backgroundCache = new Point[0, 0];
 
             GenerateTileMap();
             LoadNextMapSegment();
 
-            _tileset = Game.Content.Load<Texture2D>("Sprites/Tileset");
+            _platformTileset = Game.Content.Load<Texture2D>("Sprites/Tileset");
+            _backgroundTileset = Game.Content.Load<Texture2D>("Sprites/Background");
 
             base.LoadContent();
         }
@@ -83,7 +86,7 @@ namespace DiamondHollow
 
         public override void Update(GameTime gameTime)
         {
-            if (Player.Position.Y + 2 * Game.WindowHeight > GetHeight())
+            if (Player.Position.Y + 2 * Game.WindowHeight > MapHeight)
             {
                 LoadNextMapSegment();
             }
@@ -93,29 +96,42 @@ namespace DiamondHollow
 
         public override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.White);
+
             Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap);
 
             int bottom = Math.Max(Camera.CameraY / Game.TileSize, 0);
-            int top = Math.Min(bottom + Game.WindowHeight / Game.TileSize + 1, GetHeight());
+            int top = Math.Min(bottom + Game.WindowHeight / Game.TileSize + 1, MapHeight);
 
             for (int y = bottom; y < top; y++)
             {
                 for (int x = 0; x < _grid.GetLength(1); x++)
                 {
-                    switch (_grid[y, x])
+                    Rectangle tile = new Point(x, y).FromGrid().MakeTile().ToScreen();
+
+                    Point bg = _backgroundCache[y, x];
+                    Point spawn = Spawnpoint.ToGrid();
+                    Color color = Color.White;
+                    Point pt = new(x, y);
+                    int dist2 = (pt - spawn).LengthSquared();
+
+                    if (pt == spawn) bg = _backgroundTileMap.Keys.ElementAt(6);
+                    else if (pt == spawn.OffsetY(1)) bg = _backgroundTileMap.Keys.ElementAt(5);
+                    if (dist2 < 70 && _backgroundTileMap.ContainsKey(bg))
                     {
-                        case TileType.Empty:
-                            // DrawRectangle(new Point(x, y).FromGrid().MakeTile(), Color.White);
-                            break;
-                        case TileType.Wall:
-                            Point pos = _drawingCache[y, x];
-                            Game.SpriteBatch.Draw(_tileset, new Point(x, y).FromGrid().MakeTile().ToScreen(), new Rectangle(pos.X * 32, pos.Y * 32, 32, 32), Color.White);
-                            break;
+                        bg = _backgroundTileMap[bg];
+                        color *= 0.95f + dist2 / 35f * 0.05f;
+                    }
+
+                    Game.SpriteBatch.Draw(_backgroundTileset, tile, new Rectangle(bg.X * 16, bg.Y * 16, 16, 16), color);
+
+                    if (_grid[y, x] == TileType.Wall)
+                    {
+                        Point fg = _platformTileCache[y, x];
+                        Game.SpriteBatch.Draw(_platformTileset, tile, new Rectangle(fg.X * 32, fg.Y * 32, 32, 32), Color.White);
                     }
                 }
             }
-
-            DrawRectangle(Spawnpoint.SnapToGrid().MakeTile(), Color.LightBlue);
 
             Game.SpriteBatch.End();
 
@@ -125,16 +141,21 @@ namespace DiamondHollow
         private void LoadNextMapSegment()
         {
             _levelGenerator.LoadNext(ref _grid);
-            int height = Math.Max(_drawingCache.GetLength(0) - 1, 0);
+            int height = Math.Max(_platformTileCache.GetLength(0) - 1, 0);
             int height2 = _grid.GetLength(0);
             int width = _grid.GetLength(1);
 
-            Helpers.ResizeArray(ref _drawingCache, height2, width);
+            Helpers.ResizeArray(ref _backgroundCache, height2, width);
+            Helpers.ResizeArray(ref _platformTileCache, height2, width);
+
+            for (int y = height + 1; y < height2; y++)
+                for (int x = 0; x < width; x++)
+                    _backgroundCache[y, x] = Game.WeightedChoice(_backgroundTileMap.Keys, _backgroundTileMapWeights);
 
             for (int y = height; y < height2; y++)
                 for (int x = 0; x < width; x++)
                     if (_grid[y, x] == TileType.Wall)
-                        _drawingCache[y, x] = Game.Choice(_tileMap[CollectSurroundingTiles(new Point(x, y))]);
+                        _platformTileCache[y, x] = Game.Choice(_platformTileMap[CollectSurroundingTiles(new Point(x, y))]);
         }
 
         private byte CollectSurroundingTiles(Point point)
@@ -155,7 +176,8 @@ namespace DiamondHollow
         public void DrawRectangle(Rectangle rect, Color color) => Game.SpriteBatch.Draw(Game.WhitePixel, rect.ToScreen(), color);
         public void DrawLine(Point start, Point end, Color color, int width) => Game.SpriteBatch.DrawLine(start.ToScreen().ToVector2(), end.ToScreen().ToVector2(), color, width);
 
-        public int GetHeight() => _grid.GetLength(0) * Game.TileSize;
+        public int MapHeight => _grid.GetLength(0) * Game.TileSize;
+        public int MapWidth => _grid.GetLength(1) * Game.TileSize;
         public TileType GetTile(int x, int y) => _grid[y, x];
 
         public bool IsWall(Point p)
@@ -179,13 +201,28 @@ namespace DiamondHollow
             foreach (var k in GeneratePermutations(repr.Replace("|", "")))
             {
                 int i = Convert.ToInt32(k.Remove(4, 1).Replace('x', '1').Replace(' ', '0'), 2);
-                _tileMap[i] = c.Select(p => new Point(p.x, p.y)).ToArray();
+                _platformTileMap[i] = c.Select(p => new Point(p.x, p.y)).ToArray();
             }
         }
         private void GenerateTileMap()
         {
-            _tileMap = new Point[256][];
-            for (int i = 0; i < 256; i++) _tileMap[i] = new[] { Point.Zero };
+            _backgroundTileMap = new() {
+                { new Point(1, 2), new Point(1, 2) },
+                { new Point(15, 1), new Point(15, 1) },
+                { new Point(13, 1), new Point(21, 1) },
+                { new Point(11, 1), new Point(19, 1) },
+                { new Point(9, 1), new Point(17, 1) },
+                { new Point(15, 7), new Point(20, 7) },
+                { new Point(15, 8), new Point(20, 8) },
+            };
+
+            _backgroundTileMapWeights = new[] {
+                5, 4, 3, 2, 1, 0, 0,
+            };
+
+
+            _platformTileMap = new Point[256][];
+            for (int i = 0; i < 256; i++) _platformTileMap[i] = new[] { Point.Zero };
 
             // Single
             AddTileVariant(". .| x |. .", (2, 8));
@@ -252,9 +289,11 @@ namespace DiamondHollow
             AddTileVariant(" x.|xx |xx.", (15, 5));
             AddTileVariant("xx.|xx | x.", (15, 7));
 
-            Console.WriteLine(_tileMap.Count(t => t.Contains(Point.Zero)));
-            int j = 0;
-            _tileMap.Select(e => (j++, e)).Where(e => e.e.Contains(Point.Zero)).Select(e => Convert.ToString(e.Item1, 2).PadLeft(8, '0').Replace('0', ' ').Replace('1', 'x').Insert(4, "x").Insert(6, "|").Insert(3, "|")).ToList().ForEach(Console.WriteLine);
+            {
+                Console.WriteLine($"WARNING: Missing tile mappings ({_platformTileMap.Count(t => t.Contains(Point.Zero))})");
+                int i = 0;
+                _platformTileMap.Select(e => (i++, e)).Where(e => e.e.Contains(Point.Zero)).Select(e => Convert.ToString(e.Item1, 2).PadLeft(8, '0').Replace('0', ' ').Replace('1', 'x').Insert(4, "x").Insert(6, "|").Insert(3, "|")).ToList().ForEach(Console.WriteLine);
+            }
         }
     }
 }

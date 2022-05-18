@@ -36,7 +36,7 @@ namespace DiamondHollow
                     else if (delta < -screenHeight / 4) VelocityY = Math.Min(-(int)Math.Pow((delta + screenHeight / 4) / -25, 2), VelocityY);
                     CameraY += VelocityY;
 
-                    int levelHeight = Level.GetHeight() - Game.WindowHeight;
+                    int levelHeight = Level.MapHeight - Game.WindowHeight;
                     if (CameraY < 0) CameraY = 0;
                     else if (CameraY > levelHeight) CameraY = levelHeight;
 
