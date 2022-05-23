@@ -7,6 +7,16 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DiamondHollow
 {
+    enum DrawingLayers {
+        Background = 10,
+        Collectibles = 20,
+        Enemies = 30,
+        Projectiles = 40,
+        Foreground = 50,
+        Particles = 60,
+        Player = 100,
+    }
+
     public class DiamondHollowGame : Game
     {
         public GraphicsDeviceManager Graphics;

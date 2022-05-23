@@ -55,9 +55,6 @@ namespace DiamondHollow
             string[] data = segment.Data;
             if (Game.Chance(0.5f)) data = data.Select(e => new String(e.ToCharArray().Reverse().ToArray())).ToArray();
 
-            // if (oldGrid.Length > 0) return;
-            // data = File.ReadAllLines(Path.Combine(Game.Content.RootDirectory, "Levels/Level2.txt"));
-
             int Width = data[0].Length;
             Helpers.ResizeArray(ref grid, Height + data.Length, Width);
 

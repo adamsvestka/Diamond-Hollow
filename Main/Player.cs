@@ -31,6 +31,7 @@ namespace DiamondHollow
 
             Targeting = Vector2.Zero;
             MaxHearts = Hearts = 3;
+            DrawOrder = (int)DrawingLayers.Player;
 
             CreateCountdown((int)Countdowns.Invincible, 90, false, 90);
             CreateCountdown((int)Countdowns.Shoot, 30, false);
@@ -108,7 +109,7 @@ namespace DiamondHollow
 
             if (Hearts > 0) DrawCrosshairs();
             Point s = new(57);
-            Animator.Draw(new Rectangle(Center - new Point(s.X, Size.Y).Half(), s).ToScreen(), Facing, Invincible || (Hearts == 0 && Animator.State != "death") ? 0.5f : 1f);
+            Animator.Draw(new Rectangle(Center - new Point(s.X, Size.Y).Half(), s).ToScreen(), Facing, Invincible || (Hearts == 0) ? 0.5f : 1f);
             DrawHUD();
 
             Game.SpriteBatch.End();

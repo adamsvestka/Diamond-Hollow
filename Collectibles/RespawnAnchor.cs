@@ -17,6 +17,7 @@ namespace DiamondHollow
         {
             AttractionStrength = 0f;
             PickupDistance = 1.5f;
+            DrawOrder = (int)DrawingLayers.Background + 1;
             OnCollect += self => Level.Spawnpoint = self.Center;
         }
 

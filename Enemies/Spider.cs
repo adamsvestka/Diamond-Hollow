@@ -72,7 +72,7 @@ namespace DiamondHollow
         public override void Draw(GameTime gameTime)
         {
             Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            Level.DrawLine(Origin.OffsetY(Size.Y), Center, Dead ? Color.Gray : Color.White, 4);
+            if (!Dead) Level.DrawLine(Origin.OffsetY(Size.Y), Center, Color.White, 4);
             Animator.Draw(Bounds.ToScreen());
             Game.SpriteBatch.End();
 

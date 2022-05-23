@@ -17,7 +17,7 @@ namespace DiamondHollow
         {
             var enemy = new Slime(Game, this, position);
             _enemies.Add(enemy);
-            Level.AddComponent(enemy);
+            Level.AddComponents(enemy);
         }
 
         public void SpawnWallShooter(Point position, bool facingRight)
@@ -51,7 +51,7 @@ namespace DiamondHollow
         internal void Despawn(Enemy enemy)
         {
             _enemies.Remove(enemy);
-            Level.RemoveComponent(enemy);
+            Level.RemoveComponents(enemy, enemy.Healthbar);
             if (enemy.Animator != null) Level.RemoveComponent(enemy.Animator);
         }
     }

@@ -19,6 +19,7 @@ namespace DiamondHollow
         public ParticleInstance(DiamondHollowGame game, ParticleController controller, ParticleConstructor data) : base(game, controller.Level)
         {
             Controller = controller;
+            DrawOrder = (int)DrawingLayers.Particles;
             _particles = new();
             Random = new();
 

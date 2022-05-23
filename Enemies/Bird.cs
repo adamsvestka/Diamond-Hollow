@@ -16,7 +16,7 @@ namespace DiamondHollow
             Gravity = 0;
             Targeting = new Vector2(0, -1);
             HeartDropChance = 0.7f;
-            DiamondDropCount = 15;
+            DiamondDropCount = 10;
 
             CreateCountdown((int)Countdowns.Shoot, (int)(150 / Level.Modifier), false);
 

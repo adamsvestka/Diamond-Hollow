@@ -25,12 +25,46 @@ namespace DiamondHollow
         Checkpoint = '$',
     }
 
+    class Background : DHGameComponent
+    {
+        public Background(DiamondHollowGame game) : base(game, game.Level)
+        {
+            DrawOrder = (int)DrawingLayers.Foreground;
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+
+            int bottom = Math.Max(Level.Camera.CameraY / Game.TileSize, 0);
+            int top = Math.Min(bottom + Game.WindowHeight / Game.TileSize + 1, Level.MapHeight);
+
+            Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap);
+
+            for (int y = bottom; y < top; y++)
+            {
+                for (int x = 0; x < Level.MapWidth / Game.TileSize; x++)
+                {
+                    Rectangle tile = new Point(x, y).FromGrid().MakeTile().ToScreen();
+
+                    if (Level.GetTile(x, y) == TileType.Wall)
+                    {
+                        Point fg = Level._platformTileCache[y, x];
+                        Game.SpriteBatch.Draw(Level._platformTileset, tile, new Rectangle(fg.X * 32, fg.Y * 32, 32, 32), Color.White);
+                    }
+                }
+            }
+
+            Game.SpriteBatch.End();
+        }
+    }
+
     public class Level : GameScene
     {
         private TileType[,] _grid;
         private readonly LevelGenerator _levelGenerator;
         private Point[][] _platformTileMap;
-        private Point[,] _platformTileCache, _backgroundCache;
+        public Point[,] _platformTileCache, _backgroundCache;
         public Texture2D _platformTileset, _backgroundTileset;
         public Dictionary<Point, Point> _backgroundTileMap;
         private int[] _backgroundTileMapWeights;
@@ -69,6 +103,9 @@ namespace DiamondHollow
 
         public override void Initialize()
         {
+            DrawOrder = (int)DrawingLayers.Background;
+            AddComponent(new Background(Game));
+
             Camera = new Camera(Game, this);
             Player = new Player(Game, this);
             ProjectileController = new ProjectileController(Game, this);
@@ -98,10 +135,10 @@ namespace DiamondHollow
         {
             GraphicsDevice.Clear(Color.White);
 
-            Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap);
-
             int bottom = Math.Max(Camera.CameraY / Game.TileSize, 0);
             int top = Math.Min(bottom + Game.WindowHeight / Game.TileSize + 1, MapHeight);
+
+            Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap);
 
             for (int y = bottom; y < top; y++)
             {
@@ -124,12 +161,6 @@ namespace DiamondHollow
                     }
 
                     Game.SpriteBatch.Draw(_backgroundTileset, tile, new Rectangle(bg.X * 16, bg.Y * 16, 16, 16), color);
-
-                    if (_grid[y, x] == TileType.Wall)
-                    {
-                        Point fg = _platformTileCache[y, x];
-                        Game.SpriteBatch.Draw(_platformTileset, tile, new Rectangle(fg.X * 32, fg.Y * 32, 32, 32), Color.White);
-                    }
                 }
             }
 
@@ -289,11 +320,11 @@ namespace DiamondHollow
             AddTileVariant(" x.|xx |xx.", (15, 5));
             AddTileVariant("xx.|xx | x.", (15, 7));
 
-            {
-                Console.WriteLine($"WARNING: Missing tile mappings ({_platformTileMap.Count(t => t.Contains(Point.Zero))})");
-                int i = 0;
-                _platformTileMap.Select(e => (i++, e)).Where(e => e.e.Contains(Point.Zero)).Select(e => Convert.ToString(e.Item1, 2).PadLeft(8, '0').Replace('0', ' ').Replace('1', 'x').Insert(4, "x").Insert(6, "|").Insert(3, "|")).ToList().ForEach(Console.WriteLine);
-            }
+            // {
+            //     Console.WriteLine($"WARNING: Missing tile mappings ({_platformTileMap.Count(t => t.Contains(Point.Zero))})");
+            //     int i = 0;
+            //     _platformTileMap.Select(e => (i++, e)).Where(e => e.e.Contains(Point.Zero)).Select(e => Convert.ToString(e.Item1, 2).PadLeft(8, '0').Replace('0', ' ').Replace('1', 'x').Insert(4, "x").Insert(6, "|").Insert(3, "|")).ToList().ForEach(Console.WriteLine);
+            // }
         }
     }
 }

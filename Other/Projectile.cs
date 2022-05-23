@@ -19,6 +19,7 @@ namespace DiamondHollow
         public Projectile(DiamondHollowGame game, ProjectileController controller, ProjectileConstructor data) : base(game, controller.Level, new Rectangle(data.Origin - (data.Size ?? _defaultSize).Half(), data.Size ?? _defaultSize))
         {
             Controller = controller;
+            DrawOrder = (int)DrawingLayers.Projectiles;
             Owner = data.Owner;
             Damage = data.Damage ?? 10;
             _type = data.Type ?? ProjectileType.Bullet;

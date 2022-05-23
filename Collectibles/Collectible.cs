@@ -14,6 +14,7 @@ namespace DiamondHollow
         public Collectible(DiamondHollowGame game, CollectiblesController controller, Rectangle bounds) : base(game, controller.Level, bounds)
         {
             Controller = controller;
+            DrawOrder = (int)DrawingLayers.Collectibles;
             DisableCollisionBox = true;
         }
 
