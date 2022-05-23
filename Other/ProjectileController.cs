@@ -11,7 +11,7 @@ namespace DiamondHollow
         int? Damage,
         float? Speed,
         Point? Size,
-        Color? Color
+        ProjectileType? Type
     );
 
     public class ProjectileController : DHGameComponent
@@ -23,6 +23,11 @@ namespace DiamondHollow
         {
             Level = level;
             _projectiles = new List<Projectile>();
+
+            Level.AddComponents(
+                Projectile.Bullet = new(Game, Level, "Sprites/Items/Bullet", 20, new(6, 6, 4, 4)),
+                Projectile.Fireball = new(Game, Level, "Sprites/Items/Fireball", 20, new(4, 5, 8, 8))
+            );
         }
 
         public void Spawn(ProjectileConstructor data)

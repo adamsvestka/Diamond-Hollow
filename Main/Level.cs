@@ -61,8 +61,8 @@ namespace DiamondHollow
             GenerateTileMap();
             LoadNextMapSegment();
 
-            _platformTileset = Game.Content.Load<Texture2D>("Sprites/Tileset");
-            _backgroundTileset = Game.Content.Load<Texture2D>("Sprites/Background");
+            _platformTileset = Game.Content.Load<Texture2D>("Sprites/Environment/Tileset");
+            _backgroundTileset = Game.Content.Load<Texture2D>("Sprites/Environment/Background");
 
             base.LoadContent();
         }

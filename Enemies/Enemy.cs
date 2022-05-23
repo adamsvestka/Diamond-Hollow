@@ -10,13 +10,13 @@ namespace DiamondHollow
         public int MaxHealth { get; init; }
         public int Health { get; private set; }
 
-        protected float HeartDropChance = 0.05f;
+        protected float HeartDropChance = 0.075f;
         protected int DiamondDropCount = 10;
 
         public Animator Animator;
         public bool Dead => Health <= 0;
 
-        // private Texture2D _healthbarEmptyTexture, _healthbarFullTexture;
+        private Texture2D _healthbarFullTexture;
 
         public Enemy(DiamondHollowGame game, EnemyController controller, int maxHealth, Rectangle bounds) : base(game, controller.Level, bounds)
         {
@@ -31,6 +31,7 @@ namespace DiamondHollow
                     if (Animator?.HasState("death") == true)
                     {
                         Velocity = new Vector2(Math.Sign(Velocity.X), Math.Sign(Velocity.Y)) / 1000f;
+                        Gravity = 0f;
                         DisableCollisionBox = true;
                         Animator.PlayState("death", Die);
                     }
@@ -44,15 +45,14 @@ namespace DiamondHollow
         {
             base.LoadContent();
 
-            // _healthbarEmptyTexture = Game.Content.Load<Texture2D>("Sprites/HealthbarEmpty");
-            // _healthbarFullTexture = Game.Content.Load<Texture2D>("Sprites/Healthbar");
+            _healthbarFullTexture = Game.Content.Load<Texture2D>("Sprites/UI/Healthbar");
         }
 
         private void Die()
         {
             Controller.Despawn(this);
             Level.CollectiblesController.SpawnDiamondCluster(Center, (int)(DiamondDropCount * Level.Modifier), 15);
-            if (Game.Chance(HeartDropChance)) Level.CollectiblesController.SpawnSmallHeart(Center);
+            if (Game.Chance(HeartDropChance * Level.Modifier)) Level.CollectiblesController.SpawnSmallHeart(Center);
             Level.ParticleController.Spawn(new ParticleConstructor
             {
                 Position = Center,
@@ -91,15 +91,8 @@ namespace DiamondHollow
             Level.DrawRectangle(bar.Grow(2), Color.Black);
             Level.DrawRectangle(bar, Color.White);
             bar.Width = (int)(width * (Health / (float)MaxHealth));
-            Level.DrawRectangle(bar, Color.Red);
-
-            // var cutout = new Rectangle(33, 114, 80, 9);
-            // var cutout2 = new Rectangle(40, 85, (int)(66 * Math.Clamp((float)Health / MaxHealth, 0f, 1f)), 5);
-            // var position = new Point(Center.X - cutout.Width, Center.Y + Size.Y / 2);
-            // var dest = new Rectangle(position, cutout.Size.Scale(2)).ToScreen();
-            // var dest2 = new Rectangle(position.Offset(16, 4), cutout2.Size.Scale(2)).ToScreen();
-            // Game.SpriteBatch.Draw(_healthbarEmptyTexture, dest, cutout, Color.White);
-            // Game.SpriteBatch.Draw(_healthbarFullTexture, dest2, cutout2, Color.White);
+            var cutout = new Rectangle(40, 85, (int)Math.Clamp(bar.Width, 0f, 66f), 5);
+            Game.SpriteBatch.Draw(_healthbarFullTexture, bar.ToScreen(), cutout, Color.White);
 
             Game.SpriteBatch.End();
         }

@@ -5,7 +5,9 @@ namespace DiamondHollow
 {
     public class Nuke : Collectible
     {
-        public static new readonly Point Size = new(30);
+        public static new readonly Point Size = new(42);
+
+        public static Animator Animator;
 
         public Nuke(DiamondHollowGame game, CollectiblesController controller, Point pos) : base(game, controller, new Rectangle(pos - Size.Half(), Size))
         {
@@ -23,8 +25,8 @@ namespace DiamondHollow
                         Origin = Center,
                         Direction = velocity,
                         Damage = (int)(30 * Level.Modifier),
-                        Color = Color.BlueViolet,
                         Speed = 15,
+                        Type = ProjectileType.Bullet,
                     });
                 }
             };
@@ -34,9 +36,7 @@ namespace DiamondHollow
         {
             base.Draw(gameTime);
 
-            Game.SpriteBatch.Begin();
-            Level.DrawRectangle(Bounds, Color.BlueViolet);
-            Game.SpriteBatch.End();
+            Animator.DrawBatch(Bounds.ToScreen());
         }
     }
 }

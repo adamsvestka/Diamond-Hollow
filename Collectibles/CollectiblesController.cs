@@ -13,10 +13,11 @@ namespace DiamondHollow
             _collectibles = new List<Collectible>();
 
             Level.AddComponents(
-                Diamond.Animator = new(Game, Level, "Sprites/Diamond", 20, new(4, 4, 8, 8)),
-                SmallHeart.Animator = new(Game, Level, "Sprites/Heart1", 20, new(3, 3, 10, 10)),
-                LargeHeart.Animator = new(Game, Level, "Sprites/Heart2", 20, new(1, 2, 14, 14)),
-                RespawnAnchor.Animator = new(Game, Level, "Sprites/Star", 20, new(4, 4, 24, 24))
+                Diamond.Animator = new(Game, Level, "Sprites/Items/Diamond", 20, new(4, 4, 8, 8)),
+                SmallHeart.Animator = new(Game, Level, "Sprites/Items/Heart1", 20, new(3, 3, 10, 10)),
+                LargeHeart.Animator = new(Game, Level, "Sprites/Items/Heart2", 20, new(1, 2, 14, 14)),
+                RespawnAnchor.Animator = new(Game, Level, "Sprites/Items/Star", 20, new(4, 4, 24, 24)),
+                Nuke.Animator = new(Game, Level, "Sprites/Items/Gem", 20, new(2, 2, 28, 28))
             );
         }
 

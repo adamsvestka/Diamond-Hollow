@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace DiamondHollow
 {
@@ -8,7 +9,7 @@ namespace DiamondHollow
         private enum SpiderState { Armed, Falling, Paused, Rewinding }
         private enum Countdowns { Pause }
 
-        public static new readonly Point Size = new(32);
+        public static new readonly Point Size = new(48);
         private SpiderState _state;
 
         public Point Origin;
@@ -21,11 +22,22 @@ namespace DiamondHollow
             Gravity = 0;
 
             CreateCountdown((int)Countdowns.Pause, (int)(60 / Level.Modifier), false);
+
+            Animator = new Animator(game, Level, "Sprites/Spider/Idle", 10);
+
+            Animator.AddState("move", Rectangle.Empty, "Sprites/Spider/Move");
+            Animator.AddState("hit", Rectangle.Empty, "Sprites/Spider/Move");
+            Animator.AddState("death", Rectangle.Empty, "Sprites/Spider/Death");
+
+            Level.AddComponent(Animator);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (Dead) return;
+            if (_state is SpiderState.Paused or SpiderState.Rewinding && Animator.State == "default") Animator.PlayState("move");
 
             switch (_state)
             {
@@ -59,9 +71,9 @@ namespace DiamondHollow
 
         public override void Draw(GameTime gameTime)
         {
-            Game.SpriteBatch.Begin();
-            Level.DrawRectangle(Bounds, Color.Red);
-            Level.DrawLine(Origin.OffsetY(Size.Y / 2), Center.OffsetY(Size.Y / 2), Color.Red, 4);
+            Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            Level.DrawLine(Origin.OffsetY(Size.Y), Center, Dead ? Color.Gray : Color.White, 4);
+            Animator.Draw(Bounds.ToScreen());
             Game.SpriteBatch.End();
 
             base.Draw(gameTime);

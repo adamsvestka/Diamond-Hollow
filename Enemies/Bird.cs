@@ -7,7 +7,7 @@ namespace DiamondHollow
     {
         private enum Countdowns { Shoot }
 
-        public static new readonly Point Size = new(72, 48);
+        public static new readonly Point Size = new(68, 48);
         public Vector2 Targeting;
 
         public Bird(DiamondHollowGame game, EnemyController controller, Point position) : base(game, controller, 40, new Rectangle(position - Size.Half(), Size))
@@ -19,6 +19,12 @@ namespace DiamondHollow
             DiamondDropCount = 15;
 
             CreateCountdown((int)Countdowns.Shoot, (int)(150 / Level.Modifier), false);
+
+            Animator = new Animator(Game, Level, "Sprites/Bird/Idle", 10, new(4, 4, 34, 34));
+
+            Animator.AddState("death", new(4, 4, 24, 24), "Sprites/Bird/Death");
+
+            Level.AddComponent(Animator);
         }
 
         public override void Update(GameTime gameTime)
@@ -36,9 +42,9 @@ namespace DiamondHollow
                     Owner = this,
                     Origin = Center,
                     Direction = Targeting,
-                    Size = new Point(25),
+                    Size = new Point(32),
                     Speed = 6.5f * Level.Modifier,
-                    Color = Color.Red,
+                    Type = ProjectileType.Fireball,
                 });
                 ResetCountdown((int)Countdowns.Shoot);
             }
@@ -53,9 +59,7 @@ namespace DiamondHollow
 
         public override void Draw(GameTime gameTime)
         {
-            Game.SpriteBatch.Begin();
-            Level.DrawRectangle(Bounds, Color.Red);
-            Game.SpriteBatch.End();
+            Animator.DrawBatch(new Rectangle(Center - new Point(Size.X).Half(), new Point(Size.X)).ToScreen(), Velocity.X < 0);
 
             base.Draw(gameTime);
         }

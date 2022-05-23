@@ -11,10 +11,10 @@ namespace DiamondHollow
         {
             Velocity = new Vector2(3, 0) * Level.Modifier;
 
-            Animator = new(Game, Level, "Sprites/Slime", 10, new(19, 24, 24, 24));
-            Animator.AddState("attack", new(19, 24, 24, 24), "Sprites/SlimeAbility", "Sprites/SlimeAbilityFX");
-            Animator.AddState("hit", new(19, 24, 24, 24), "Sprites/SlimeHit");
-            Animator.AddState("death", new(19, 24, 24, 24), "Sprites/SlimeDeath");
+            Animator = new(Game, Level, "Sprites/Slime/Idle", 10, new(19, 24, 24, 24));
+            Animator.AddState("attack", new(19, 24, 24, 24), "Sprites/Slime/Ability", "Sprites/Slime/AbilityFX");
+            Animator.AddState("hit", new(19, 24, 24, 24), "Sprites/Slime/Hit");
+            Animator.AddState("death", new(19, 24, 24, 24), "Sprites/Slime/Death");
 
             Level.AddComponent(Animator);
         }

@@ -31,6 +31,7 @@ namespace DiamondHollow
         private readonly List<(string, string[], Rectangle)> _files;
         private int _time;
         private readonly int _duration;
+        private bool _paused;
 
         private readonly Dictionary<string, Animation> _states;
         private string _current;
@@ -38,11 +39,14 @@ namespace DiamondHollow
         public Animation Anim => _states[_current];
         public Rectangle Frame => Anim.GetFrame(_time / _duration);
 
+        public string State => _current;
+
         public Animator(DiamondHollowGame game, Level level, string filename, int duration, Rectangle? cutout = null) : base(game, level)
         {
             _files = new() { ("default", new[] { filename }, cutout ?? Rectangle.Empty) };
             _duration = duration;
             _states = new();
+            _paused = false;
         }
 
         public void AddState(string name, Rectangle? cutout, params string[] filenames)
@@ -65,8 +69,14 @@ namespace DiamondHollow
             _current = "default";
         }
 
+        public bool IsPlaying() => !_paused;
+        public void Pause() => _paused = true;
+        public void Resume() => _paused = false;
+
         public void PlayState(string state, Action callback = null)
         {
+            if (_complete != null) return;
+            _paused = false;
             _current = state;
             _complete = callback;
             _time %= _duration;
@@ -76,26 +86,27 @@ namespace DiamondHollow
         {
             base.Update(gameTime);
 
-            if (++_time >= _duration * Anim.Frames)
+            if (!_paused && ++_time >= _duration * Anim.Frames)
             {
                 _time = 0;
                 _complete?.Invoke();
+                _complete = null;
                 _current = "default";
             }
         }
 
-        public void Draw(Rectangle bounds, bool flipped = false)
+        public void Draw(Rectangle bounds, bool flipped = false, float alpha = 1f)
         {
             foreach (var texture in Anim.Textures)
             {
-                Game.SpriteBatch.Draw(texture, bounds, Frame, Color.White, 0, Vector2.Zero, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+                Game.SpriteBatch.Draw(texture, bounds, Frame, Color.White * alpha, 0, Vector2.Zero, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
             }
         }
 
-        public void DrawBatch(Rectangle bounds, bool flipped = false)
+        public void DrawBatch(Rectangle bounds, bool flipped = false, float alpha = 1f)
         {
             Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            Draw(bounds, flipped);
+            Draw(bounds, flipped, alpha);
             Game.SpriteBatch.End();
         }
     }

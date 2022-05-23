@@ -19,9 +19,11 @@ namespace DiamondHollow
         public int Hearts { get; private set; }
         public int Score { get; private set; }
 
+        private Animator Animator;
         private Texture2D _barTexture, _grayHeartTexture, _swordTextures;
+        private bool Facing;
 
-        public Player(DiamondHollowGame game, Level level) : base(game, level, new Rectangle(new Point(125, 125), new Point(36))) { }
+        public Player(DiamondHollowGame game, Level level) : base(game, level, new Rectangle(new Point(125, 125), new Point(38))) { }
 
         public override void Initialize()
         {
@@ -33,24 +35,47 @@ namespace DiamondHollow
             CreateCountdown((int)Countdowns.Invincible, 90, false, 90);
             CreateCountdown((int)Countdowns.Shoot, 30, false);
             OnProjectileHit += OnEnemyCollision;
+
+            string[] Colors = new[] { "Black", "Blue", "Green", "Red", "Yellow" };
+            string Color = Game.Choice(Colors);
+
+            Animator = new Animator(Game, Level, $"Sprites/Player/{Color}/Static", 10, new(2, 1, 38, 38));
+
+            Animator.AddState("move", new(2, 2, 38, 38), $"Sprites/Player/{Color}/Run");
+            Animator.AddState("jump", new(2, 2, 38, 38), $"Sprites/Player/{Color}/Jump");
+            Animator.AddState("death", new(2, 2, 38, 38), $"Sprites/Player/{Color}/Death");
+
+            Level.AddComponent(Animator);
         }
 
         protected override void LoadContent()
         {
             base.LoadContent();
 
-            _barTexture = Game.Content.Load<Texture2D>("Sprites/Bar1");
-            _grayHeartTexture = Game.Content.Load<Texture2D>("Sprites/Heart1Empty");
-            _swordTextures = Game.Content.Load<Texture2D>("Sprites/Swords");
+            _barTexture = Game.Content.Load<Texture2D>("Sprites/UI/Bar1");
+            _grayHeartTexture = Game.Content.Load<Texture2D>("Sprites/Items/Heart1Empty");
+            _swordTextures = Game.Content.Load<Texture2D>("Sprites/Items/Swords");
         }
 
         public override void Update(GameTime gameTime)
         {
             if (!Locked && Hearts > 0)
             {
-                if (Game.KeyboardState.IsKeyDown(Keys.Space) && IsOnGround) Velocity.Y = 21;
-                if (Game.KeyboardState.IsKeyDown(Keys.A)) Velocity.X = -6;
-                if (Game.KeyboardState.IsKeyDown(Keys.D)) Velocity.X = 6;
+                if (Game.KeyboardState.IsKeyDown(Keys.Space) && IsOnGround)
+                {
+                    Velocity.Y = 21;
+                    Animator.PlayState("jump");
+                }
+                if (Game.KeyboardState.IsKeyDown(Keys.A))
+                {
+                    Velocity.X = -6;
+                    if (IsOnGround && Animator.State == "default") Animator.PlayState("move");
+                }
+                if (Game.KeyboardState.IsKeyDown(Keys.D))
+                {
+                    Velocity.X = 6;
+                    if (IsOnGround && Animator.State == "default") Animator.PlayState("move");
+                }
                 if (Game.MouseState.IsButtonDown(MouseButton.Left) && !Invincible && IsCountdownDone((int)Countdowns.Shoot))
                 {
                     Level.ProjectileController.Spawn(new ProjectileConstructor
@@ -58,11 +83,15 @@ namespace DiamondHollow
                         Owner = this,
                         Origin = Center + Targeting.ToPoint(),
                         Direction = Targeting,
-                        Color = Color.Purple,
                         Speed = 15,
+                        Type = ProjectileType.Bullet,
                     });
                     ResetCountdown((int)Countdowns.Shoot);
                 }
+
+                if (Velocity.X != 0) Facing = Velocity.X < 0;
+                else Animator.PlayState("default");
+                if (Game.MouseState.IsButtonDown(MouseButton.Left)) Facing = Targeting.X < 0;
             }
 
             base.Update(gameTime);
@@ -78,18 +107,12 @@ namespace DiamondHollow
             Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
             if (Hearts > 0) DrawCrosshairs();
-            Level.DrawRectangle(Bounds, Color.Blue * (Invincible || Hearts == 0 ? 0.5f : 1f));
+            Point s = new(57);
+            Animator.Draw(new Rectangle(Center - new Point(s.X, Size.Y).Half(), s).ToScreen(), Facing, Invincible || (Hearts == 0 && Animator.State != "death") ? 0.5f : 1f);
             DrawHUD();
-            // DrawDebug();
 
             Game.SpriteBatch.End();
         }
-
-        // private void DrawDebug()
-        // {
-        //     Game.SpriteBatch.DrawString(Game.Menlo, $"Difficulty: {Level.Difficulty}", new Vector2(10, 50), Color.LightBlue);
-        //     Game.SpriteBatch.DrawString(Game.Menlo, $"Modifier: {Level.Modifier}", new Vector2(10, 70), Color.LightBlue);
-        // }
 
         private void DrawCrosshairs()
         {
@@ -130,20 +153,23 @@ namespace DiamondHollow
 
         public void Die()
         {
-            Level.ParticleController.Spawn(new ParticleConstructor
+            Animator.PlayState("death", () =>
             {
-                Position = Center,
-                Color = Color.Blue,
-                Count = 100,
-                DispersionSpeed = 1.5f,
-                SpawnRadius = 10,
-                LifeSpan = 40,
-                LifeSpanVariance = 15,
-                UsePhysics = true,
+                Level.ParticleController.Spawn(new ParticleConstructor
+                {
+                    Position = Center,
+                    Texture = Animator?.Anim.Textures[0],
+                    Count = 100,
+                    DispersionSpeed = 1.5f,
+                    SpawnRadius = 10,
+                    LifeSpan = 40,
+                    LifeSpanVariance = 15,
+                    UsePhysics = true,
+                });
+                Position = Level.Spawnpoint - Size.Half();
+                Velocity = Vector2.Zero;
+                Level.Camera.Scroll(Center.Y, 120, () => Hearts = MaxHearts);
             });
-            Position = Level.Spawnpoint - Size.Half();
-            Velocity = Vector2.Zero;
-            Level.Camera.Scroll(Center.Y, 120, () => Hearts = MaxHearts);
         }
 
         public void OnEnemyCollision(CollisionBody enemy)

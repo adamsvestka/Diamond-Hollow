@@ -46,12 +46,7 @@ namespace DiamondHollow
             Game.SpriteBatch.Draw(Level._backgroundTileset, rect, new Rectangle(Level._backgroundTileMap.Keys.ElementAt(6).Scale(16), new Point(16)), Color.White * 0.9f);
             Game.SpriteBatch.Draw(Level._backgroundTileset, rect.OffsetY(-Game.TileSize), new Rectangle(Level._backgroundTileMap.Keys.ElementAt(5).Scale(16), new Point(16)), Color.White * 0.9f);
 
-            _stars?.ForEach(star =>
-            {
-                Animator.Draw(star.ToScreen());
-                foreach (var corner in star.Corners())
-                    Game.SpriteBatch.Draw(Game.WhitePixel, corner.ToScreen().ToVector2(), Color.White * 0.5f);
-            });
+            _stars?.ForEach(star => Animator.Draw(star.ToScreen()));
 
             Game.SpriteBatch.End();
         }
