@@ -54,7 +54,7 @@ namespace DiamondHollow
         {
             int xdiff = Center.X - Level.Player.Center.X;
             int ydiff = Center.Y - Level.Player.Center.Y;
-            return Math.Abs(xdiff) < Level.Player.Size.X / 2 && 0 < ydiff && ydiff < 8 * Game.TileSize;
+            return Math.Abs(xdiff) < Level.Player.Size.X / 2 && 0 < ydiff && ydiff < 12 * Game.TileSize;
         }
 
         public override void Draw(GameTime gameTime)

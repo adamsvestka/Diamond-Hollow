@@ -53,9 +53,9 @@ namespace DiamondHollow
         {
             base.LoadContent();
 
-            _barTexture = Game.Content.Load<Texture2D>("Sprites/UI/Bar1");
-            _grayHeartTexture = Game.Content.Load<Texture2D>("Sprites/Items/Heart1Empty");
-            _swordTextures = Game.Content.Load<Texture2D>("Sprites/Items/Swords");
+            _barTexture = Game.GetTexture("Sprites/UI/Bar1");
+            _grayHeartTexture = Game.GetTexture("Sprites/Items/Heart1Empty");
+            _swordTextures = Game.GetTexture("Sprites/Items/Swords");
         }
 
         public override void Update(GameTime gameTime)
@@ -124,7 +124,7 @@ namespace DiamondHollow
             for (int i = 0; i < count; i++)
             {
                 var dot = center + Targeting * i * spacing;
-                Level.DrawRectangle(new Rectangle((dot - size / 2).ToPoint(), size.ToPoint()), Color.Red);
+                Level.DrawRectangle(new Rectangle((dot - size / 2).ToPoint(), size.ToPoint()), Color.Red * 0.5f);
             }
         }
 

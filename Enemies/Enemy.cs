@@ -21,7 +21,7 @@ namespace DiamondHollow
         {
             base.LoadContent();
 
-            if (_healthbarFullTexture == null) _healthbarFullTexture = Game.Content.Load<Texture2D>("Sprites/UI/Healthbar");
+            if (_healthbarFullTexture == null) _healthbarFullTexture = Game.GetTexture("Sprites/UI/Healthbar");
         }
 
         public override void Draw(GameTime gameTime)

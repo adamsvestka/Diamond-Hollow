@@ -7,7 +7,8 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DiamondHollow
 {
-    enum DrawingLayers {
+    enum DrawingLayers
+    {
         Background = 10,
         Collectibles = 20,
         Enemies = 30,
@@ -70,6 +71,13 @@ namespace DiamondHollow
             WhitePixel.SetData(new[] { Color.White });
 
             Menlo = Content.Load<SpriteFont>("Fonts/Menlo");
+        }
+
+        private readonly Dictionary<string, Texture2D> _textures = new();
+        public Texture2D GetTexture(string name)
+        {
+            if (!_textures.ContainsKey(name)) _textures[name] = Content.Load<Texture2D>(name);
+            return _textures[name];
         }
 
         protected override void UnloadContent()

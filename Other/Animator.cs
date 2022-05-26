@@ -64,7 +64,7 @@ namespace DiamondHollow
 
             foreach (var (state, filenames, cutout) in _files)
             {
-                _states.Add(state, new(filenames.Select(Game.Content.Load<Texture2D>).ToArray(), cutout));
+                _states.Add(state, new(filenames.Select(Game.GetTexture).ToArray(), cutout));
             }
             _current = "default";
         }
