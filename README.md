@@ -5,7 +5,7 @@ An infinite 2D vertical scrolling game. The player navigates upward over platfor
 Based on the Diamond Hollow series of Flash games. Coded in C# using the [MonoGame](https://www.monogame.net) framework.
 
 
-![Screenshot](images/screenshot.png)
+![Screenshot](Images/screenshot.png)
 
 ## Installation
 
