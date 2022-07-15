@@ -6,9 +6,13 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
+    // The map is has a set width and infinite height
+    // It is made from elementary building segments that are stacked on top of each other and span the entire width
+    // This class takes care of loading the segments from files, appending them to the map and spawing enemies, collectibles and other objects
     public class LevelGenerator
     {
-        private record struct Segment(string[] Data, string Next, int Difficulty);
+        // A segment is a 2d array of characters and can specify which segment group can follow (not currently used beyond the first segment)
+        private record struct Segment(string[] Data, string Next);
 
         public DiamondHollowGame Game;
         public Level Level;
@@ -24,18 +28,21 @@ namespace DiamondHollow
         {
             Game = game;
             Level = level;
-            RootDirectory = Path.Combine(Game.Content.RootDirectory, path);
+            RootDirectory = Path.Combine(Game.Content.RootDirectory, path);     // Path to level segments
             Height = 0;
             Segments = new();
 
             foreach (var file in Directory.GetFiles(RootDirectory))
             {
+                // Level segment filenames follow the pattern "<name>_<before>_<after>.txt"
+                //     <name> is a name for the map creator (not used)
+                //     <before> is an identifier which has to match the <after> identifier of the segment that comes before it
                 string[] data = File.ReadAllLines(file);
                 string[] parts = Path.GetFileNameWithoutExtension(file).Split('_');
                 if (!Segments.ContainsKey(parts[1])) Segments[parts[1]] = new();
-                Segments[parts[1]].Add(new Segment(data, parts[2], 0));
+                Segments[parts[1]].Add(new Segment(data, parts[2]));
             }
-            NextConnector = "a";
+            NextConnector = "a";    // The first segment will have a before identifier of "a"
             ResetCheckpoint(0);
         }
 
@@ -47,21 +54,29 @@ namespace DiamondHollow
             }
         }
 
+        // Level components contain pacements for potential checkpoints but not all of them will be used
+        // As the difficulty increases, the distance between checkpoints increases
+        // This method calculates the minimum distance to the next checkpoint
         private void ResetCheckpoint(int y) => NextCheckpoint = y + (1 + Game.Random() * (float)Math.Sqrt(Level.Difficulty)) * 50;
 
+        // Load a random level segment and process it
         public void LoadNext(ref TileType[,] grid)
         {
+            // Choose a segment
             var segment = Game.Choice(Segments[NextConnector]);
             string[] data = segment.Data;
             if (Game.Chance(0.5f)) data = data.Select(e => new String(e.ToCharArray().Reverse().ToArray())).ToArray();
 
             int Width = data[0].Length;
-            Helpers.ResizeArray(ref grid, Height + data.Length, Width);
+            Helpers.ResizeArray(ref grid, Height + data.Length, Width);     // Fast extend of the map
 
             for (int y = Height; y < Height + data.Length; y++)
             {
                 for (int x = 0; x < Width; x++)
                 {
+                    // Individual tiles are evaluated here, platforms are placed and enemies/collectibles are spawned
+                    // Some enemies only appear after a certain difficulty is reached, sometimes more of the same enemy appear even later on
+                    // Some collectibles only have a certain chance of spawning
                     var tile = (TileType)data[Height + data.Length - y - 1][x];
                     Point pos = new Vector2(x + 0.5f, y + 0.5f).FromGrid().ToPoint();
                     grid[y, x] = TileType.Empty;

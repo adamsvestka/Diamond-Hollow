@@ -2,6 +2,10 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
+    // A less common enemy, is meant to prevent the player from standing still
+    // Spawns attached to ceilings, cannot move, but shoots projectiles at set intervals
+    // It will shoot a projectile downward aiming at the player
+    // Shooting speed & health scale with difficulty
     public class CeilingShooter : Enemy
     {
         private enum Countdowns { Shoot, Animation }

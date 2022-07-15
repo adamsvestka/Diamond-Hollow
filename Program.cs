@@ -7,8 +7,7 @@ namespace DiamondHollow
         [STAThread]
         static void Main()
         {
-            // using (var game = new DiamondHollowGame())
-            //     game.Run();
+            // Game component entry point
             new DiamondHollowGame().Run();
         }
     }

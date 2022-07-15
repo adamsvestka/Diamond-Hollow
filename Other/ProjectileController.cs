@@ -14,6 +14,7 @@ namespace DiamondHollow
         ProjectileType? Type
     );
 
+    // Handles spawning and despawning of projectiles
     public class ProjectileController : DHGameComponent
     {
         private readonly List<Projectile> _projectiles;

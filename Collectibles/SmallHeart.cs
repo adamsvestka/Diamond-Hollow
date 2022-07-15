@@ -2,6 +2,8 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
+    // Picking this item up restore one heart for the player (cannot go above the player's max health)
+    // Is not attracted to the player
     public class SmallHeart : Collectible
     {
         public static new readonly Point Size = new(30);

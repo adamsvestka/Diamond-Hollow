@@ -1,3 +1,15 @@
+# Diamond Hollow
+
+Based on the Diamond Hollow series of Flash games.
+
+![Screenshot](images/screenshot.png)
+
+
+## Installation
+
+## How to play
+
+
 # student
 
 Tady bude Váš zápočtový program

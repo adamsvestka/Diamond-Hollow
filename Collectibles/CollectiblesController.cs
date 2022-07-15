@@ -3,6 +3,9 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
+    // Handles spawning and despawning of collectibles
+    // Registers item pickups with the player
+    // Has a utility method for spawning a randomly dispersing cluster of diamonds
     public class CollectiblesController : DHGameComponent
     {
         private readonly List<Collectible> _collectibles;

@@ -8,6 +8,7 @@ namespace DiamondHollow
 {
     public static class Helpers
     {
+        // Fast resize and copy of a multi-dimensional array
         public static void ResizeArray<T>(ref T[,] array, int newColumns, int newRows)
         {
             var newArray = new T[newColumns, newRows];
@@ -28,9 +29,13 @@ namespace DiamondHollow
         Left = 0b1001,
     }
 
+    // A set of extension function for swithing between coordinate systems
+    //     Grid - A measurement in tiles, 0,0 is in the bottom left of the map, used for placing objects on the map
+    //     Default - A measurement in pixels, 0,0 is in the bottom left of the screen, used for collision bodies
+    //     Screen - A measurement in pixels, 0,0 is in the top left of the screen, takes the camera position into account,used for drawing
     public static class CoordinateExtensions
     {
-        private static DiamondHollowGame _game;
+        private static DiamondHollowGame _game;     // For the window height and camera position
         private static Random _random;
         private static Point _tileSize;
         public static void Initialize(DiamondHollowGame game, Point tileSize) => (_game, _tileSize, _random) = (game, tileSize, new Random());
@@ -63,6 +68,7 @@ namespace DiamondHollow
         public static float Length(this Point p) => (float)Math.Sqrt(p.X * p.X + p.Y * p.Y);
         public static int LengthSquared(this Point p) => p.X * p.X + p.Y * p.Y;
 
+        // Return positions of the corners of the rectangle, can be masked to only select some of the corners
         public static IEnumerable<Point> Corners(this Rectangle r, Corner mask = Corner.Top | Corner.Right | Corner.Bottom | Corner.Left)
         {
             if (((int)mask & 0b1000) != 0) yield return new Point(r.Left, r.Bottom - 1);
@@ -80,6 +86,7 @@ namespace DiamondHollow
         public static Point RandomOffset(this Point p, float scale = 1f) => p.ToVector2().RandomOffset(scale).ToPoint();
     }
 
+    // Some extra rendering functions for drawing lines
     public static class RendererExtensions
     {
         private static Texture2D _whitePixel;
@@ -110,6 +117,7 @@ namespace DiamondHollow
 
     public enum MouseButton { Left, Right, Middle }
 
+    // Parity functions from the keyboard class, which aren't available for the mouse for some reason
     public static class MouseButtonExtensions
     {
         private static ButtonState GetButtonState(this MouseState state, MouseButton button) => button switch
@@ -124,6 +132,7 @@ namespace DiamondHollow
     }
 }
 
+// To get rid of a weird error, at least on macOS
 namespace System.Runtime.CompilerServices
 {
     internal static class IsExternalInit { }

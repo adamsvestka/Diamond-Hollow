@@ -2,8 +2,10 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
-    public enum ProjectileType { Bullet, Fireball }
+    public enum ProjectileType { Bullet, Fireball } // Bullets are used by the player, fireballs are used by enemies
 
+    // A simple collision body, that moves at a constant speed until it hits a wall
+    // It has a damage strength and cannot damage its owner
     public class Projectile : CollisionBody
     {
 

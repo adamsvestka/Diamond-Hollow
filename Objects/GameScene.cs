@@ -4,9 +4,11 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
+    // A class for parenting components to a scene
+    // Since there is only one scene in this game, this class is not necessary
     public class GameScene : DHGameComponent
     {
-        private bool? _state;
+        private bool? _state;   // If the scene is active
         private readonly List<DHGameComponent> Components;
 
         public GameScene(DiamondHollowGame game, Level level) : base(game, level)
@@ -47,8 +49,8 @@ namespace DiamondHollow
                 if (value) GameSceneEnter();
                 else GameSceneExit();
 
-                Enabled = value;
-                Visible = value;
+                Enabled = value;    // Enables/disables the component's Update method
+                Visible = value;    // Enables/disables the component's Draw method
                 foreach (var component in Components)
                 {
                     component.Enabled = value;

@@ -225,3 +225,7 @@
 > ![Menu Bar 1](Content/Sprites/UI/Bar1.png)
 >
 > ![Menu Bar 2](Content/Sprites/UI/Bar2.png)
+
+---
+
+[e]: *Sprites within images are cut out or rearranged from the original image.*

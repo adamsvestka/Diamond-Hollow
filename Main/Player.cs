@@ -5,23 +5,27 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DiamondHollow
 {
+    // Handles:
+    //     Player movement, shooting
+    //     Drawing HUD overlay (hearts, score, etc.)
+    //     Player collision with enemy/projectile, collectibles
     public class Player : PhysicsBody
     {
         private enum Countdowns { Invincible, Shoot }
 
-        public bool Invincible
+        public bool Invincible  // Player goes invincible after taking damage for a short time
         {
             get => !IsCountdownDone((int)Countdowns.Invincible);
             set => ResetCountdown((int)Countdowns.Invincible);
         }
-        public Vector2 Targeting;
+        public Vector2 Targeting;   // Direction player is aiming, controlled by mouse position
         public int MaxHearts { get; private set; }
         public int Hearts { get; private set; }
         public int Score { get; private set; }
 
-        private Animator Animator;
+        private Animator Animator;  // Draws the player animations
         private Texture2D _barTexture, _grayHeartTexture, _swordTextures;
-        private bool Facing;
+        private bool Facing;    // True if player is facing left, false if facing right
 
         public Player(DiamondHollowGame game, Level level) : base(game, level, new Rectangle(new Point(125, 125), new Point(38))) { }
 
@@ -33,20 +37,24 @@ namespace DiamondHollow
             MaxHearts = Hearts = 3;
             DrawOrder = (int)DrawingLayers.Player;
 
+            // Create non-repeating timers for invincibility and shooting cooldowns
             CreateCountdown((int)Countdowns.Invincible, 90, false, 90);
             CreateCountdown((int)Countdowns.Shoot, 30, false);
+            // Projectile hit registers as enemy collision
             OnProjectileHit += OnEnemyCollision;
 
+            // For variety, player will have different colors each time
             string[] Colors = new[] { "Black", "Blue", "Green", "Red", "Yellow" };
             string Color = Game.Choice(Colors);
 
+            // Register player animations, their speeds and cutouts
             Animator = new Animator(Game, Level, $"Sprites/Player/{Color}/Static", 10, new(2, 1, 38, 38));
 
             Animator.AddState("move", new(2, 2, 38, 38), $"Sprites/Player/{Color}/Run");
             Animator.AddState("jump", new(2, 2, 38, 38), $"Sprites/Player/{Color}/Jump");
             Animator.AddState("death", new(2, 2, 38, 38), $"Sprites/Player/{Color}/Death");
 
-            Level.AddComponent(Animator);
+            Level.AddComponent(Animator);   // Ad to scene
         }
 
         protected override void LoadContent()
@@ -58,9 +66,10 @@ namespace DiamondHollow
             _swordTextures = Game.GetTexture("Sprites/Items/Swords");
         }
 
+        // Handle player movement and shooting
         public override void Update(GameTime gameTime)
         {
-            if (!Locked && Hearts > 0)
+            if (!Locked && Hearts > 0)  // Player will be locked for a time after taking damage
             {
                 if (Game.KeyboardState.IsKeyDown(Keys.Space) && IsOnGround)
                 {
@@ -97,6 +106,7 @@ namespace DiamondHollow
 
             base.Update(gameTime);
 
+            // Update targeting direction after base class has updated player's position
             Targeting = (Mouse.GetState().Position.ToScreen() - Center).ToVector2();
             Targeting.Normalize();
         }
@@ -108,13 +118,14 @@ namespace DiamondHollow
             Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
             if (Hearts > 0) DrawCrosshairs();
-            Point s = new(57);
-            Animator.Draw(new Rectangle(Center - new Point(s.X, Size.Y).Half(), s).ToScreen(), Facing, Invincible || (Hearts == 0) ? 0.5f : 1f);
+            Point height = new(57);     // Player is taller than hitbox, this is only visual
+            Animator.Draw(new Rectangle(Center - new Point(height.X, Size.Y).Half(), height).ToScreen(), Facing, Invincible || (Hearts == 0) ? 0.5f : 1f);
             DrawHUD();
 
             Game.SpriteBatch.End();
         }
 
+        // Draw a dotted line to indicate player's aiming direction
         private void DrawCrosshairs()
         {
             var center = Bounds.Center.ToVector2();
@@ -130,26 +141,27 @@ namespace DiamondHollow
 
         private void DrawHUD()
         {
-            var heart = new Rectangle(new Point(13, 7), SmallHeart.Size);
+            var heartPosition = new Rectangle(new Point(13, 7), SmallHeart.Size);
             for (int i = 0; i < MaxHearts; i++)
             {
-                if (i < Hearts) SmallHeart.Animator.Draw(heart);
-                else Game.SpriteBatch.Draw(_grayHeartTexture, heart, new Rectangle(3, 3, 10, 10), Color.White);
-                heart.X += heart.Width + 7;
+                if (i < Hearts) SmallHeart.Animator.Draw(heartPosition);  // Full hearts are red and animated
+                else Game.SpriteBatch.Draw(_grayHeartTexture, heartPosition, new Rectangle(3, 3, 10, 10), Color.White);   // Empty hearts are gray
+                heartPosition.X += heartPosition.Width + 7;
             }
-            var sword = new Rectangle(new Point(13, 7 + SmallHeart.Size.Y + 7), new Point(32));
+            var swordPosition = new Rectangle(new Point(13, 7 + SmallHeart.Size.Y + 7), new Point(32));
             for (int i = 0; i < (int)Level.Difficulty; i++)
             {
-                Game.SpriteBatch.Draw(_swordTextures, sword, new Rectangle(0 * 16, 9 * 16, 16, 16), Color.White);
-                sword.X += heart.Width + 7;
+                Game.SpriteBatch.Draw(_swordTextures, swordPosition, new Rectangle(0 * 16, 9 * 16, 16, 16), Color.White);     // Draw swords
+                swordPosition.X += heartPosition.Width + 7;
             }
-            if (Level.Difficulty % 1 > 0.66f) Game.SpriteBatch.Draw(_swordTextures, sword, new Rectangle(2 * 16, 9 * 16, 16, 16), Color.White);
-            else if (Level.Difficulty % 1 > 0.33f) Game.SpriteBatch.Draw(_swordTextures, sword, new Rectangle(2 * 16, 1 * 16, 16, 16), Color.White);
+            if (Level.Difficulty % 1 > 0.66f) Game.SpriteBatch.Draw(_swordTextures, swordPosition, new Rectangle(2 * 16, 9 * 16, 16, 16), Color.White);   // Draw 2/3 partial sword
+            else if (Level.Difficulty % 1 > 0.33f) Game.SpriteBatch.Draw(_swordTextures, swordPosition, new Rectangle(2 * 16, 1 * 16, 16, 16), Color.White);  // Draw 1/3 partial sword
 
-            var diamond = new Rectangle(new Point(25, Game.WindowHeight - Diamond.Size.Y - 13), Diamond.Size);
+            // Draw score, diamond is animated
+            var diamondPosition = new Rectangle(new Point(25, Game.WindowHeight - Diamond.Size.Y - 13), Diamond.Size);
             Game.SpriteBatch.Draw(_barTexture, new Rectangle(4, Game.WindowHeight - 42, 164, 36), Color.White * 0.9f);
-            Diamond.Animator.Draw(diamond);
-            Game.SpriteBatch.DrawString(Game.Menlo, $"{Score}", new Vector2(diamond.Center.X + 50, diamond.Top + 2), Color.Black);
+            Diamond.Animator.Draw(diamondPosition);
+            Game.SpriteBatch.DrawString(Game.Menlo, $"{Score}", new Vector2(diamondPosition.Center.X + 50, diamondPosition.Top + 2), Color.Black);
         }
 
         public void Die()
@@ -159,7 +171,7 @@ namespace DiamondHollow
                 Level.ParticleController.Spawn(new ParticleConstructor
                 {
                     Position = Center,
-                    Texture = Animator?.Anim.Textures[0],
+                    Texture = Animator?.Anim.Textures[0],   // Particles' colors are sampled from the texture of the current player's animation
                     Count = 100,
                     DispersionSpeed = 1.5f,
                     SpawnRadius = 10,
@@ -169,7 +181,7 @@ namespace DiamondHollow
                 });
                 Position = Level.Spawnpoint - Size.Half();
                 Velocity = Vector2.Zero;
-                Level.Camera.Scroll(Center.Y, 120, () => Hearts = MaxHearts);
+                Level.Camera.Scroll(Center.Y, 120, () => Hearts = MaxHearts);   // Scroll player (now at last checkpoint) into view
             });
         }
 
@@ -184,6 +196,7 @@ namespace DiamondHollow
 
             Invincible = true;
 
+            // After taking damage, the player is knocked away from the source of damage
             Vector2 dir = (Center - enemy.Center).ToVector2();
             dir.X = Math.Sign(dir.X);
             dir.Y = dir.Y == 0 ? 1 : Math.Sign(dir.Y);

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DiamondHollow
 {
+    // A seperate class so it can have a higher z-index
     public class Healthbar : DHGameComponent
     {
         public readonly Enemy Enemy;
@@ -32,24 +33,26 @@ namespace DiamondHollow
 
             Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
-            int width = (int)(60 * Level.Modifier);
-            var bar = new Rectangle(Enemy.Center.X - width / 2, Enemy.Center.Y + Enemy.Size.Y / 2 + 10, width, 10);
-            Level.DrawRectangle(bar.Grow(2), Color.Black);
-            Level.DrawRectangle(bar, Color.White);
-            bar.Width = width * Enemy.Health / Enemy.MaxHealth;
-            var cutout = new Rectangle(40, 85, (int)Math.Clamp(bar.Width, 0f, 66f), 5);
+            int width = (int)(60 * Level.Modifier);     // The visual width of the healthbar
+            var bar = new Rectangle(Enemy.Center.X - width / 2, Enemy.Center.Y + Enemy.Size.Y / 2 + 10, width, 10);     // The rectangle that the healthbar will be drawn in
+            Level.DrawRectangle(bar.Grow(2), Color.Black);  // Black outline around the healthbar
+            Level.DrawRectangle(bar, Color.White);          // A white empty fill
+            bar.Width = width * Enemy.Health / Enemy.MaxHealth;     // The filled rectangle of the healthbar
+            var cutout = new Rectangle(40, 85, (int)Math.Clamp(bar.Width, 0f, 66f), 5);    // Healthbar texture
             Game.SpriteBatch.Draw(_healthbarFullTexture, bar.ToScreen(), cutout, Color.White);
 
             Game.SpriteBatch.End();
         }
     }
 
+    // Handles animations, taking damage from projectiles and dropping loot on death
     public class Enemy : PhysicsBody
     {
-        public EnemyController Controller;
+        public EnemyController Controller;  // Handles spawning/despawning of enemies
         public int MaxHealth { get; init; }
         public int Health { get; private set; }
 
+        // These can be overridden by subclasses and are affected by the difficulty modifier
         protected float HeartDropChance = 0.075f;
         protected int DiamondDropCount = 5;
 
@@ -63,14 +66,15 @@ namespace DiamondHollow
             DrawOrder = (int)DrawingLayers.Enemies;
             Healthbar = new Healthbar(game, Level, this);
             Health = MaxHealth = (int)(maxHealth * Level.Modifier / 5f) * 10;
-            Friction = 0;
+            Friction = 0;   // Instead of having a perpetual force applied to them, I decided to give them an initial force and then let them bounce off of walls
             OnProjectileHit += proj =>
             {
-                if (proj.Owner != Level.Player) return;
+                if (proj.Owner != Level.Player) return;     // Enemies don't damage each other
                 if ((Health -= proj.Damage) <= 0)
                 {
                     if (Animator?.HasState("death") == true)
                     {
+                        // If this enemy has a death animation, stop moving, disable collisions and play it
                         Velocity = new Vector2(Math.Sign(Velocity.X), Math.Sign(Velocity.Y)) / 1000f;
                         Gravity = 0f;
                         DisableCollisionBox = true;
@@ -82,6 +86,7 @@ namespace DiamondHollow
             };
         }
 
+        // Despawn the enemy, spawn some diamonds, maybe drop a heart and show some particles
         private void Die()
         {
             Controller.Despawn(this);
@@ -90,7 +95,7 @@ namespace DiamondHollow
             Level.ParticleController.Spawn(new ParticleConstructor
             {
                 Position = Center,
-                Color = Color.Red,
+                Color = Color.Red,  // If this enemy doesn't have a texture, default to red particles
                 Texture = Animator?.Anim.Textures[0],
                 Count = 100,
                 DispersionSpeed = 1.5f,
@@ -105,6 +110,7 @@ namespace DiamondHollow
         {
             base.Update(gameTime);
 
+            // Enemy collides with player
             if (Bounds.Intersects(Level.Player.Bounds) && !DisableCollisionBox && !Level.Player.Invincible)
             {
                 if (Animator?.HasState("attack") == true) Animator.PlayState("attack");

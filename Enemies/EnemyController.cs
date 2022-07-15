@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
+    // A unified place to spawn all types of enemies
+    // Doesn't really do much here, but I used this design for other systems in the game, so I used it here as well
     public class EnemyController : DHGameComponent
     {
         private readonly List<Enemy> _enemies;

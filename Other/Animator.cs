@@ -6,12 +6,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DiamondHollow
 {
+    // For managing multiple animations for a single object or the same animation across multiple objects
     public class Animator : DHGameComponent
     {
+        // Texture: A base texture
+        // Cutout: The position and size of the first frame of the animation
+        // Offset: The delta position between frames of the animation
+        // Frames: The number of frames in the animation
         public record struct Animation(Texture2D[] Textures, Rectangle Cutout, Point Offset, int Frames)
         {
             public Animation(Texture2D[] textures, Rectangle? cutout) : this(textures, cutout ?? Rectangle.Empty, Point.Zero, 0)
             {
+                // Automatically determines the delta offset and number of frames
                 var Texture = Textures[0];
                 if (Texture.Width >= Texture.Height)
                 {
@@ -25,22 +31,25 @@ namespace DiamondHollow
                 }
                 if (Cutout == Rectangle.Empty) Cutout = new(0, 0, Offset.X + Offset.Y, Offset.X + Offset.Y);
             }
-            public Rectangle GetFrame(int frame) => new(Offset.Scale(frame) + Cutout.Location, Cutout.Size);
+            public Rectangle GetFrame(int frame) => new(Offset.Scale(frame) + Cutout.Location, Cutout.Size);    // Get cutout for the current frame
         }
 
         private readonly List<(string, string[], Rectangle)> _files;
-        private int _time;
-        private readonly int _duration;
+        private int _time;              // Elapsed time from beginning of animation
+        private readonly int _duration; // Duration of each frame in ticks
         private bool _paused;
 
-        private readonly Dictionary<string, Animation> _states;
-        private string _current;
-        private Action _complete;
+        private readonly Dictionary<string, Animation> _states;     // Different animations for different states
+        private string _current;    // Current animation state
+        private Action _complete;   // Callback to run when animation completes
         public Animation Anim => _states[_current];
         public Rectangle Frame => Anim.GetFrame(_time / _duration);
 
         public string State => _current;
 
+        // An animation object can have multiple states, each with unique animation
+        // States are keyed by strings, the default key is "default
+        // Animating can be paused/resumed and a callback can be set to run when an animation loop completes
         public Animator(DiamondHollowGame game, Level level, string filename, int duration, Rectangle? cutout = null) : base(game, level)
         {
             _files = new() { ("default", new[] { filename }, cutout ?? Rectangle.Empty) };

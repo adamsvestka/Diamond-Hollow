@@ -5,11 +5,18 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
+    // The base class for all game components
     public class DHGameComponent : DrawableGameComponent
     {
         protected new DiamondHollowGame Game { get => (DiamondHollowGame)base.Game; }
         public Level Level;
 
+        // Countdowns are timers used to execute a callback function after a certain amount of ticks
+        // Countdowns are identifed by a numerical id, subclasses can define an enum of countdown names for this purpose
+        // A coutdown is created with the CreateCountdown method and can be used in a few ways:
+        //     - Countdowns can have a callback registered, which is called when the countdown is finished, additional callbacks can be added with AddCountdownCallback
+        //     - The state of countdowns can be checked with IsCountdownDone and GetCountdownProgress methods
+        //     - Countdowns can automatically repeat or be reset manually with the ResetCountdown method
         private Dictionary<int, Countdown> _countdowns;
         private record struct Countdown(int Duration, bool Repeating, List<Action> Callbacks, int Elapsed = 0, bool Done = false)
         {
@@ -54,8 +61,8 @@ namespace DiamondHollow
             _countdowns[id].Callbacks.Add(callback);
         }
 
-        protected bool IsCountdownDone(int id) => _countdowns[id].IsUp();
-        protected float GetCountdownProgress(int id) => (float)_countdowns[id].Elapsed / _countdowns[id].Duration;
+        protected bool IsCountdownDone(int id) => _countdowns[id].IsUp();   // Only returns true once, subsequent calls return false
+        protected float GetCountdownProgress(int id) => (float)_countdowns[id].Elapsed / _countdowns[id].Duration;  // Returns a value between 0 and 1
 
         protected void ResetCountdown(int id)
         {
@@ -68,6 +75,7 @@ namespace DiamondHollow
         {
             base.Update(gameTime);
 
+            // Records are immutable, so they have to be copied
             _countdowns = _countdowns.Select(kvp =>
             {
                 var cnd = kvp.Value;

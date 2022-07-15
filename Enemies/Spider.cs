@@ -4,6 +4,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DiamondHollow
 {
+    // A rare enemy, harmless if you take note of it
+    // Spawns attached to ceilings, cannot move, but will drop on top of the player if they stand under it
+    // Is meant to catch the player off guard, it's often positioned above key positions in the level
+    // The spider will wait on the ceiling until a player walks under it, then it drops at gravity's speed, pauses for a while and then slowly rewinds again
+    // Pause speed & health scale with difficulty
     public class Spider : Enemy
     {
         private enum SpiderState { Armed, Falling, Paused, Rewinding }
@@ -72,7 +77,7 @@ namespace DiamondHollow
         public override void Draw(GameTime gameTime)
         {
             Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            if (!Dead) Level.DrawLine(Origin.OffsetY(Size.Y), Center, Color.White, 4);
+            if (!Dead) Level.DrawLine(Origin.OffsetY(Size.Y), Center, Color.White, 4);  // Draws a string on which the spider is hanging
             Animator.Draw(Bounds.ToScreen());
             Game.SpriteBatch.End();
 

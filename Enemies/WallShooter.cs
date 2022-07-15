@@ -3,12 +3,16 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
+    // The second most common enemy
+    // Spawns attached to walls, cannot move, but shoots projectiles at set intervals
+    // On its own, it's nearly harmless, it's meant to restrict the player's movement and paired with other enemies it adds to the chaos
+    // Shooting speed & health scale with difficulty
     public class WallShooter : Enemy
     {
         private enum Countdowns { Shoot, Animation }
 
         public static new readonly Point Size = new(48);
-        public Vector2 Targeting;
+        public Vector2 Targeting;   // Facing direction
 
         public WallShooter(DiamondHollowGame game, EnemyController controller, Point position, bool facingRight) : base(game, controller, 20, new Rectangle(position - Size.Half(), Size))
         {

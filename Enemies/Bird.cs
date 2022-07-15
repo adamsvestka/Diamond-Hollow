@@ -3,6 +3,12 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
+    // The rarest, most difficult to deal with enemy
+    // Spawns in the air and flies from wall to wall in a continuous loop
+    // After a certain difficulty is reached, when the player walks under it, it will shoot a projectile downward
+    // Also has a lot of health and a high chance of dropping a heart
+    // You can pretty easily avoid it, but it's a way to replenish health, though risky
+    // Movement speed, shooting speed & health scale with difficulty
     public class Bird : Enemy
     {
         private enum Countdowns { Shoot }
@@ -33,7 +39,7 @@ namespace DiamondHollow
 
             base.Update(gameTime);
 
-            if (Velocity == Vector2.Zero) Velocity = -prev;
+            if (Velocity == Vector2.Zero) Velocity = -prev;     // If it hits a wall, reverse direction
 
             if (Level.Difficulty > 5 && IsCountdownDone((int)Countdowns.Shoot) && CheckForPlayer())
             {

@@ -5,11 +5,15 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
+    // A small single-colored rectangle
     internal record struct Particle(PhysicsBody Body, Color Color)
     {
         public int Life { get; set; } = default;
     }
 
+    // Will appear as a collection of small colored rectangles dispersed around a point
+    // They will move around and disappear after a certain amount of time
+    // They may or may not collide with platforms
     internal class ParticleInstance : DHGameComponent
     {
         private readonly ParticleController Controller;
@@ -23,6 +27,7 @@ namespace DiamondHollow
             _particles = new();
             Random = new();
 
+            // Create a color palette for the particles, either from a texture or from a single color
             Color[] colorData;
             if (data.Texture != null)
             {
@@ -30,6 +35,7 @@ namespace DiamondHollow
                 data.Texture.GetData(colorData);
             }
             else colorData = new Color[1] { data.Color };
+            // Select a random color without alpha from the palette
             var sampleColor = () =>
             {
                 Color c;
@@ -38,6 +44,7 @@ namespace DiamondHollow
                 return c;
             };
 
+            // Create the particles, with randomized positions, velocities and lifetimes
             for (int i = 0; i < data.Count; i++)
             {
                 _particles.Add(new Particle
@@ -60,6 +67,8 @@ namespace DiamondHollow
         {
             base.Update(gameTime);
 
+            // Records are immutable, so we need to create a new list to update the particles
+            // Also despawn particles that have exceeded their lifetime or got stuck in a wall
             _particles = _particles.Select(particle =>
             {
                 particle.Life--;

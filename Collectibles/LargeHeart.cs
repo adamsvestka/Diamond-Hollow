@@ -2,6 +2,8 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
+    // Picking this item up restores all health for the player and increases their max health by one
+    // Is not attracted to the player, but has a large hitbox
     public class LargeHeart : Collectible
     {
         public static new readonly Point Size = new(42);

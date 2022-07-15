@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DiamondHollow
 {
+    // Textual representation of the game map
     public enum TileType
     {
         Empty = '.',
@@ -25,11 +26,12 @@ namespace DiamondHollow
         Checkpoint = '$',
     }
 
-    class Background : DHGameComponent
+    // A class just for rendering the foreground overlay, seperated because each component can only draw at one z-index
+    class Foreground : DHGameComponent
     {
-        public Background(DiamondHollowGame game) : base(game, game.Level)
+        public Foreground(DiamondHollowGame game) : base(game, game.Level)
         {
-            DrawOrder = (int)DrawingLayers.Foreground;
+            DrawOrder = (int)DrawingLayers.Foreground;  // Setting the z-index
         }
 
         public override void Draw(GameTime gameTime)
@@ -49,6 +51,7 @@ namespace DiamondHollow
 
                     if (Level.GetTile(x, y) == TileType.Wall)
                     {
+                        // Doesn't store any data of its own, instead references it from Level
                         Point fg = Level._platformTileCache[y, x];
                         Game.SpriteBatch.Draw(Level._platformTileset, tile, new Rectangle(fg.X * 32, fg.Y * 32, 32, 32), Color.White);
                     }
@@ -59,15 +62,23 @@ namespace DiamondHollow
         }
     }
 
+    // The actual game scene
     public class Level : GameScene
     {
-        private TileType[,] _grid;
-        private readonly LevelGenerator _levelGenerator;
-        private Point[][] _platformTileMap;
-        public Point[,] _platformTileCache, _backgroundCache;
-        public Texture2D _platformTileset, _backgroundTileset;
-        public Dictionary<Point, Point> _backgroundTileMap;
-        private int[] _backgroundTileMapWeights;
+        private TileType[,] _grid;  // The map
+        private readonly LevelGenerator _levelGenerator;    // Handles extending the map upwards
+        // Platform (foreground) textures are handled in the following way:
+        //     Platform tiles have connected textures meaning their texture is selected based on the surrounding tiles.
+        //     There are 8 surrounding tiles and we only need to know if they are there or not, so we can encode this into an 8-bit integer.
+        //     For each combination of surrounding tiles, we want an offset within a tileset pointing to the correct texture (its actualy an array of offsets/textures).
+        //     Since all combinations of are possible, we can store this in an array mapping the encoded tile to a list of variations of its texture.
+        private Point[][] _platformTileMap;     // The mapping of tiles to lists of texture variations
+        public Point[,] _platformTileCache, _backgroundCache;   // Texture offsets are cached to avoid having to recalculate them every frame and so they don't flicker
+        public Texture2D _platformTileset, _backgroundTileset;  // The tilesets containing the platform (foreground) and background textures
+        // If a checkpoint is activated, background tiles within a radius are illuminated.
+        // This is done by swapping some textures with ore in them for ones where the ore is shining and also by mixing the texture with white.
+        public Dictionary<Point, Point> _backgroundTileMap;     // A map of unlit texture offsets to their lit counterparts, also doubles as a list of background textures
+        private int[] _backgroundTileMapWeights;    // Background textures are selected randomly from a weighed pool of textures.
 
         public Player Player;
         public Camera Camera;
@@ -76,14 +87,14 @@ namespace DiamondHollow
         public CollectiblesController CollectiblesController;
         public EnemyController EnemyController;
 
-        public Point Spawnpoint;
-        public float Difficulty => 1f + (float)(Camera?.CameraY ?? 0f) / Game.TileSize / 100f;
-        public float Modifier => Math.Clamp(Difficulty / 4f, 0.5f, 2f);
+        public Point Spawnpoint;    // Gets updated to the last activated checkpoint
+        public float Difficulty => 1f + (float)(Camera?.CameraY ?? 0f) / Game.TileSize / 100f;  // As the player progresses upwards, the difficulty increases
+        public float Modifier => Math.Clamp(Difficulty / 4f, 0.5f, 2f);     // Ranges from 0.5 to 2, is used to modify the toughness of enemies
 
         public Level(DiamondHollowGame game, string filename) : base(game, null)
         {
             _levelGenerator = new LevelGenerator(game, this, filename);
-            Spawnpoint = Point.Zero;
+            Spawnpoint = Point.Zero;    // Should be overriden by the LevelGenerator
         }
 
         protected override void LoadContent()
@@ -92,8 +103,8 @@ namespace DiamondHollow
             _platformTileCache = new Point[0, 0];
             _backgroundCache = new Point[0, 0];
 
-            GenerateTileMap();
-            LoadNextMapSegment();
+            GenerateTileMap();      // Called only once, prepares the tile to texture mapping
+            LoadNextMapSegment();   // Loads the first map segment
 
             _platformTileset = Game.GetTexture("Sprites/Environment/Tileset");
             _backgroundTileset = Game.GetTexture("Sprites/Environment/Background");
@@ -104,7 +115,7 @@ namespace DiamondHollow
         public override void Initialize()
         {
             DrawOrder = (int)DrawingLayers.Background;
-            AddComponent(new Background(Game));
+            AddComponent(new Foreground(Game));
 
             Camera = new Camera(Game, this);
             Player = new Player(Game, this);
@@ -116,13 +127,14 @@ namespace DiamondHollow
             AddComponents(Player, Camera);
             AddComponents(ParticleController, ProjectileController, CollectiblesController, EnemyController);
 
-            Camera.Track(Player);
+            Camera.Track(Player);   // Camera locks on to player
 
             base.Initialize();
         }
 
         public override void Update(GameTime gameTime)
         {
+            // If the player nears the end of the map, load the next segment
             if (Player.Position.Y + 2 * Game.WindowHeight > MapHeight)
             {
                 LoadNextMapSegment();
@@ -133,8 +145,9 @@ namespace DiamondHollow
 
         public override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.Yellow);     // Clear color becomes the checkpoint light tint
 
+            // No need to render tiles offscreen
             int bottom = Math.Max(Camera.CameraY / Game.TileSize, 0);
             int top = Math.Min(bottom + Game.WindowHeight / Game.TileSize + 1, MapHeight);
 
@@ -152,6 +165,7 @@ namespace DiamondHollow
                     Point pt = new(x, y);
                     int dist2 = (pt - spawn).LengthSquared();
 
+                    // Render a lamppost as the checkpoint and brighten surrounding tiles
                     if (pt == spawn) bg = _backgroundTileMap.Keys.ElementAt(6);
                     else if (pt == spawn.OffsetY(1)) bg = _backgroundTileMap.Keys.ElementAt(5);
                     if (dist2 < 70 && _backgroundTileMap.ContainsKey(bg))
@@ -176,19 +190,23 @@ namespace DiamondHollow
             int height2 = _grid.GetLength(0);
             int width = _grid.GetLength(1);
 
+            // Fast resize & copy
             Helpers.ResizeArray(ref _backgroundCache, height2, width);
             Helpers.ResizeArray(ref _platformTileCache, height2, width);
 
+            // Generate background textures
             for (int y = height + 1; y < height2; y++)
                 for (int x = 0; x < width; x++)
                     _backgroundCache[y, x] = Game.WeightedChoice(_backgroundTileMap.Keys, _backgroundTileMapWeights);
 
+            // Generate platform textures
             for (int y = height; y < height2; y++)
                 for (int x = 0; x < width; x++)
                     if (_grid[y, x] == TileType.Wall)
                         _platformTileCache[y, x] = Game.Choice(_platformTileMap[CollectSurroundingTiles(new Point(x, y))]);
         }
 
+        // Encodes the surrounding tiles into an 8-bit integer.
         private byte CollectSurroundingTiles(Point point)
         {
             byte data = 0, i = 7;
@@ -211,6 +229,7 @@ namespace DiamondHollow
         public int MapWidth => _grid.GetLength(1) * Game.TileSize;
         public TileType GetTile(int x, int y) => _grid[y, x];
 
+        // Check if a position is outside the map or in a platform
         public bool IsWall(Point p)
         {
             var c = p.ToGrid();
@@ -221,12 +240,27 @@ namespace DiamondHollow
         public bool IsWall(int x, int y) => IsWall(new Point(x, y));
         public bool IsOnGround(Rectangle box) => IsWall(box.Location.OffsetY(-1)) || IsWall(box.Location.Offset(box.Width - 1, -1));
 
+        // The following set of functions define the tile to texture mapping
+        // For ease of use, the surrounding tiles are written as a string, so the following layout:
+        //     1 2 3
+        //     4 x 5
+        //     6 7 8
+        // would be written as:
+        //     "123|4x5|678"
+        // Positions can have the following values:
+        //     'x' - tile
+        //     ' ' - empty
+        //     '.' - any
+
+        // Expands occurences of '.' to 'x' and ' '
+        // eg. ".x." -> { "xxx", "xx ", " xx", " x " }
         private IEnumerable<string> GeneratePermutations(string repr)
         {
             int i = repr.IndexOf('.');
             if (i == -1) return new[] { repr };
             return GeneratePermutations(repr[0..i] + "x" + repr[(i + 1)..]).Concat(GeneratePermutations(repr[0..i] + " " + repr[(i + 1)..]));
         }
+        // Registers a set of texture variations for a set of tile variations
         private void AddTileVariant(string repr, params (int x, int y)[] c)
         {
             foreach (var k in GeneratePermutations(repr.Replace("|", "")))
@@ -237,6 +271,7 @@ namespace DiamondHollow
         }
         private void GenerateTileMap()
         {
+            // Mapping of background unlit textures to lit textures
             _backgroundTileMap = new() {
                 { new Point(1, 2), new Point(1, 2) },
                 { new Point(15, 1), new Point(15, 1) },
