@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Diamond Hollow
+ * Adam Švestka, I. ročník, 34. st. skupina
+ * letní semestr 2021/2022
+ * Programování 2 (NPRG031)
+ */
+
+using System;
 
 namespace DiamondHollow
 {
