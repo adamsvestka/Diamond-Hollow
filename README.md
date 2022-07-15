@@ -1,11 +1,13 @@
 # Diamond Hollow
 
+*by Adam Švestka*
+
 An infinite 2D vertical scrolling game. The player navigates upward over platforms, avoids or kills enemies and collects diamonds.
 
 Based on the Diamond Hollow series of Flash games. Coded in C# using the [MonoGame](https://www.monogame.net) framework.
 
-
 ![Screenshot](Images/screenshot.png)
+
 
 ## Installation
 

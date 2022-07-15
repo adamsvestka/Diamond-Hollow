@@ -67,7 +67,7 @@ Just for flex...
 
 You MKA-POWVII Super Extremely Powerful<sup>TM</sup> Mining Gun<sub>2</sub> For Excavation of Diamonds&copy;, now repurposed for slime excavation, is your only companion on this journey of self-rediscovery.
 
-The gun automatically targets mice. If you have one at your disposal, you use it for aiming. If you want to take this a step further, you can execute the mythical move known as the Left Click of a Pointing Device to fire your mining gun.
+The gun automatically targets mice. If you have one at your disposal, you use it for aiming. If you want to take this a step further, you can execute the mythical move known as the Left Click of a Pointing Device to fire your mining gun. Legends say that some are so experienced, that they are able to use this move indefinitely.
 
 ![Shooting](Images/GIFs/shooting.gif)
 
