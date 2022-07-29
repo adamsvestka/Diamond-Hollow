@@ -62,5 +62,3 @@ cd Docs
 docfx build
 docfx serve
 ```
-
-A version of the docs is hosted at [https://adamsvestka.github.io/Diamond-Hollow/](https://adamsvestka.github.io/Diamond-Hollow/)
