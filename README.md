@@ -1,5 +1,8 @@
 # Diamond Hollow
 
+[![DocFX](https://github.com/adamsvestka/Diamond-Hollow/actions/workflows/docfx.yml/badge.svg)](https://github.com/adamsvestka/Diamond-Hollow/actions/workflows/docfx.yml)
+[![pages-build-deployment](https://github.com/adamsvestka/Diamond-Hollow/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/adamsvestka/Diamond-Hollow/actions/workflows/pages/pages-build-deployment)
+
 *by Adam Švestka*
 
 An infinite 2D vertical scrolling game. The player navigates upward over platforms, avoids or kills enemies and collects diamonds.
@@ -62,3 +65,5 @@ cd Docs
 docfx build
 docfx serve
 ```
+
+A version of the docs is hosted at [https://adamsvestka.github.io/Diamond-Hollow/](https://adamsvestka.github.io/Diamond-Hollow/)
