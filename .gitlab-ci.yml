@@ -1,0 +1,10 @@
+pages:
+  image: erothejoker/docker-docfx:latest
+  script:
+    - docfx Docs/docfx.json
+    - mv Docs/_site.nosync public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
