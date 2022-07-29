@@ -3,15 +3,32 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
-    // Picking this item up fires many projectiles in all directions and grants the player invulnerability for a short time (invulnerability prevents the player from taking damage & shooting)
-    // Damage scales with difficulty
-    // Is not attracted to the player, but has a large hitbox
+    /// <summary>
+    /// Picking this item up fires many projectiles in all directions and grants the player invulnerability for a short time (invulnerability prevents the player from taking damage &amp; shooting).
+    /// Damage scales with difficulty.
+    /// It is not attracted to the player, but has a large hitbox.
+    /// </summary>
     public class Nuke : Collectible
     {
+        /// <summary>
+        /// The size of a nuke.
+        /// </summary>
         public static new readonly Point Size = new(42);
 
+        /// <summary>
+        /// The nuke's animation handler.
+        /// </summary>
         public static Animator Animator;
 
+        /// <summary>
+        /// Creates a new nuke at the given position.
+        /// 
+        /// Do not use this constructor directly. Instead, use the <see cref="DiamondHollow.CollectiblesController.SpawnNuke"/> method.
+        /// </summary>
+        /// <param name="game">The game that this component is a part of.</param>
+        /// <param name="controller">The level that this component is a part of.</param>
+        /// <param name="pos">The position of the nuke.</param>
+        /// <returns>The new nuke.</returns>
         public Nuke(DiamondHollowGame game, CollectiblesController controller, Point pos) : base(game, controller, new Rectangle(pos - Size.Half(), Size))
         {
             AttractionStrength = 0f;
@@ -35,6 +52,10 @@ namespace DiamondHollow
             };
         }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.DrawableGameComponent.Draw"/>
+        /// <summary>
+        /// Draws the animating nuke.
+        /// </summary>
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);

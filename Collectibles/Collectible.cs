@@ -3,15 +3,36 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
-    // Component that have a callback when collected by the player
+    /// <summary>
+    /// Component that have a callback when collected by the player.
+    /// </summary>
     public class Collectible : CollisionBody
     {
+        /// <summary>
+        /// The controller for the collectible.
+        /// </summary>
         public CollectiblesController Controller;
-        public float AttractionStrength = 0f;   // The item will move towards the player if within this distance, distance is measured in tiles
-        public float? PickupDistance = null;    // The item will be picked up if within this distance, without having to actually collide with the player
+        /// <summary>
+        /// The item will move towards the player if within this distance, distance is measured in tiles.
+        /// </summary>
+        public float AttractionStrength = 0f;
+        /// <summary>
+        /// The item will be picked up if within this distance, without having to actually collide with the player.
+        /// </summary>
+        public float? PickupDistance = null;
 
+        /// <summary>
+        /// The callback that will be called when the collectible is collected by the player.
+        /// </summary>
         public event Action<Collectible> OnCollect;
 
+        /// <summary>
+        /// Creates a new collectible.
+        /// </summary>
+        /// <param name="game">The game that the collectible belongs to.</param>
+        /// <param name="controller">The controller for the collectible.</param>
+        /// <param name="bounds">The bounds of the collectible.</param>
+        /// <returns>The new collectible.</returns>
         public Collectible(DiamondHollowGame game, CollectiblesController controller, Rectangle bounds) : base(game, controller.Level, bounds)
         {
             Controller = controller;
@@ -19,6 +40,12 @@ namespace DiamondHollow
             DisableCollisionBox = true;
         }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.GameComponent.Update"/>
+        /// <summary>
+        /// Checks if the collectible is within collectible range of the player and if so, calls the OnCollect event and removes the collectible.
+        /// - Collectibles are attracted to the player if they are within attraction strength. The closer they are, the faster they will move towards the player.
+        /// - If they are outside the attraction strength, they will slow down.
+        /// </summary>
         public override void Update(GameTime gameTime)
         {
             float distance = (Level.Player.Center - Center).ToVector2().Length() / Game.TileSize;

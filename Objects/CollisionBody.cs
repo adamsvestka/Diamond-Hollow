@@ -4,22 +4,62 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
-    // All components that collide with either the map or projectiles inherit from this class
+    /// <summary>
+    /// Handles collision with either the map or projectiles.
+    /// </summary>
     public class CollisionBody : DHGameComponent
     {
+        /// <summary>
+        /// The object's position.
+        /// </summary>
         protected Vector2 _position;
+        /// <summary>
+        /// The object's velocity.
+        /// </summary>
         public Vector2 Velocity;
+        /// <summary>
+        /// The object's size.
+        /// </summary>
         public Point Size;
-        public bool DisableCollisions = false;      // If true, will not collide with anything
-        public bool DisableCollisionBox = false;    // If true, will not collide with projectiles
+        /// <summary>
+        /// If true, will not collide with anything
+        /// </summary>
+        public bool DisableCollisions = false;
+        /// <summary>
+        /// If true, will not collide with projectiles
+        /// </summary>
+        public bool DisableCollisionBox = false;
 
+        /// <summary>
+        /// A public wrapper for <see cref="DiamondHollow.CollisionBody._position"/> property.
+        /// Converts to <see cref="Microsoft.Xna.Framework.Point"/>.
+        /// </summary>
         public Point Position { get => _position.ToPoint(); set => _position = value.ToVector2(); }
+        /// <summary>
+        /// The object's bounding box.
+        /// </summary>
         public Rectangle Bounds => new(Position, Size);
+        /// <summary>
+        /// The object's center.
+        /// </summary>
         public Point Center => Bounds.Center;
 
+        /// <summary>
+        /// Fires when the object collides with the map.
+        /// </summary>
         public event Action<Point> OnCollision;
+        /// <summary>
+        /// Fires when the object collides with a projectile.
+        /// </summary>
         public event Action<Projectile> OnProjectileHit;
 
+        /// <summary>
+        /// Create a new collision body.
+        /// </summary>
+        /// <param name="game">The game this component is attached to.</param>
+        /// <param name="level">The level this component is attached to.</param>
+        /// <param name="bounds">The bounding box of the object.</param>
+        /// <returns>The new collision body.</returns>
         public CollisionBody(DiamondHollowGame game, Level level, Rectangle bounds) : base(game, level)
         {
             Position = bounds.Location;
@@ -27,6 +67,10 @@ namespace DiamondHollow
             Velocity = new Vector2(0, 0);
         }
 
+        // <inheritdoc cref="DiamondHollow.DHGameComponent.Update"/>
+        /// <summary>
+        /// Moves the object according to its velocity, handles collisions with the map.
+        /// </summary>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -54,7 +98,16 @@ namespace DiamondHollow
         }
 
         // PAIN. Don't even ask me how this works.
-        // Edit at your own risk. I take no responsibility for any physical, mental, or emotional damage you may incur.
+        // Edit at your own risk. I take no responsibility for any physical, mental, or emotional damages you may incur.
+        /// <summary>
+        /// Checks for collisions with the map.
+        /// </summary>
+        /// <param name="pos">The position of the object.</param>
+        /// <param name="vel">The velocity of the object.</param>
+        /// <param name="depth">*ignore this*</param>
+        /// <returns>The mask representing the collision.
+        /// 
+        /// 1 = no collision, 0 = collision</returns>
         private Vector2 GetCollisionMask(in Vector2 pos, ref Vector2 vel, int depth = 3)    // depth is here to prevent infitite recursion... because I couldn't figure out why it wouldn't stop ¯\_(ツ)_/¯
         {
             // Do something like binary search because it's not that expensive and I spent way too much time trying to figure out how to actually calculate the exact position accounting for all possible platform shapes.
@@ -94,7 +147,7 @@ namespace DiamondHollow
                 }
             }
 
-            return mask;    // This is here because bad design I guess.
+            return mask;    // This is here because bad design, I guess.
         }
     }
 }

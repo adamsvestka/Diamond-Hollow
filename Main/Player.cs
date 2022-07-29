@@ -5,30 +5,90 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DiamondHollow
 {
-    // Handles:
-    //     Player movement, shooting
-    //     Drawing HUD overlay (hearts, score, etc.)
-    //     Player collision with enemy/projectile, collectibles
+    /// <summary>
+    /// Handles:
+    /// - Player movement, shooting.
+    /// - Drawing HUD overlay (hearts, score, etc.)
+    /// - Player collision with enemy/projectile, collectibles.
+    /// </summary>
     public class Player : PhysicsBody
     {
-        private enum Countdowns { Invincible, Shoot }
+        /// <summary>
+        /// Player countdowns.
+        /// </summary>
+        private enum Countdowns
+        {
+            /// <summary>How long the player is invincible for after being hit.</summary>
+            Invincible,
+            /// <summary>How long until the player can shoot again after shooting.</summary>
+            Shoot
+        }
 
-        public bool Invincible  // Player goes invincible after taking damage for a short time
+        /// <summary>
+        /// Player goes invincible after taking damage for a short time/
+        /// </summary>
+        public bool Invincible
         {
             get => !IsCountdownDone((int)Countdowns.Invincible);
             set => ResetCountdown((int)Countdowns.Invincible);
         }
-        public Vector2 Targeting;   // Direction player is aiming, controlled by mouse position
+        /// <summary>
+        /// The direction the player is aiming, controlled by mouse position.
+        /// </summary>
+        public Vector2 Targeting;
+        /// <summary>
+        /// The maximum hearts the player can have.
+        /// </summary>
+        /// <value>Default: 3</value>
         public int MaxHearts { get; private set; }
+        /// <summary>
+        /// The current hearts the player has.
+        /// </summary>
+        /// <value>Default: 3</value>
         public int Hearts { get; private set; }
+        /// <summary>
+        /// The current score the player has.
+        /// </summary>
+        /// <value>Default: 0</value>
         public int Score { get; private set; }
 
-        private Animator Animator;  // Draws the player animations
-        private Texture2D _barTexture, _grayHeartTexture, _swordTextures;
-        private bool Facing;    // True if player is facing left, false if facing right
+        /// <summary>
+        /// Draws the player animations.
+        /// </summary>
+        private Animator Animator;
+        /// <summary>
+        /// A rectangular texture used as a background for the player's score.
+        /// </summary>
+        private Texture2D _barTexture;
+        /// <summary>
+        /// An empty heart texture.
+        /// </summary>
+        private Texture2D _grayHeartTexture;
+        /// <summary>
+        /// A tileset of swords.
+        /// </summary>
+        private Texture2D _swordTextures;
+        /// <summary>
+        /// True if player is facing left, false if facing right.
+        /// </summary>
+        private bool Facing;
 
+        /// <summary>
+        /// Create a new player.
+        /// </summary>
+        /// <param name="game">The game this component is attached to.</param>
+        /// <param name="level">The level this component is attached to.</param>
+        /// <returns>The new player.</returns>
         public Player(DiamondHollowGame game, Level level) : base(game, level, new Rectangle(new Point(125, 125), new Point(38))) { }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.DrawableGameComponent.Initialize"/>
+        /// <summary>
+        /// - Set the player's health and max health.
+        /// - Set the draw order.
+        /// - Start countdowns.
+        /// - Register callbacks.
+        /// - Setup the player's animations, with a random color.
+        /// </summary>
         public override void Initialize()
         {
             base.Initialize();
@@ -54,9 +114,16 @@ namespace DiamondHollow
             Animator.AddState("jump", new(2, 2, 38, 38), $"Sprites/Player/{Color}/Jump");
             Animator.AddState("death", new(2, 2, 38, 38), $"Sprites/Player/{Color}/Death");
 
-            Level.AddComponent(Animator);   // Ad to scene
+            Level.AddComponent(Animator);   // Add to scene
         }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.DrawableGameComponent.LoadContent"/>
+        /// <summary>
+        /// Load the player's textures:
+        /// - The bar texture for the player's score.
+        /// - The empty heart texture.
+        /// - The sword textures.
+        /// </summary>
         protected override void LoadContent()
         {
             base.LoadContent();
@@ -66,7 +133,10 @@ namespace DiamondHollow
             _swordTextures = Game.GetTexture("Sprites/Items/Swords");
         }
 
-        // Handle player movement and shooting
+        // <inheritdoc cref="Microsoft.Xna.Framework.GameComponent.Update"/>
+        /// <summary>
+        /// Controls for player movement, shooting and animation state.
+        /// </summary>
         public override void Update(GameTime gameTime)
         {
             if (!Locked && Hearts > 0)  // Player will be locked for a time after taking damage
@@ -111,6 +181,13 @@ namespace DiamondHollow
             Targeting.Normalize();
         }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.DrawableGameComponent.Draw"/>
+        /// <summary>
+        /// - Draw the player's current animation.
+        /// - Draw the player's score, hearts, difficulty and aiming line.
+        /// </summary>
+        /// <seealso cref="DiamondHollow.Player.DrawCrosshairs"/>
+        /// <seealso cref="DiamondHollow.Player.DrawHUD"/>
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
@@ -125,7 +202,10 @@ namespace DiamondHollow
             Game.SpriteBatch.End();
         }
 
-        // Draw a dotted line to indicate player's aiming direction
+        /// <summary>
+        /// Draw a dotted line to indicate player's aiming direction.
+        /// </summary>
+        /// <seealso cref="DiamondHollow.Player.Draw"/>
         private void DrawCrosshairs()
         {
             var center = Bounds.Center.ToVector2();
@@ -139,6 +219,13 @@ namespace DiamondHollow
             }
         }
 
+        /// <summary>
+        /// Draw the player's health, difficulty and score.
+        /// - Health is drawn as red hearts in the top left corner.
+        /// - Difficulty is drawn as swords in the top left corner, under the health.
+        /// - Score is drawn as a number next a diamond in the bottom left corner.
+        /// </summary>
+        /// <seealso cref="DiamondHollow.Player.Draw"/>
         private void DrawHUD()
         {
             var heartPosition = new Rectangle(new Point(13, 7), SmallHeart.Size);
@@ -164,6 +251,11 @@ namespace DiamondHollow
             Game.SpriteBatch.DrawString(Game.Menlo, $"{Score}", new Vector2(diamondPosition.Center.X + 50, diamondPosition.Top + 2), Color.Black);
         }
 
+
+        /// <summary>
+        /// Play the player's death animation, spawn particles, move the player to the last checkpoint and smoothly scroll the camera to the player.
+        /// </summary>
+        /// <seealso cref="DiamondHollow.Camera.Scroll"/>
         public void Die()
         {
             Animator.PlayState("death", () =>
@@ -185,6 +277,11 @@ namespace DiamondHollow
             });
         }
 
+        /// <summary>
+        /// Player gets hit by a projectile, lower health, gain invincibility and knock the player back.
+        /// If the player is out of hearts, the player dies.
+        /// </summary>
+        /// <param name="enemy"></param>
         public void OnEnemyCollision(CollisionBody enemy)
         {
             if (Invincible || Hearts == 0) return;
@@ -203,6 +300,13 @@ namespace DiamondHollow
             Yeet(dir * 10);
         }
 
+        /// <summary>
+        /// Player collects a item.
+        /// - Diamonds are collected to increase score.
+        /// - Small hearts are collected to heal one heart, but only if the player has less than max hearts.
+        /// - Big hearts are collected to heal all hearts and increase the player's max hearts by one.
+        /// </summary>
+        /// <param name="item"></param>
         public void OnItemCollision(Collectible item)
         {
             switch (item)

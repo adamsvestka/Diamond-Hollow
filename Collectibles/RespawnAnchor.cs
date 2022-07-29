@@ -5,20 +5,40 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DiamondHollow
 {
-    // This item is different from the others as it's not really an item
-    // "Picking it up" will move the players spawn point to this location
-    // It's not attracted to the player, but has a decent pickup distance
-    //
-    // This item's design is really subtle - it blends in with the level's background
-    // Stars will spawn around it, though, so be on the look out for those
+    /// <summary>
+    /// This item is different from the others as it's not really an item.
+    /// "Picking it up" will move the players spawn point to this location.
+    /// It's not attracted to the player, but has a decent pickup distance.
+    ///
+    /// This item's design is really subtle - it blends in with the level's background.
+    /// Stars will spawn around it, though, so be on the look out for those.
+    /// </summary>
     public class RespawnAnchor : Collectible
     {
+        /// <summary>
+        /// The size of a respawn anchor.
+        /// </summary>
         public static new readonly Point Size = new(30);
 
+        /// <summary>
+        /// The respawn anchor's animation handler.
+        /// </summary>
         public static Animator Animator;
 
+        /// <summary>
+        /// A list of stars that are spawned around the respawn anchor.
+        /// </summary>
         private List<Rectangle> _stars;
 
+        /// <summary>
+        /// Creates a new respawn anchor at the given position.
+        /// 
+        /// Do not use this constructor directly. Instead, use the <see cref="DiamondHollow.CollectiblesController.SpawnRespawnAnchor"/> method.
+        /// </summary>
+        /// <param name="game">The game that this component is a part of.</param>
+        /// <param name="controller">The level that this component is a part of.</param>
+        /// <param name="pos">The position of the respawn anchor.</param>
+        /// <returns>The new respawn anchor.</returns>
         public RespawnAnchor(DiamondHollowGame game, CollectiblesController controller, Point pos) : base(game, controller, new Rectangle(pos - Size.Half(), Size))
         {
             AttractionStrength = 0f;
@@ -27,6 +47,10 @@ namespace DiamondHollow
             OnCollect += self => Level.Spawnpoint = self.Center;
         }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.GameComponent.Initialize"/>
+        /// <summary>
+        /// Randomly spawns stars around the respawn anchor.
+        /// </summary>
         public override void Initialize()
         {
             base.Initialize();
@@ -43,6 +67,10 @@ namespace DiamondHollow
             }
         }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.DrawableGameComponent.Draw"/>
+        /// <summary>
+        /// Draws the animating respawn anchor.
+        /// </summary>
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);

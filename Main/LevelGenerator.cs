@@ -6,24 +6,78 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
-    // The map is has a set width and infinite height
-    // It is made from elementary building segments that are stacked on top of each other and span the entire width
-    // This class takes care of loading the segments from files, appending them to the map and spawing enemies, collectibles and other objects
+    /// <summary>
+    /// The map is has a set width and infinite height.
+    /// It is made from elementary building segments that are stacked on top of each other and span the entire width.
+    /// This class takes care of loading the segments from files, appending them to the map and spawing enemies, collectibles and other objects.
+    /// </summary>
     public class LevelGenerator
     {
-        // A segment is a 2d array of characters and can specify which segment group can follow (not currently used beyond the first segment)
-        private record struct Segment(string[] Data, string Next);
+        /// <summary>
+        /// A segment is a 2D array of characters and can specify which segment group can follow (not currently used beyond the first segment).
+        /// </summary>
+        private struct Segment
+        {
+            /// <summary>The segment data.</summary>
+            /// <seealso cref="DiamondHollow.TileType"/>
+            public string[] Data;
+            /// <summary>The segment group that can follow this segment.</summary>
+            public string Next;
 
+            /// <summary>
+            /// Creates a new segment.
+            /// </summary>
+            /// <param name="data">The segment data.</param>
+            /// <param name="next">The segment group that can follow this segment.</param>
+            public Segment(string[] data, string next)
+            {
+                Data = data;
+                Next = next;
+            }
+        }
+
+        /// <summary>
+        /// The game this level generator is associated with.
+        /// </summary>
         public DiamondHollowGame Game;
+        /// <summary>
+        /// The level this level generator is associated with.
+        /// </summary>
         public Level Level;
+        /// <summary>
+        /// The level segment file root directory.
+        /// </summary>
         public string RootDirectory;
 
+        /// <summary>
+        /// The current map height.
+        /// </summary>
         private int Height;
+        /// <summary>
+        /// The id of the following segment group.
+        /// </summary>
         private string NextConnector;
+        /// <summary>
+        /// A dictionary of segment groups.
+        /// </summary>
         private readonly Dictionary<string, List<Segment>> Segments;
 
+        /// <summary>
+        /// The distance to the next checkpoint.
+        /// </summary>
         private float NextCheckpoint;
 
+        /// <summary>
+        /// Create a new level generator.
+        /// </summary>
+        /// <param name="game">The game this level generator is associated with.</param>
+        /// <param name="level">The level this level generator is associated with.</param>
+        /// <param name="path">The path to the level segment file root directory.</param>
+        /// <remarks>
+        /// Level segment filenames follow the pattern <c>"<name>_<before>_<after>.txt"</c>
+        /// - <c><name></c> is a name for the map creator (not used)
+        /// - <c><before></c> is an identifier which has to match the <c><after></c> identifier of the segment that comes before it
+        /// </remarks>
         public LevelGenerator(DiamondHollowGame game, Level level, string path)
         {
             Game = game;
@@ -54,12 +108,23 @@ namespace DiamondHollow
             }
         }
 
-        // Level components contain pacements for potential checkpoints but not all of them will be used
-        // As the difficulty increases, the distance between checkpoints increases
-        // This method calculates the minimum distance to the next checkpoint
+        /// <summary>
+        /// Level components contain pacements for potential checkpoints but not all of them will be used.
+        /// As the difficulty increases, the distance between checkpoints increases.
+        /// This method calculates the minimum distance to the next checkpoint.
+        /// </summary>
+        /// <param name="y">The height of the map.</param>
         private void ResetCheckpoint(int y) => NextCheckpoint = y + (1 + Game.Random() * (float)Math.Sqrt(Level.Difficulty)) * 50;
 
-        // Load a random level segment and process it
+        /// <summary>
+        /// Load a random level segment and process it.
+        /// </summary>
+        /// <param name="grid">The grid to append the segment to.</param>
+        /// <remarks>
+        /// Individual tiles are evaluated here, platforms are placed and enemies/collectibles are spawned.
+        /// Some enemies only appear after a certain difficulty is reached, sometimes more of the same enemy appear even later on.
+        /// Some collectibles only have a certain chance of spawning.
+        /// </remarks>
         public void LoadNext(ref TileType[,] grid)
         {
             // Choose a segment
@@ -92,7 +157,7 @@ namespace DiamondHollow
                         case TileType.SingleGem:
                             SpawnDiamonds((x, y));
                             break;
-                        case TileType.DounbleGem:
+                        case TileType.DoubleGem:
                             SpawnDiamonds((x - 0.5f, y), (x + 0.5f, y));
                             break;
                         case TileType.TripleGem:

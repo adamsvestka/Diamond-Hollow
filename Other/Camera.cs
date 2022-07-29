@@ -3,27 +3,80 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
-    // This class handles smooth camera motion
-    // It has two modes:
-    //     Tracking a target: The camera will keep the target in frame
-    //     Scroll to a location: The camera will move to a location over a period of time
+    /// <summary>
+    /// This class handles smooth camera motion.
+    /// 
+    /// It has two modes:
+    /// - Tracking a target: The camera will keep the target in frame.
+    /// - Scroll to a location: The camera will move to a location over a period of time.
+    /// </summary>
     public class Camera : DHGameComponent
     {
-        private enum CameraState { Tracking, Scrolling }
-        private enum Countdowns { Scroll }
+        /// <summary>
+        /// The state the camera is in.
+        /// </summary>
+        private enum CameraState
+        {
+            /// <summary>The camera is tracking a target.</summary>
+            Tracking,
+            /// <summary>The camera is scrolling to a location.</summary>
+            Scrolling
+        }
+        /// <summary>
+        /// Countdown timers for the camera.
+        /// </summary>
+        private enum Countdowns
+        {
+            /// <summary>The time left before the camera stops scrolling.</summary>
+            Scroll
+        }
 
+        /// <summary>
+        /// The camera offset from the bottom of the map.
+        /// </summary>
         public int CameraY { get; private set; }
+        /// <summary>
+        /// The current camera velocity.
+        /// </summary>
         public int VelocityY { get; private set; }
 
+        /// <summary>
+        /// The camera's state.
+        /// </summary>
         private CameraState _state;
+        /// <summary>
+        /// The object the camera is tracking.
+        /// </summary>
         private CollisionBody _trackingBody;
+        /// <summary>
+        /// The location the camera is scrolling to.
+        /// </summary>
         private (int From, int To) _scrollingState;
 
+        /// <summary>
+        /// Creates a new camera.
+        /// </summary>
+        /// <param name="game">The game the camera belongs to.</param>
+        /// <param name="level">The level the camera belongs to.</param>
+        /// <returns>The new camera.</returns>
         public Camera(DiamondHollowGame game, Level level) : base(game, level)
         {
             Level = level;
         }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.GameComponent.Update"/>
+        /// <summary>
+        /// Camera snaps th the bottom and top of the map.
+        ///
+        /// Tracking mode:
+        /// - The camera will keep the target in the middle 50% of the screen.
+        /// - If the target is outside of this area, the camera will adjust.
+        /// - The further the target is outside, the faster the camera will adjust.
+        /// 
+        /// 
+        /// Scrolling mode:
+        /// - Speed up at the start and slow down at the end of the scroll.
+        /// </summary>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -62,14 +115,22 @@ namespace DiamondHollow
             }
         }
 
-        // Switch to tracking mode
+        /// <summary>
+        /// Switch to tracking mode.
+        /// </summary>
+        /// <param name="body">The object to track.</param>
         public void Track(CollisionBody body)
         {
             _state = CameraState.Tracking;
             _trackingBody = body;
         }
 
-        // Switch to scrolling mode
+        /// <summary>
+        /// Switch to scrolling mode.
+        /// </summary>
+        /// <param name="posY">The location to scroll to.</param>
+        /// <param name="duration">The duration of the scroll.</param>
+        /// <param name="callback">The callback to call when the scroll is complete.</param>
         public void Scroll(int posY, int duration, Action callback)
         {
             _state = CameraState.Scrolling;

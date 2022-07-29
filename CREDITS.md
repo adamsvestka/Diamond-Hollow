@@ -1,4 +1,4 @@
-## Adam Svestka (me)
+## Adam Švestka (me)
 
 > ![Ceiling Shooter Idle](Content/Sprites/CeilingShooter/Idle.png)
 >
@@ -92,7 +92,7 @@
 
 > ![Spider Idle](Content/Sprites/Spider/Idle.png)
 >
-> ![Spider Move](Content/Sprites/Spider/Move.png)
+> ![Spider Move](Content/Sprites/Spider/Move.png) [e]
 
 
 ## [GrafxKid](https://grafxkid.itch.io/cave-tileset)

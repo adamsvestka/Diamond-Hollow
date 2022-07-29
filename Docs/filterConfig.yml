@@ -1,0 +1,11 @@
+apiRules:
+  - exclude:
+      uidRegex: ^DiamondHollow.*\.$
+  - exclude:
+      uidRegex: ^DiamondHollow.Program$
+  - exclude:
+      uidRegex: ^System.Runtime.CompilerServices.IsExternalInit$
+  - exclude:
+      uidRegex: ^System..*$
+  - exclude:
+      uidRegex: ^Microsoft.XNA.*$

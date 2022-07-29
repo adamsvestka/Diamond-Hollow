@@ -4,13 +4,28 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DiamondHollow
 {
-    // A seperate class so it can have a higher z-index
+    /// <summary>
+    /// A seperate class so it can have a higher z-index.
+    /// </summary>
     public class Healthbar : DHGameComponent
     {
+        /// <summary>
+        /// The enemy that this healthbar is attached to.
+        /// </summary>
         public readonly Enemy Enemy;
 
+        /// <summary>
+        /// The healthbar's texture.
+        /// </summary>
         public static Texture2D _healthbarFullTexture;
 
+        /// <summary>
+        /// Creates a new healthbar.
+        /// </summary>
+        /// <param name="game">The game this component is a part of.</param>
+        /// <param name="level">The level this component is a part of.</param>
+        /// <param name="enemy">The enemy this healthbar is attached to.</param>
+        /// <returns>The new healthbar.</returns>
         public Healthbar(DiamondHollowGame game, Level level, Enemy enemy) : base(game, level)
         {
             Enemy = enemy;
@@ -18,6 +33,10 @@ namespace DiamondHollow
             Level.AddComponent(this);
         }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.DrawableGameComponent.LoadContent"/>
+        /// <summary>
+        /// Loads the healthbar's texture.
+        /// </summary>
         protected override void LoadContent()
         {
             base.LoadContent();
@@ -25,6 +44,10 @@ namespace DiamondHollow
             if (_healthbarFullTexture == null) _healthbarFullTexture = Game.GetTexture("Sprites/UI/Healthbar");
         }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.DrawableGameComponent.Draw"/>
+        /// <summary>
+        /// Draws the healthbar.
+        /// </summary>
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
@@ -45,21 +68,60 @@ namespace DiamondHollow
         }
     }
 
-    // Handles animations, taking damage from projectiles and dropping loot on death
+    /// <summary>
+    /// Handles animations, taking damage from projectiles and dropping loot on death.
+    /// </summary>
     public class Enemy : PhysicsBody
     {
-        public EnemyController Controller;  // Handles spawning/despawning of enemies
+        /// <summary>
+        /// Handles spawning/despawning of enemies.
+        /// </summary>
+        public EnemyController Controller;
+        /// <summary>
+        /// The enemy's max health.
+        /// </summary>
         public int MaxHealth { get; init; }
+        /// <summary>
+        /// The enemy's current health.
+        /// </summary>
         public int Health { get; private set; }
 
-        // These can be overridden by subclasses and are affected by the difficulty modifier
+        /// <summary>
+        /// The chance of the enemy dropping a small heart item.
+        /// This can be overridden by subclasses and is affected by the difficulty modifier.
+        /// </summary>
         protected float HeartDropChance = 0.075f;
+        /// <summary>
+        /// The number of diamonds the enemy drops when it dies.
+        /// This can be overridden by subclasses and is affected by the difficulty modifier.
+        /// </summary>
         protected int DiamondDropCount = 5;
 
+        /// <summary>
+        /// The enemy's animation controller.
+        /// </summary>
         public Animator Animator;
+        /// <summary>
+        /// If the enemy is dead.
+        /// </summary>
         public bool Dead => Health <= 0;
+        /// <summary>
+        /// Handles drawing the enemy's healthbar.
+        /// </summary>
         public Healthbar Healthbar;
 
+        /// <summary>
+        /// Creates a new enemy.
+        /// </summary>
+        /// <param name="game">The game the enemy belongs to.</param>
+        /// <param name="controller">The enemy controller the enemy belongs to.</param>
+        /// <param name="maxHealth">The enemy's max health.</param>
+        /// <param name="bounds">The enemy's bounds.</param>
+        /// <returns>The new enemy.</returns>
+        /// <remarks>
+        /// The enemy's health is set to the max health.
+        /// Instead of having a perpetual force applied to them, they receive an initial force and then bounce off of walls.
+        /// </remarks>
         public Enemy(DiamondHollowGame game, EnemyController controller, int maxHealth, Rectangle bounds) : base(game, controller.Level, bounds)
         {
             Controller = controller;
@@ -86,7 +148,9 @@ namespace DiamondHollow
             };
         }
 
-        // Despawn the enemy, spawn some diamonds, maybe drop a heart and show some particles
+        /// <summary>
+        /// Despawn the enemy, spawn some diamonds, maybe drop a heart and show some particles.
+        /// </summary>
         private void Die()
         {
             Controller.Despawn(this);
@@ -106,6 +170,11 @@ namespace DiamondHollow
             });
         }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.GameComponent.Update"/>
+        /// <summary>
+        /// Check for collisions with the player. If so, play an attack animation and deal damage.
+        /// </summary>
+        /// <seealso cref="DiamondHollow.Player.OnEnemyCollision"/>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

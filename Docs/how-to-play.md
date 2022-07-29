@@ -1,8 +1,11 @@
 <h1>How to play</h1>
 
 Another Friday afternoon. As your shift comes to an end you ponder on how your demanding job in the mine is a metaphor for the struggles you've had to endure in your early life and how your existence in the mine reflects the ontological statement of God's script as a whole... By the time you're done you realize everyone else has already left and you find yourself at the bottom of a very deep mine, alone in the dark.
+
 As you start making your way up you decide to collect scattered diamonds to flex on your friends once you get out. But to your dismay, the mine is roamed by hordes of creatures. At first sight, they seem harmless - cute slimy creatures in their natural, gloomy habitat. But as you get a better look, you see spikes attached to bodies, concentrated bursts of flammable gasses being ignited and sent recklessly across the mine, creatures created of pure gas and spiders. Yikes.
-Not caring about how any of this is physically possible, then again you can just five times your height, you grab your trusty old mining gun and ascend.
+
+Not caring about how any of this is possible, then again you can jump five times your height, you grab your trusty old mining gun and ascend.
+
 Relentless, you make note of these obstacles in your journey to the light and jot down a few notes.
 
 ---
@@ -45,7 +48,7 @@ Another matter of note is gravity, this vicious beast will drag you down into th
 
 ### 1.2 Health
 
-![Top Left Status](Images/topright.png)
+![Top Left Status](../Images/topleft.png)
 
 You have limited vitality, displayed as a number of hearts in the top left corner. Upon taking damage, you lose a heart and are invincible for a short duration. When you run out of hearts, you die. Simple stuff.
 
@@ -57,7 +60,7 @@ Difficulty increases as you progress upward.
 
 ### 1.4 Score 
 
-![Bottom Left Status](Images/bottomleft.png)
+![Bottom Left Status](../Images/bottomleft.png)
 
 In the bottom left corner, you can see your score. This is the number of diamonds you have collected.
 
@@ -65,11 +68,11 @@ Just for flex...
 
 ### 1.5 Shooting
 
-You MKA-POWVII Super Extremely Powerful<sup>TM</sup> Mining Gun<sub>2</sub> For Excavation of Diamonds&copy;, now repurposed for slime excavation, is your only companion on this journey of self-rediscovery.
+Your MKA-POWVII Super Extremely Powerful<sup>TM</sup> Mining Gun<sub>2</sub> For Excavation of Diamonds&copy;, now repurposed for slime excavation, is your only companion on this journey of self-rediscovery.
 
-The gun automatically targets mice. If you have one at your disposal, you use it for aiming. If you want to take this a step further, you can execute the mythical move known as the Left Click of a Pointing Device to fire your mining gun. Legends say that some are so experienced, that they are able to use this move indefinitely.
+The gun automatically targets mice. If you have one at your disposal, you use it for aiming. If you want to take this a step further, you can execute the mythical move known as the <kbd>Left Click</kbd> of a Pointing Device to fire your mining gun. Legends say that some are so experienced, that they are able to use this move indefinitely.
 
-![Shooting](Images/GIFs/shooting.gif)
+![Shooting](../Images/GIFs/shooting.gif)
 
 
 ---
@@ -85,7 +88,7 @@ These creatures have the IQ of rocks, less even. They seem content just roaming 
 They aren't hard to kill, but there is a lot of them. Some you can avoid by going by other platforms and some you can outrun.
 Be careful, though, if they hit you, they'll knock you back - if you're near a cliff you can lose a lot of progress.
 
-![Slime GIF](Images/GIFs/slime.gif)
+![Slime GIF](../Images/GIFs/slime.gif)
 
 ### 2.2 Wall shooters
 
@@ -93,7 +96,7 @@ Slimes that have grown out their spikes to attach to a wall. They still hurt whe
 
 They are easy to avoid when alone, but take care of stray fireballs in crowded situations.
 
-![Wall Shooter](Images/GIFs/wallshooter.gif)
+![Wall Shooter](../Images/GIFs/wallshooter.gif)
 
 
 ### 2.3 Ceiling shooters
@@ -102,7 +105,7 @@ Some wall shooters seem to have developed brains and realized their methods aren
 
 They will aim in your direction so try not to stand still for too long. They cannot shoot upwards.
 
-![Ceiling Shooter](Images/GIFs/ceilingshooter.gif)
+![Ceiling Shooter](../Images/GIFs/ceilingshooter.gif)
 
 ### 2.4 Gaseous balls
 
@@ -110,15 +113,15 @@ A high concentration of gasses. Yup. Makes sense. They aren't smart but do hurt.
 
 Don't ask why they have a face.
 
-![Gaseous Ball](Images/GIFs/bird.gif)
+![Gaseous Ball](../Images/GIFs/bird.gif)
 
 ### 2.5 Spiders
 
-Because no one likes spiders and they just have to be here, *sigh*!. They have half a brain and will not waste energy unless you are near them.
+Because no one likes spiders and they just have to be here, *sigh*! They have half a brain and will not waste energy unless you are near them.
 
-They attach to ceilings and if you wall below them they will drop on you. Be careful, they hide in the shadows.
+They attach to ceilings and if you walk below them they will drop on you. Be careful, they hide in the shadows.
 
-![Spider](Images/GIFs/spider.gif)
+![Spider](../Images/GIFs/spider.gif)
 
 
 ---
@@ -133,7 +136,7 @@ Not much special here. It's the ultimate show of your skill, providing you with 
 
 They are scattered all over the mine. Upon un-aliving enemies, they will drop.
 
-![Diamond](Images/GIFs/diamond.gif)
+![Diamond](../Images/GIFs/diamond.gif)
 
 ### 3.2 Small hearts
 
@@ -141,7 +144,7 @@ These are nifty. Sometimes your mining gun can carve out a small piece of your a
 
 Gas has a higher chance of coalescing into a small heart, for some reason.
 
-![Small Heart](Images/GIFs/smallheart.gif)
+![Small Heart](../Images/GIFs/smallheart.gif)
 
 ### 3.3 Large hearts
 
@@ -149,7 +152,7 @@ Be on the lookout for these. They sometimes appear in the mine. If you see one, 
 
 It replenishes all of your health and increases your maximum vitality by one.
 
-![Large Heart](Images/GIFs/largeheart.gif)
+![Large Heart](../Images/GIFs/largeheart.gif)
 
 ### 3.4 Large explosive diamonds
 
@@ -157,7 +160,7 @@ Found yourself surrounded by enemies? Do not despair! Unless you can't see one o
 
 It will *almost* certainly eliminate all enemies in the vicinity and grant you a brief touch of immortality.
 
-![Nuke](Images/GIFs/nuke.gif)
+![Nuke](../Images/GIFs/nuke.gif)
 
 ### 3.5 Checkpoints
 
@@ -165,7 +168,7 @@ Last but - **definitely** - not least, God was kind enough to give you checkpoin
 
 But to not make things too easy, they are hard to spot. Be on the lookout for sparkling stars.
 
-![Checkpoint](Images/GIFs/checkpoint.gif)
+![Checkpoint](../Images/GIFs/checkpoint.gif)
 
 
 ---

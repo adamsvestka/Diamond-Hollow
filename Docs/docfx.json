@@ -1,0 +1,73 @@
+{
+    "metadata": [
+        {
+            "src": [
+                {
+                    "files": [
+                        "**/*.csproj"
+                    ],
+                    "exclude": [
+                        "**/bin/**",
+                        "**/obj/**"
+                    ],
+                    "src": ".."
+                }
+            ],
+            "dest": "api.nosync",
+            "filter": "filterConfig.yml",
+            "disableGitFeatures": true,
+            "disableDefaultFilter": true
+        }
+    ],
+    "build": {
+        "content": [
+            {
+                "files": [
+                    "api.nosync/**.yml",
+                    "api.nosync/**.md",
+                    "apidoc/**.yml",
+                    "apidoc/**.md"
+                ]
+            },
+            {
+                "files": [
+                    "articles/**.md",
+                    "articles/**/toc.yml",
+                    "toc.yml",
+                    "*.md"
+                ]
+            },
+            {
+                "files": [
+                    "CREDITS.md"
+                ],
+                "src": ".."
+            }
+        ],
+        "resource": [
+            {
+                "files": [
+                    "Images/**",
+                    "Content/Sprites/**",
+                    "Icon.*"
+                ],
+                "src": ".."
+            }
+        ],
+        "xrefService": [
+            "https://xref.docs.microsoft.com/query?uid={uid}"
+        ],
+        "dest": "_site.nosync",
+        "globalMetadata": {
+            "_appTitle": "Diamond Hollow"
+        },
+        "template": [
+            "default"
+        ],
+        "markdownEngineName": "markdig",
+        "noLangKeyword": false,
+        "keepFileLink": false,
+        "cleanupCacheHistory": false,
+        "disableGitFeatures": false
+    }
+}

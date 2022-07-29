@@ -5,21 +5,63 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
-    // A small single-colored rectangle
-    internal record struct Particle(PhysicsBody Body, Color Color)
+    /// <summary>
+    /// A small single-colored rectangle.
+    /// </summary>
+    internal struct Particle
     {
+        /// <summary>A body to simulate physics for the particle.</summary>
+        public PhysicsBody Body;
+        /// <summary>The color of the particle.</summary>
+        public Color Color;
+        /// <summary>The amount of time the particle will live.</summary>
         public int Life { get; set; } = default;
+
+        /// <summary>
+        /// Creates a new particle.
+        /// </summary>
+        /// <param name="body">The body to simulate physics for the particle.</param>
+        /// <param name="color">The color of the particle.</param>
+        public Particle(PhysicsBody body, Color color)
+        {
+            Body = body;
+            Color = color;
+        }
     }
 
-    // Will appear as a collection of small colored rectangles dispersed around a point
-    // They will move around and disappear after a certain amount of time
-    // They may or may not collide with platforms
+    /// <summary>
+    /// Will appear as a collection of small colored rectangles dispersed around a point.
+    /// They will move around and disappear after a certain amount of time.
+    /// They may or may not collide with platforms.
+    /// </summary>
     internal class ParticleInstance : DHGameComponent
     {
+        /// <summary>
+        /// A controller for the particles.
+        /// </summary>
         private readonly ParticleController Controller;
+        /// <summary>
+        /// A list of particles.
+        /// </summary>
         private List<Particle> _particles;
+        /// <summary>
+        /// A random number generator for particle positions and life spans.
+        /// </summary>
         private readonly Random Random;
 
+        /// <summary>
+        /// Creates a new particle instance.
+        /// 
+        /// The particles' colors will be randomly selected from the provided texture. If not specified, the color will be a single color.
+        /// 
+        /// The particles will have randomized positions, velocities, and lifetimes. See <see cref="DiamondHollow.ParticleConstructor"/> for more information.
+        /// 
+        /// Do not use this constructor directly. Use <see cref="DiamondHollow.ParticleController.Spawn"/> instead.
+        /// </summary>
+        /// <param name="game">The game the particle instance belongs to.</param>
+        /// <param name="controller">The controller for the particles.</param>
+        /// <param name="data">The data for the particle instance.</param>
+        /// <returns>The new particle instance.</returns>
         public ParticleInstance(DiamondHollowGame game, ParticleController controller, ParticleConstructor data) : base(game, controller.Level)
         {
             Controller = controller;
@@ -63,6 +105,11 @@ namespace DiamondHollow
             }
         }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.GameComponent.Update"/>
+        /// <summary>
+        /// Updates the particle positions and lifetimes.
+        /// Also despawn particles that have exceeded their lifetime or got stuck in a wall.
+        /// </summary>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -80,6 +127,10 @@ namespace DiamondHollow
             if (_particles.Count == 0) Controller.Despawn(this);
         }
 
+        // <inheritdoc cref="Microsoft.Xna.Framework.DrawableGameComponent.Draw"/>
+        /// <summary>
+        /// Draws the particles.
+        /// </summary>
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);

@@ -42,7 +42,7 @@ The player aims in the direction of your mouse and you can fire by left-clicking
 
 Anything else that moves is an enemy, so shoot them or avoid them.
 Your objective is to collect as many diamonds as possible, there is no end to the game.
-For more information on enemies and special items, you can collect to aid you, see the [HOW TO PLAY](Docs/how-to-play.md).
+For more information on enemies and special items, you can collect to aid you, see the [HOW TO PLAY](how-to-play.md).
 
 
 ## Building the docs

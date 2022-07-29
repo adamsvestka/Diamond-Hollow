@@ -1,0 +1,9 @@
+- name: How To Play
+  href: how-to-play.md
+- name: MonoGame
+  href: articles/
+  homepage: articles/MonoGame.md
+- name: API Documentation
+  href: api.nosync/
+- name: Credits
+  href: ../CREDITS.md

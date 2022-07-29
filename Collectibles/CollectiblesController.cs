@@ -3,13 +3,24 @@ using Microsoft.Xna.Framework;
 
 namespace DiamondHollow
 {
-    // Handles spawning and despawning of collectibles
-    // Registers item pickups with the player
-    // Has a utility method for spawning a randomly dispersing cluster of diamonds
+    /// <summary>
+    /// Handles spawning and despawning of collectibles.
+    /// Registers item pickups with the player.
+    /// And has a utility method for spawning a randomly dispersing cluster of diamonds.
+    /// </summary>
     public class CollectiblesController : DHGameComponent
     {
+        /// <summary>
+        /// A list of all the collectibles in the level.
+        /// </summary>
         private readonly List<Collectible> _collectibles;
 
+        /// <summary>
+        /// Creates a new collectibles controller and registers collectible animators with the level.
+        /// </summary>
+        /// <param name="game">The game that the collectibles controller belongs to.</param>
+        /// <param name="level">The level that the collectibles controller belongs to.</param>
+        /// <returns>The new collectibles controller.</returns>
         public CollectiblesController(DiamondHollowGame game, Level level) : base(game, level)
         {
             Level = level;
@@ -24,6 +35,11 @@ namespace DiamondHollow
             );
         }
 
+        /// <summary>
+        /// Spawns a diamond at the given position.
+        /// </summary>
+        /// <param name="position">The position to spawn the diamond at.</param>
+        /// <seealso cref="DiamondHollow.Diamond"/>
         public void SpawnDiamond(Point position)
         {
             var diamond = new Diamond(Game, this, position);
@@ -32,6 +48,13 @@ namespace DiamondHollow
             Level.AddComponent(diamond);
         }
 
+        /// <summary>
+        /// Spawns a cluster of diamonds at the given position, dispersing at a random velocity.
+        /// </summary>
+        /// <param name="position">The position to spawn the diamonds at.</param>
+        /// <param name="count">The number of diamonds to spawn.</param>
+        /// <param name="dispersion">The maximum dispersion of the diamonds.</param>
+        /// <seealso cref="DiamondHollow.Diamond"/>
         public void SpawnDiamondCluster(Point position, int count, float dispersion = 5)
         {
             for (int i = 0; i < count; i++)
@@ -46,6 +69,11 @@ namespace DiamondHollow
             }
         }
 
+        /// <summary>
+        /// Spawns a small heart at the given position.
+        /// </summary>
+        /// <param name="position">The position to spawn the heart at.</param>
+        /// <seealso cref="DiamondHollow.SmallHeart"/>
         public void SpawnSmallHeart(Point position)
         {
             var heart = new SmallHeart(Game, this, position);
@@ -54,6 +82,11 @@ namespace DiamondHollow
             Level.AddComponent(heart);
         }
 
+        /// <summary>
+        /// Spawns a large heart at the given position.
+        /// </summary>
+        /// <param name="position">The position to spawn the heart at.</param>
+        /// <seealso cref="DiamondHollow.LargeHeart"/>
         public void SpawnLargeHeart(Point position)
         {
             var heart = new LargeHeart(Game, this, position);
@@ -62,6 +95,11 @@ namespace DiamondHollow
             Level.AddComponent(heart);
         }
 
+        /// <summary>
+        /// Spawns a nuke at the given position.
+        /// </summary>
+        /// <param name="position">The position to spawn the nuke at.</param>
+        /// <seealso cref="DiamondHollow.Nuke"/>
         public void SpawnNuke(Point position)
         {
             var nuke = new Nuke(Game, this, position);
@@ -69,6 +107,11 @@ namespace DiamondHollow
             Level.AddComponent(nuke);
         }
 
+        /// <summary>
+        /// Spawns a respawn anchor at the given position.
+        /// </summary>
+        /// <param name="position">The position to spawn the anchor at.</param>
+        /// <seealso cref="DiamondHollow.RespawnAnchor"/>
         public void SpawnRespawnAnchor(Point position)
         {
             var anchor = new RespawnAnchor(Game, this, position);
@@ -76,6 +119,10 @@ namespace DiamondHollow
             Level.AddComponent(anchor);
         }
 
+        /// <summary>
+        /// Despawns the given collectible.
+        /// </summary>
+        /// <param name="collectible">The collectible to despawn.</param>
         internal void Despawn(Collectible collectible)
         {
             _collectibles.Remove(collectible);

@@ -1,0 +1,7 @@
+- name: MonoGame
+  homepage: MonoGame.md
+  items:
+    - name: Resources
+      href: MonoGame.Resources.md
+    - name: Game Events
+      href: MonoGame.GameEvents.md
