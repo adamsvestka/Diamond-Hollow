@@ -10,6 +10,12 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartAction>Project</StartAction>
+    <StartWorkingDirectory>%24%28SolutionDir%29</StartWorkingDirectory>
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' " />
   <ItemGroup>
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
