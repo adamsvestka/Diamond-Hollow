@@ -74,9 +74,9 @@ namespace DiamondHollow
         /// <param name="level">The level this level generator is associated with.</param>
         /// <param name="path">The path to the level segment file root directory.</param>
         /// <remarks>
-        /// Level segment filenames follow the pattern <c>"<name>_<before>_<after>.txt"</c>
-        /// - <c><name></c> is a name for the map creator (not used)
-        /// - <c><before></c> is an identifier which has to match the <c><after></c> identifier of the segment that comes before it
+        /// Level segment filenames follow the pattern <c>"[name]\_[before]\_[after].txt"</c>
+        /// - <c>[name]</c> is a name for the map creator (not used)
+        /// - <c>[before]</c> is an identifier which has to match the <c>[after]</c> identifier of the segment that comes before it
         /// </remarks>
         public LevelGenerator(DiamondHollowGame game, Level level, string path)
         {

@@ -58,12 +58,13 @@ nuget install docfx.console
 
 The executable will be under `docfx.console/tools/` (requires mono).
 
-Then run the following commands to build and serve to docs:
+Then run the following commands to build and serve the docs:
 
 ```sh
 cd Docs
-docfx build
-docfx serve
+docfx docfx.json --serve
 ```
+
+Open `http://localhost:8080` in your browser to view the docs.
 
 A version of the docs is hosted at [https://adamsvestka.github.io/Diamond-Hollow/](https://adamsvestka.github.io/Diamond-Hollow/)
