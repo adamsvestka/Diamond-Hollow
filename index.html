@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Diamond Hollow | Diamond Hollow </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Diamond Hollow | Diamond Hollow ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="diamond-hollow">Diamond Hollow</h1>
+
+<p><em>by Adam Švestka</em></p>
+<p>An infinite 2D vertical scrolling game. The player navigates upward over platforms, avoids or kills enemies and collects diamonds.</p>
+<p>Based on the Diamond Hollow series of Flash games. Coded in C# using the <a href="https://www.monogame.net">MonoGame</a> framework.</p>
+<p><img src="Images/screenshot.png" alt="Screenshot"></p>
+<h2 id="installation">Installation</h2>
+<p>Tested with <code>.NET 6</code> and <code>.NET Core 3.1</code></p>
+<ol>
+<li><p>Download a version of the source code from <a href="https://gitlab.mff.cuni.cz/teaching/nprg031/2022-summer/student-svestka1.git">MFF GitLab</a></p>
+<ul>
+<li>You can either visit the link above and click on <kbd>
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" width="10" height="10"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M11.78 7.159a.75.75 0 0 0-1.06 0l-1.97 1.97V1.75a.75.75 0 0 0-1.5 0v7.379l-1.97-1.97a.75.75 0 0 0-1.06 1.06l3.25 3.25L8 12l.53-.53 3.25-3.25a.75.75 0 0 0 0-1.061zM2.5 9.75a.75.75 0 0 0-1.5 0V13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.75a.75.75 0 0 0-1.5 0V13a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V9.75z"></path></svg> <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" width="10" height="10"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06z"></path></svg></kbd> &gt; <kbd>zip</kbd> to download the source code</li>
+<li>Or you can clone the repository using a command: <code>git clone git@gitlab.mff.cuni.cz:teaching/nprg031/2022-summer/student-svestka1.git</code></li>
+</ul>
+</li>
+<li><p>Install .NET</p>
+<p>Make sure you have <code>.NET 6</code> and <code>.NET Core 3.1</code> installed.</p>
+<p>You can download them here: <a href="https://dotnet.microsoft.com/en-us/download">https://dotnet.microsoft.com/en-us/download</a></p>
+</li>
+<li><p>Run the application</p>
+<pre><code class="lang-sh">cd student-svestka1
+dotnet run
+</code></pre>
+<p><em>You might have to run this twice; .NET has to build the game resources along with the project and seems to not do this in the correct order sometimes.</em></p>
+</li>
+</ol>
+<h2 id="how-to-play">How to play</h2>
+<p>You can move the player left/right using the <kbd>A</kbd>/<kbd>D</kbd> keys and jump with <kbd>Space</kbd>.
+The player aims in the direction of your mouse and you can fire by left-clicking. Holding down the left mouse button will make the player shoot continuously.</p>
+<p>Anything else that moves is an enemy, so shoot them or avoid them.
+Your objective is to collect as many diamonds as possible, there is no end to the game.
+For more information on enemies and special items, you can collect to aid you, see the <a href="how-to-play.html">HOW TO PLAY</a>.</p>
+<h2 id="building-the-docs">Building the docs</h2>
+<p>Requires <a href="https://dotnet.github.io/docfx/index.html">DocFX</a>. You can <a href="https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool">install</a> it with NuGet:</p>
+<pre><code class="lang-sh">nuget install docfx.console
+</code></pre>
+<p>The executable will be under <code>docfx.console/tools/</code> (requires mono).</p>
+<p>Then run the following commands to build and serve the docs:</p>
+<pre><code class="lang-sh">cd Docs
+docfx docfx.json --serve
+</code></pre>
+<p>Open <code>http://localhost:8080</code> in your browser to view the docs.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/adamsvestka/Diamond-Hollow/blob/1480c0cbe2f6618ba49677cfadc18c909846c177/Docs/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

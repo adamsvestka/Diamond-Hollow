@@ -1,0 +1,1280 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Level
+   | Diamond Hollow </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Level
+   | Diamond Hollow ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="DiamondHollow.Level">
+  
+  
+  <h1 id="DiamondHollow_Level" data-uid="DiamondHollow.Level" class="text-break">Class Level
+  </h1>
+  <div class="markdown level0 summary"><p>The actual game scene.</p>
+<h4 id="platform-textures">Platform textures</h4>
+<p>Platform (foreground) textures are handled in the following way:</p>
+<ul>
+<li>Platform tiles have connected textures meaning their texture is selected based on the surrounding tiles.</li>
+<li>There are 8 surrounding tiles and we only need to know if they are there or not, so we can encode this into an 8-bit integer.</li>
+<li>For each combination of surrounding tiles, we want an offset within a tileset pointing to the correct texture (its actualy an array of offsets/textures).</li>
+<li>Since all combinations of are possible, we can store this in an array mapping the encoded tile to a list of variations of its texture.</li>
+</ul>
+<h4 id="background-textures">Background textures</h4>
+<p>If a checkpoint is activated, background tiles within a radius are illuminated.
+This is done by swapping some textures with ore in them for ones where the ore is shining and also by mixing the texture with white.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="DiamondHollow.DHGameComponent.html">DHGameComponent</a></div>
+    <div class="level2"><a class="xref" href="DiamondHollow.GameScene.html">GameScene</a></div>
+    <div class="level3"><span class="xref">Level</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="DiamondHollow.GameScene.html#DiamondHollow_GameScene__state">GameScene._state</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.GameScene.html#DiamondHollow_GameScene_Components">GameScene.Components</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.GameScene.html#DiamondHollow_GameScene_AddComponent_DiamondHollow_DHGameComponent_">GameScene.AddComponent(DHGameComponent)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.GameScene.html#DiamondHollow_GameScene_RemoveComponent_DiamondHollow_DHGameComponent_">GameScene.RemoveComponent(DHGameComponent)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.GameScene.html#DiamondHollow_GameScene_AddComponents_DiamondHollow_DHGameComponent___">GameScene.AddComponents(DHGameComponent[])</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.GameScene.html#DiamondHollow_GameScene_RemoveComponents_DiamondHollow_DHGameComponent___">GameScene.RemoveComponents(DHGameComponent[])</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.GameScene.html#DiamondHollow_GameScene_GameSceneEnter">GameScene.GameSceneEnter()</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.GameScene.html#DiamondHollow_GameScene_GameSceneExit">GameScene.GameSceneExit()</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.GameScene.html#DiamondHollow_GameScene_State">GameScene.State</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_Game">DHGameComponent.Game</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_Level">DHGameComponent.Level</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent__countdowns">DHGameComponent._countdowns</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_CreateCountdown_System_Int32_System_Int32_System_Boolean_System_Int32_Action_">DHGameComponent.CreateCountdown(Int32, Int32, Boolean, Int32, Action)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_AddCountdownCallback_System_Int32_Action_">DHGameComponent.AddCountdownCallback(Int32, Action)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_IsCountdownDone_System_Int32_">DHGameComponent.IsCountdownDone(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_GetCountdownProgress_System_Int32_">DHGameComponent.GetCountdownProgress(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_ResetCountdown_System_Int32_">DHGameComponent.ResetCountdown(Int32)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="DiamondHollow.html">DiamondHollow</a></h6>
+  <h6><strong>Assembly</strong>: DiamondHollow.dll</h6>
+  <h5 id="DiamondHollow_Level_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Level : GameScene</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="DiamondHollow_Level__ctor_" data-uid="DiamondHollow.Level.#ctor*"></a>
+  <h4 id="DiamondHollow_Level__ctor_DiamondHollow_DiamondHollowGame_System_String_" data-uid="DiamondHollow.Level.#ctor(DiamondHollow.DiamondHollowGame,System.String)">Level(DiamondHollowGame, String)</h4>
+  <div class="markdown level1 summary"><p>Creates a new level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Level(DiamondHollowGame game, string filename)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.DiamondHollowGame.html">DiamondHollowGame</a></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>The game this component is attached to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">filename</span></td>
+        <td><p>The filename of the level to load.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="DiamondHollow_Level__backgroundCache" data-uid="DiamondHollow.Level._backgroundCache">_backgroundCache</h4>
+  <div class="markdown level1 summary"><p>Texture offsets are cached to avoid having to recalculate them every frame and so they don't flicker.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point[, ] _backgroundCache</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span>[,]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level__backgroundTileMap" data-uid="DiamondHollow.Level._backgroundTileMap">_backgroundTileMap</h4>
+  <div class="markdown level1 summary"><p>A map of unlit background texture offsets to their lit counterparts, also doubles as a list of background textures.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;Point, Point&gt; _backgroundTileMap</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">Point</span>, <span class="xref">Point</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level__backgroundTileMapWeights" data-uid="DiamondHollow.Level._backgroundTileMapWeights">_backgroundTileMapWeights</h4>
+  <div class="markdown level1 summary"><p>Background textures are selected randomly from a weighted pool of textures.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int[] _backgroundTileMapWeights</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level__backgroundTileset" data-uid="DiamondHollow.Level._backgroundTileset">_backgroundTileset</h4>
+  <div class="markdown level1 summary"><p>The tileset containing the background textures.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Texture2D _backgroundTileset</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Texture2D</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level__grid" data-uid="DiamondHollow.Level._grid">_grid</h4>
+  <div class="markdown level1 summary"><p>The map of the level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TileType[, ] _grid</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.TileType.html">TileType</a>[,]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level__levelGenerator" data-uid="DiamondHollow.Level._levelGenerator">_levelGenerator</h4>
+  <div class="markdown level1 summary"><p>Handles extending the map upwards.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">readonly LevelGenerator _levelGenerator</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.LevelGenerator.html">LevelGenerator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level__platformTileCache" data-uid="DiamondHollow.Level._platformTileCache">_platformTileCache</h4>
+  <div class="markdown level1 summary"><p>Texture offsets are cached to avoid having to recalculate them every frame and so they don't flicker.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point[, ] _platformTileCache</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span>[,]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level__platformTileMap" data-uid="DiamondHollow.Level._platformTileMap">_platformTileMap</h4>
+  <div class="markdown level1 summary"><p>The mapping of tiles to lists of texture variations</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Point[][] _platformTileMap</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span>[][]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level__platformTileset" data-uid="DiamondHollow.Level._platformTileset">_platformTileset</h4>
+  <div class="markdown level1 summary"><p>The tilesets containing the platform (foreground) textures.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Texture2D _platformTileset</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Texture2D</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level_Camera" data-uid="DiamondHollow.Level.Camera">Camera</h4>
+  <div class="markdown level1 summary"><p>A reference to the camera.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Camera Camera</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.Camera.html">Camera</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level_CollectiblesController" data-uid="DiamondHollow.Level.CollectiblesController">CollectiblesController</h4>
+  <div class="markdown level1 summary"><p>Handles spawning, updating and despawning of collectible items.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CollectiblesController CollectiblesController</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.CollectiblesController.html">CollectiblesController</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level_EnemyController" data-uid="DiamondHollow.Level.EnemyController">EnemyController</h4>
+  <div class="markdown level1 summary"><p>Handles spawning, updating and despawning of enemies.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EnemyController EnemyController</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.EnemyController.html">EnemyController</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level_ParticleController" data-uid="DiamondHollow.Level.ParticleController">ParticleController</h4>
+  <div class="markdown level1 summary"><p>Handles spawning, updating and despawning of projectiles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ParticleController ParticleController</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.ParticleController.html">ParticleController</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level_Player" data-uid="DiamondHollow.Level.Player">Player</h4>
+  <div class="markdown level1 summary"><p>A reference to the player.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Player Player</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.Player.html">Player</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level_ProjectileController" data-uid="DiamondHollow.Level.ProjectileController">ProjectileController</h4>
+  <div class="markdown level1 summary"><p>Handles spawning, updating and despawning of projectiles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProjectileController ProjectileController</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.ProjectileController.html">ProjectileController</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Level_Spawnpoint" data-uid="DiamondHollow.Level.Spawnpoint">Spawnpoint</h4>
+  <div class="markdown level1 summary"><p>Where the player will spawn after dying. Gets updated to the last activated checkpoint.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point Spawnpoint</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="DiamondHollow_Level_Difficulty_" data-uid="DiamondHollow.Level.Difficulty*"></a>
+  <h4 id="DiamondHollow_Level_Difficulty" data-uid="DiamondHollow.Level.Difficulty">Difficulty</h4>
+  <div class="markdown level1 summary"><p>As the player progresses upwards, the difficulty increases. This increases the number of enemies, the number of collectibles and enemy difficulty.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Difficulty { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Level_MapHeight_" data-uid="DiamondHollow.Level.MapHeight*"></a>
+  <h4 id="DiamondHollow_Level_MapHeight" data-uid="DiamondHollow.Level.MapHeight">MapHeight</h4>
+  <div class="markdown level1 summary"><p>The height of the map, in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MapHeight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Level_MapWidth_" data-uid="DiamondHollow.Level.MapWidth*"></a>
+  <h4 id="DiamondHollow_Level_MapWidth" data-uid="DiamondHollow.Level.MapWidth">MapWidth</h4>
+  <div class="markdown level1 summary"><p>The width of the map, in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MapWidth { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Level_Modifier_" data-uid="DiamondHollow.Level.Modifier*"></a>
+  <h4 id="DiamondHollow_Level_Modifier" data-uid="DiamondHollow.Level.Modifier">Modifier</h4>
+  <div class="markdown level1 summary"><p>Ranges from 0.5 to 2, is used to modify the toughness of enemies. It's a scaled value of <a class="xref" href="DiamondHollow.Level.html#DiamondHollow_Level_Difficulty">Difficulty</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Modifier { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="DiamondHollow_Level_AddTileVariant_" data-uid="DiamondHollow.Level.AddTileVariant*"></a>
+  <h4 id="DiamondHollow_Level_AddTileVariant_System_String_System_ValueTuple_System_Int32_System_Int32____" data-uid="DiamondHollow.Level.AddTileVariant(System.String,System.ValueTuple{System.Int32,System.Int32}[])">AddTileVariant(String, (Int32 x, Int32 y)[])</h4>
+  <div class="markdown level1 summary"><p>Registers a set of texture variations for a set of tile variations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void AddTileVariant(string repr, params (int x, int y)[] c)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">repr</span></td>
+        <td><p>The string representation of the tile variations.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;[]</td>
+        <td><span class="parametername">c</span></td>
+        <td><p>A list of texture offset for the tile representation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Level_CollectSurroundingTiles_" data-uid="DiamondHollow.Level.CollectSurroundingTiles*"></a>
+  <h4 id="DiamondHollow_Level_CollectSurroundingTiles_Point_" data-uid="DiamondHollow.Level.CollectSurroundingTiles(Point)">CollectSurroundingTiles(Point)</h4>
+  <div class="markdown level1 summary"><p>Encodes the surrounding tiles into an 8-bit integer.</p>
+<p>In the following diagram, the surrounding tiles are represented by the numbers:</p>
+<pre><code class="lang-text">0 1 2
+3 x 4
+5 6 7
+</code></pre>
+<p>The nth bit corresponds to the nth tile.</p>
+<p>Tiles can have the following values:</p>
+<ul>
+<li><code>0</code> - empty</li>
+<li><code>1</code> - platform (wall)</li>
+</ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">byte CollectSurroundingTiles(Point point)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">point</span></td>
+        <td><p>The tile to encode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a></td>
+        <td><p>The encoded tile.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Level_Draw_" data-uid="DiamondHollow.Level.Draw*"></a>
+  <h4 id="DiamondHollow_Level_Draw_GameTime_" data-uid="DiamondHollow.Level.Draw(GameTime)">Draw(GameTime)</h4>
+  <div class="markdown level1 summary"><p>Clears the screen and draws the background.
+A lamppost is drawn at the spawnpoint and surrounding tiles are brightened.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Draw(GameTime gameTime)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameTime</span></td>
+        <td><span class="parametername">gameTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Level_DrawLine_" data-uid="DiamondHollow.Level.DrawLine*"></a>
+  <h4 id="DiamondHollow_Level_DrawLine_Point_Point_Color_System_Int32_" data-uid="DiamondHollow.Level.DrawLine(Point,Point,Color,System.Int32)">DrawLine(Point, Point, Color, Int32)</h4>
+  <div class="markdown level1 summary"><p>A helper function to draw a styled line.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DrawLine(Point start, Point end, Color color, int width)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>The start point of the line.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">end</span></td>
+        <td><p>The end point of the line.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">color</span></td>
+        <td><p>The color of the line.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width of the line.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Level_DrawRectangle_" data-uid="DiamondHollow.Level.DrawRectangle*"></a>
+  <h4 id="DiamondHollow_Level_DrawRectangle_Rectangle_Color_" data-uid="DiamondHollow.Level.DrawRectangle(Rectangle,Color)">DrawRectangle(Rectangle, Color)</h4>
+  <div class="markdown level1 summary"><p>A helper function to draw a colored rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DrawRectangle(Rectangle rect, Color color)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><span class="parametername">rect</span></td>
+        <td><p>The rectangle to draw.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Color</span></td>
+        <td><span class="parametername">color</span></td>
+        <td><p>The color of the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Level_GeneratePermutations_" data-uid="DiamondHollow.Level.GeneratePermutations*"></a>
+  <h4 id="DiamondHollow_Level_GeneratePermutations_System_String_" data-uid="DiamondHollow.Level.GeneratePermutations(System.String)">GeneratePermutations(String)</h4>
+  <div class="markdown level1 summary"><p>Expands occurences of <code>'.'</code> to <code>'x'</code> and <code>' '</code></p>
+<p>eg. <code>&quot;.x.&quot;</code> -&gt; <code>{ &quot;xxx&quot;, &quot;xx &quot;, &quot; xx&quot;, &quot; x &quot; }</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;string&gt; GeneratePermutations(string repr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">repr</span></td>
+        <td><p>The string to expand.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><p>An enumerable of the expanded strings.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Level_GenerateTileMap_" data-uid="DiamondHollow.Level.GenerateTileMap*"></a>
+  <h4 id="DiamondHollow_Level_GenerateTileMap" data-uid="DiamondHollow.Level.GenerateTileMap">GenerateTileMap()</h4>
+  <div class="markdown level1 summary"><p>Defines a list of tile representations and their corresponding texture offsets.</p>
+<p>For ease of use, the surrounding tiles are written as a string, so the following layout:</p>
+<pre><code class="lang-text">0 1 2
+3 x 4
+5 6 7
+</code></pre>
+<p>Would be written as: <code>&quot;012|3x4|567&quot;</code>.</p>
+<p>Positions can have the following values:</p>
+<ul>
+<li><code>'x'</code> - tile</li>
+<li><code>' '</code> - empty</li>
+<li><code>'.'</code> - any (will be expanded to <code>'x'</code> and <code>' '</code>)</li>
+</ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void GenerateTileMap()</code></pre>
+  </div>
+  
+  
+  <a id="DiamondHollow_Level_GetTile_" data-uid="DiamondHollow.Level.GetTile*"></a>
+  <h4 id="DiamondHollow_Level_GetTile_System_Int32_System_Int32_" data-uid="DiamondHollow.Level.GetTile(System.Int32,System.Int32)">GetTile(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Get the tile at a position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TileType GetTile(int x, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The x-coordinate of the tile.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The y-coordinate of the tile.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.TileType.html">TileType</a></td>
+        <td><p>The tile at the given position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Level_Initialize_" data-uid="DiamondHollow.Level.Initialize*"></a>
+  <h4 id="DiamondHollow_Level_Initialize" data-uid="DiamondHollow.Level.Initialize">Initialize()</h4>
+  <div class="markdown level1 summary"><ul>
+<li>Sets the draw order.</li>
+<li>Creates the <a class="xref" href="DiamondHollow.Foreground.html">Foreground</a>.</li>
+<li>Creates the camera, player and controllers.</li>
+<li>Sets the camera to follow the player.</li>
+</ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Initialize()</code></pre>
+  </div>
+  
+  
+  <a id="DiamondHollow_Level_IsOnGround_" data-uid="DiamondHollow.Level.IsOnGround*"></a>
+  <h4 id="DiamondHollow_Level_IsOnGround_Rectangle_" data-uid="DiamondHollow.Level.IsOnGround(Rectangle)">IsOnGround(Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Check if a rectangle is directly above a platform.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsOnGround(Rectangle box)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><span class="parametername">box</span></td>
+        <td><p>The rectangle to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the rectangle is directly above a platform.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Level_IsWall_" data-uid="DiamondHollow.Level.IsWall*"></a>
+  <h4 id="DiamondHollow_Level_IsWall_Point_" data-uid="DiamondHollow.Level.IsWall(Point)">IsWall(Point)</h4>
+  <div class="markdown level1 summary"><p>Check if a position is outside the map or in a platform.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsWall(Point p)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The position to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the position is outside the map or in a platform.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Level_IsWall_" data-uid="DiamondHollow.Level.IsWall*"></a>
+  <h4 id="DiamondHollow_Level_IsWall_System_Int32_System_Int32_" data-uid="DiamondHollow.Level.IsWall(System.Int32,System.Int32)">IsWall(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Check if a position is outside the map or in a platform.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsWall(int x, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The x-coordinate of the position to check.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The y-coordinate of the position to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the position is outside the map or in a platform.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="DiamondHollow_Level_IsWall_System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This is a convenience function for <a class="xref" href="DiamondHollow.Level.html#DiamondHollow_Level_IsWall_Point_">IsWall(Point)</a>.</p>
+</div>
+  
+  
+  <a id="DiamondHollow_Level_LoadContent_" data-uid="DiamondHollow.Level.LoadContent*"></a>
+  <h4 id="DiamondHollow_Level_LoadContent" data-uid="DiamondHollow.Level.LoadContent">LoadContent()</h4>
+  <div class="markdown level1 summary"><ul>
+<li>Allocates memory for the map.</li>
+<li>Generates a tile to texture mapping for the platform (foreground) textures. See: <a class="xref" href="DiamondHollow.Level.html#DiamondHollow_Level_GenerateTileMap">GenerateTileMap()</a>.</li>
+<li>Load the first map segment, See: <a class="xref" href="DiamondHollow.Level.html#DiamondHollow_Level_LoadNextMapSegment">LoadNextMapSegment()</a>.</li>
+<li>Loads textures.</li>
+</ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void LoadContent()</code></pre>
+  </div>
+  
+  
+  <a id="DiamondHollow_Level_LoadNextMapSegment_" data-uid="DiamondHollow.Level.LoadNextMapSegment*"></a>
+  <h4 id="DiamondHollow_Level_LoadNextMapSegment" data-uid="DiamondHollow.Level.LoadNextMapSegment">LoadNextMapSegment()</h4>
+  <div class="markdown level1 summary"><p>Load the next map segment. The segment itself is loaded by the <a class="xref" href="DiamondHollow.LevelGenerator.html">LevelGenerator</a>.
+This function handles merging the new segment with the map and selecting the correct textures for platforms/background.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void LoadNextMapSegment()</code></pre>
+  </div>
+  
+  
+  <a id="DiamondHollow_Level_Update_" data-uid="DiamondHollow.Level.Update*"></a>
+  <h4 id="DiamondHollow_Level_Update_GameTime_" data-uid="DiamondHollow.Level.Update(GameTime)">Update(GameTime)</h4>
+  <div class="markdown level1 summary"><p>If the player nears the end of the map, the next map segment is loaded.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Update(GameTime gameTime)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameTime</span></td>
+        <td><span class="parametername">gameTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_Update_GameTime_">DHGameComponent.Update(GameTime)</a></div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,953 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DiamondHollowGame
+   | Diamond Hollow </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DiamondHollowGame
+   | Diamond Hollow ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="DiamondHollow.DiamondHollowGame">
+  
+  
+  <h1 id="DiamondHollow_DiamondHollowGame" data-uid="DiamondHollow.DiamondHollowGame" class="text-break">Class DiamondHollowGame
+  </h1>
+  <div class="markdown level0 summary"><p>The main class for the game.</p>
+<ul>
+<li>Creates the game window.</li>
+<li>Handles input and randomness.</li>
+</ul>
+<p>All object in the game are subclasses of <see cref="!:Microsoft.Xna.Framework.GameComponent"></see>  and when they are added to this game's components collection,
+their virtual methods can be overridden and will be called at specific times automatically.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">DiamondHollowGame</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="DiamondHollow.html">DiamondHollow</a></h6>
+  <h6><strong>Assembly</strong>: DiamondHollow.dll</h6>
+  <h5 id="DiamondHollow_DiamondHollowGame_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DiamondHollowGame : Game</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame__ctor_" data-uid="DiamondHollow.DiamondHollowGame.#ctor*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame__ctor" data-uid="DiamondHollow.DiamondHollowGame.#ctor">DiamondHollowGame()</h4>
+  <div class="markdown level1 summary"><p>Create a new game.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DiamondHollowGame()</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="DiamondHollow_DiamondHollowGame__previousKeyboardState" data-uid="DiamondHollow.DiamondHollowGame._previousKeyboardState">_previousKeyboardState</h4>
+  <div class="markdown level1 summary"><p>Stores the previous state of the keyboard, to detect key presses.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">KeyboardState _previousKeyboardState</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">KeyboardState</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_DiamondHollowGame__previousMouseState" data-uid="DiamondHollow.DiamondHollowGame._previousMouseState">_previousMouseState</h4>
+  <div class="markdown level1 summary"><p>Stores the previous state of the mouse, to detect mouse clicks.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">MouseState _previousMouseState</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">MouseState</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_DiamondHollowGame__random" data-uid="DiamondHollow.DiamondHollowGame._random">_random</h4>
+  <div class="markdown level1 summary"><p>A random number generator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">readonly Random _random</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Random</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_DiamondHollowGame__textures" data-uid="DiamondHollow.DiamondHollowGame._textures">_textures</h4>
+  <div class="markdown level1 summary"><p>A cache for loaded textures.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">readonly Dictionary&lt;string, Texture2D&gt; _textures</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <span class="xref">Texture2D</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="DiamondHollow_DiamondHollowGame__textures_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="DiamondHollow.DiamondHollowGame.html#DiamondHollow_DiamondHollowGame_GetTexture_System_String_">GetTexture(String)</a></div>
+  </div>
+  
+  
+  <h4 id="DiamondHollow_DiamondHollowGame_Graphics" data-uid="DiamondHollow.DiamondHollowGame.Graphics">Graphics</h4>
+  <div class="markdown level1 summary"><p>Used only to create &amp; control the game window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GraphicsDeviceManager Graphics</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GraphicsDeviceManager</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_DiamondHollowGame_KeyboardState" data-uid="DiamondHollow.DiamondHollowGame.KeyboardState">KeyboardState</h4>
+  <div class="markdown level1 summary"><p>The current state of the keyboard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public KeyboardState KeyboardState</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">KeyboardState</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_DiamondHollowGame_Level" data-uid="DiamondHollow.DiamondHollowGame.Level">Level</h4>
+  <div class="markdown level1 summary"><p>Stores the map, player, enemies, collectibles, etc.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Level Level</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.Level.html">Level</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_DiamondHollowGame_Menlo" data-uid="DiamondHollow.DiamondHollowGame.Menlo">Menlo</h4>
+  <div class="markdown level1 summary"><p>A font for drawing text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SpriteFont Menlo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">SpriteFont</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_DiamondHollowGame_MouseState" data-uid="DiamondHollow.DiamondHollowGame.MouseState">MouseState</h4>
+  <div class="markdown level1 summary"><p>The current state of the mouse.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MouseState MouseState</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">MouseState</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_DiamondHollowGame_SpriteBatch" data-uid="DiamondHollow.DiamondHollowGame.SpriteBatch">SpriteBatch</h4>
+  <div class="markdown level1 summary"><p>Used for optimized drawing of sprites &amp; text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SpriteBatch SpriteBatch</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">SpriteBatch</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_DiamondHollowGame_TileSize" data-uid="DiamondHollow.DiamondHollowGame.TileSize">TileSize</h4>
+  <div class="markdown level1 summary"><p>Size of building block for the game.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TileSize</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_DiamondHollowGame_WhitePixel" data-uid="DiamondHollow.DiamondHollowGame.WhitePixel">WhitePixel</h4>
+  <div class="markdown level1 summary"><p>A 1x1 pixel texture for drawing single colored rectangles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Texture2D WhitePixel</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Texture2D</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_WindowHeight_" data-uid="DiamondHollow.DiamondHollowGame.WindowHeight*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_WindowHeight" data-uid="DiamondHollow.DiamondHollowGame.WindowHeight">WindowHeight</h4>
+  <div class="markdown level1 summary"><p>Height of the game window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WindowHeight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_WindowWidth_" data-uid="DiamondHollow.DiamondHollowGame.WindowWidth*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_WindowWidth" data-uid="DiamondHollow.DiamondHollowGame.WindowWidth">WindowWidth</h4>
+  <div class="markdown level1 summary"><p>Width of the game window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WindowWidth { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_ButtonPressed_" data-uid="DiamondHollow.DiamondHollowGame.ButtonPressed*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_ButtonPressed_DiamondHollow_MouseButton_" data-uid="DiamondHollow.DiamondHollowGame.ButtonPressed(DiamondHollow.MouseButton)">ButtonPressed(MouseButton)</h4>
+  <div class="markdown level1 summary"><p>Check if a mouse button was just pressed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ButtonPressed(MouseButton button)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.MouseButton.html">MouseButton</a></td>
+        <td><span class="parametername">button</span></td>
+        <td><p>The button to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the button was just pressed, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_Chance_" data-uid="DiamondHollow.DiamondHollowGame.Chance*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_Chance_System_Single_" data-uid="DiamondHollow.DiamondHollowGame.Chance(System.Single)">Chance(Single)</h4>
+  <div class="markdown level1 summary"><p>Generate true or false with a set probability.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Chance(float chance)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">chance</span></td>
+        <td><p>The probability of true, between 0 and 1.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True or false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_Choice_" data-uid="DiamondHollow.DiamondHollowGame.Choice*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_Choice__1_IEnumerable___0__" data-uid="DiamondHollow.DiamondHollowGame.Choice``1(IEnumerable{``0})">Choice&lt;TElem&gt;(IEnumerable&lt;TElem&gt;)</h4>
+  <div class="markdown level1 summary"><p>Choose a random element from a list with equal probability.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TElem Choice&lt;TElem&gt;(IEnumerable&lt;TElem&gt; sequence)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TElem&gt;</td>
+        <td><span class="parametername">sequence</span></td>
+        <td><p>The list of elements to choose from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TElem</span></td>
+        <td><p>A random element from the list.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TElem</span></td>
+        <td><p>The type of the elements in the list.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_GetTexture_" data-uid="DiamondHollow.DiamondHollowGame.GetTexture*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_GetTexture_System_String_" data-uid="DiamondHollow.DiamondHollowGame.GetTexture(System.String)">GetTexture(String)</h4>
+  <div class="markdown level1 summary"><p>Load a texture from the content manager.
+A lazy way to prevent multiple instances of the same game component from wasting memory by loading the same texture multiple times.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Texture2D GetTexture(string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The filename of the texture.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Texture2D</span></td>
+        <td><p>The loaded texture.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="DiamondHollow_DiamondHollowGame_GetTexture_System_String__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="DiamondHollow.DiamondHollowGame.html#DiamondHollow_DiamondHollowGame__textures">_textures</a></div>
+  </div>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_Initialize_" data-uid="DiamondHollow.DiamondHollowGame.Initialize*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_Initialize" data-uid="DiamondHollow.DiamondHollowGame.Initialize">Initialize()</h4>
+  <div class="markdown level1 summary"><p>Called when the game is first created, almost right after the constructor, after the graphics device is created.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Initialize()</code></pre>
+  </div>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_KeyPressed_" data-uid="DiamondHollow.DiamondHollowGame.KeyPressed*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_KeyPressed_Keys_" data-uid="DiamondHollow.DiamondHollowGame.KeyPressed(Keys)">KeyPressed(Keys)</h4>
+  <div class="markdown level1 summary"><p>Check if a key was just pressed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool KeyPressed(Keys key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Keys</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the key was just pressed, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_KeyReleased_" data-uid="DiamondHollow.DiamondHollowGame.KeyReleased*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_KeyReleased_Keys_" data-uid="DiamondHollow.DiamondHollowGame.KeyReleased(Keys)">KeyReleased(Keys)</h4>
+  <div class="markdown level1 summary"><p>Check if a key was just released.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool KeyReleased(Keys key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Keys</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the key was just released, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_LoadContent_" data-uid="DiamondHollow.DiamondHollowGame.LoadContent*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_LoadContent" data-uid="DiamondHollow.DiamondHollowGame.LoadContent">LoadContent()</h4>
+  <div class="markdown level1 summary"><p>Called after the game is initialized, but before the game is first drawn, used to load (larger) resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void LoadContent()</code></pre>
+  </div>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_Random_" data-uid="DiamondHollow.DiamondHollowGame.Random*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_Random" data-uid="DiamondHollow.DiamondHollowGame.Random">Random()</h4>
+  <div class="markdown level1 summary"><p>Unified random generation - seed can be specified to get the same random sequence each time</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Random()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><p>A random number.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_UnloadContent_" data-uid="DiamondHollow.DiamondHollowGame.UnloadContent*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_UnloadContent" data-uid="DiamondHollow.DiamondHollowGame.UnloadContent">UnloadContent()</h4>
+  <div class="markdown level1 summary"><p>Called when the game is being closed, used to unload manually allocated resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void UnloadContent()</code></pre>
+  </div>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_Update_" data-uid="DiamondHollow.DiamondHollowGame.Update*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_Update_GameTime_" data-uid="DiamondHollow.DiamondHollowGame.Update(GameTime)">Update(GameTime)</h4>
+  <div class="markdown level1 summary"><p>Called by default a maximum of 60 times per second, used to update the game state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Update(GameTime gameTime)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameTime</span></td>
+        <td><span class="parametername">gameTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_DiamondHollowGame_WeightedChoice_" data-uid="DiamondHollow.DiamondHollowGame.WeightedChoice*"></a>
+  <h4 id="DiamondHollow_DiamondHollowGame_WeightedChoice__1_IEnumerable___0__IEnumerable_System_Int32__" data-uid="DiamondHollow.DiamondHollowGame.WeightedChoice``1(IEnumerable{``0},IEnumerable{System.Int32})">WeightedChoice&lt;TElem&gt;(IEnumerable&lt;TElem&gt;, IEnumerable&lt;Int32&gt;)</h4>
+  <div class="markdown level1 summary"><p>Choose a random element from a list with set probabilities</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TElem WeightedChoice&lt;TElem&gt;(IEnumerable&lt;TElem&gt; sequence, IEnumerable&lt;int&gt; weights)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TElem&gt;</td>
+        <td><span class="parametername">sequence</span></td>
+        <td><p>The list of elements to choose from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
+        <td><span class="parametername">weights</span></td>
+        <td><p>The weights of the elements.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TElem</span></td>
+        <td><p>A random element from the list.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TElem</span></td>
+        <td><p>The type of the elements in the list.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

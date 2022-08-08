@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Game Events | Diamond Hollow </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Game Events | Diamond Hollow ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="game-events">Game Events</h1>
+
+<p>Most games can be split into three phases. The first phase is the initialization phase, where memory is allocated and game assets are loaded. Then comes the game loop, where the game logic is periodically updated and components are rendered on the screen. Finally, the game closes, and memory is freed.</p>
+<p>MonoGame provides a way to handle these phases through the use of events.</p>
+<p>Components that subclass the <code>GameComponent</code> class can be added to the game's <code>Components</code> list and if they override any of the following methods, they will be called when the appropriate event is fired.</p>
+<h3 id="initialization">Initialization</h3>
+<pre><code class="lang-cs">public override void Initialize()
+</code></pre>
+<p>The Initialize method is called after the constructor but before the main game loop (Update/Draw). This is where you can query any required services and load any non-graphic-related content.</p>
+<pre><code class="lang-cs">protected virtual void LoadContent()
+</code></pre>
+<p>The LoadContent method is used to load your game content. It is called only once per game, within the Initialize method, before the main game loop starts.</p>
+<h3 id="game-loop">Game loop</h3>
+<pre><code class="lang-cs">public virtual void Update(GameTime gameTime)
+</code></pre>
+<p>The Update method is called multiple times per second, and it is used to update your game state (checking for collisions, gathering input, playing audio, etc.).</p>
+<pre><code class="lang-cs">public virtual void Draw(GameTime gameTime)
+</code></pre>
+<p>Similar to the Update method, the Draw method is also called multiple times per second. This, as the name suggests, is responsible for drawing content to the screen.</p>
+<h3 id="de-initialization">De-initialization</h3>
+<pre><code class="lang-cs">protected virtual void UnloadContent()
+</code></pre>
+<p>The UnloadContent method is called before the game closes and is used to unload any user-allocated content.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/adamsvestka/Diamond-Hollow/blob/1480c0cbe2f6618ba49677cfadc18c909846c177/Docs/articles/MonoGame.GameEvents.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

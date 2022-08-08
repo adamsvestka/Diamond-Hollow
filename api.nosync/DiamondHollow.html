@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace DiamondHollow
+   | Diamond Hollow </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace DiamondHollow
+   | Diamond Hollow ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="DiamondHollow">
+  
+  <h1 id="DiamondHollow" data-uid="DiamondHollow" class="text-break">Namespace DiamondHollow
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="DiamondHollow.Animator.html">Animator</a></h4>
+      <section><p>Used for managing multiple animations for a single object or the same animation across multiple objects.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Bird.html">Bird</a></h4>
+      <section><p>The rarest, most difficult to deal with enemy.
+Spawns in the air and flies from wall to wall in a continuous loop.
+After a certain difficulty is reached, when the player walks under it, it will shoot a projectile downward.
+Also has a lot of health and a high chance of dropping a heart.
+You can pretty easily avoid it, but it's a way to replenish health, though risky.
+Movement speed, shooting speed &amp; health scale with difficulty.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Camera.html">Camera</a></h4>
+      <section><p>This class handles smooth camera motion.</p>
+<p>It has two modes:</p>
+<ul>
+<li>Tracking a target: The camera will keep the target in frame.</li>
+<li>Scroll to a location: The camera will move to a location over a period of time.</li>
+</ul>
+</section>
+      <h4><a class="xref" href="DiamondHollow.CeilingShooter.html">CeilingShooter</a></h4>
+      <section><p>A less common enemy, is meant to prevent the player from standing still.
+Spawns attached to ceilings, cannot move, but shoots projectiles at set intervals.
+It will shoot a projectile downward aiming at the player.
+Shooting speed &amp; health scale with difficulty.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Collectible.html">Collectible</a></h4>
+      <section><p>Component that have a callback when collected by the player.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.CollectiblesController.html">CollectiblesController</a></h4>
+      <section><p>Handles spawning and despawning of collectibles.
+Registers item pickups with the player.
+And has a utility method for spawning a randomly dispersing cluster of diamonds.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.CollisionBody.html">CollisionBody</a></h4>
+      <section><p>Handles collision with either the map or projectiles.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.CoordinateExtensions.html">CoordinateExtensions</a></h4>
+      <section><p>A set of extension function for swithing between coordinate systems.</p>
+<ul>
+<li>Grid - A measurement in tiles, <code>0,0</code> is in the bottom left of the map, used for placing objects on the map.</li>
+<li>Default - A measurement in pixels, <code>0,0</code> is in the bottom left of the screen, used for collision bodies.</li>
+<li>Screen - A measurement in pixels, <code>0,0</code> is in the top left of the screen, takes the camera position into account, used for drawing.</li>
+</ul>
+</section>
+      <h4><a class="xref" href="DiamondHollow.DHGameComponent.html">DHGameComponent</a></h4>
+      <section><p>The base class for all game components, adds a countdown system</p>
+<h4 id="countdowns">Countdowns</h4>
+<p>Countdowns are timers used to execute a callback function after a certain amount of ticks.
+Countdowns are identifed by a numerical id, subclasses can define an enum of countdown names for this purpose.</p>
+<p>A countdown is created with the <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_CreateCountdown_System_Int32_System_Int32_System_Boolean_System_Int32_Action_">CreateCountdown(Int32, Int32, Boolean, Int32, Action)</a> method and can be used in a few ways:</p>
+<ul>
+<li>Countdowns can have a callback registered, which is called when the countdown is finished, additional callbacks can be added with <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_AddCountdownCallback_System_Int32_Action_">AddCountdownCallback(Int32, Action)</a>.</li>
+<li>The state of countdowns can be checked with <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_IsCountdownDone_System_Int32_">IsCountdownDone(Int32)</a> and <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_GetCountdownProgress_System_Int32_">GetCountdownProgress(Int32)</a> methods.</li>
+<li>Countdowns can automatically repeat or be reset manually with the <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_ResetCountdown_System_Int32_">ResetCountdown(Int32)</a> method.</li>
+</ul>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Diamond.html">Diamond</a></h4>
+      <section><p>Picking this item up increases the player's score.
+It is highly attracted to the player.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.DiamondHollowGame.html">DiamondHollowGame</a></h4>
+      <section><p>The main class for the game.</p>
+<ul>
+<li>Creates the game window.</li>
+<li>Handles input and randomness.</li>
+</ul>
+<p>All object in the game are subclasses of <see cref="!:Microsoft.Xna.Framework.GameComponent"></see>  and when they are added to this game's components collection,
+their virtual methods can be overridden and will be called at specific times automatically.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Enemy.html">Enemy</a></h4>
+      <section><p>Handles animations, taking damage from projectiles and dropping loot on death.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.EnemyController.html">EnemyController</a></h4>
+      <section><p>A unified place to spawn all types of enemies.
+Doesn't really do much here, but I used this design for other systems in the game, so I used it here as well.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Foreground.html">Foreground</a></h4>
+      <section><p>A class just for rendering the foreground overlay, seperated because each component can only draw at one z-index.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.GameScene.html">GameScene</a></h4>
+      <section><p>A class for parenting components to a scene.
+Since there is only one scene in this game, this class is not necessary.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Healthbar.html">Healthbar</a></h4>
+      <section><p>A seperate class so it can have a higher z-index.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Helpers.html">Helpers</a></h4>
+      <section><p>Helper function.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.LargeHeart.html">LargeHeart</a></h4>
+      <section><p>Picking this item up restores all health for the player and increases their max health by one.
+It is not attracted to the player, but has a large hitbox.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Level.html">Level</a></h4>
+      <section><p>The actual game scene.</p>
+<h4 id="platform-textures">Platform textures</h4>
+<p>Platform (foreground) textures are handled in the following way:</p>
+<ul>
+<li>Platform tiles have connected textures meaning their texture is selected based on the surrounding tiles.</li>
+<li>There are 8 surrounding tiles and we only need to know if they are there or not, so we can encode this into an 8-bit integer.</li>
+<li>For each combination of surrounding tiles, we want an offset within a tileset pointing to the correct texture (its actualy an array of offsets/textures).</li>
+<li>Since all combinations of are possible, we can store this in an array mapping the encoded tile to a list of variations of its texture.</li>
+</ul>
+<h4 id="background-textures">Background textures</h4>
+<p>If a checkpoint is activated, background tiles within a radius are illuminated.
+This is done by swapping some textures with ore in them for ones where the ore is shining and also by mixing the texture with white.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.LevelGenerator.html">LevelGenerator</a></h4>
+      <section><p>The map is has a set width and infinite height.
+It is made from elementary building segments that are stacked on top of each other and span the entire width.
+This class takes care of loading the segments from files, appending them to the map and spawing enemies, collectibles and other objects.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.MouseButtonExtensions.html">MouseButtonExtensions</a></h4>
+      <section><p>Parity functions from the keyboard class, which aren't available for the mouse for some reason.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Nuke.html">Nuke</a></h4>
+      <section><p>Picking this item up fires many projectiles in all directions and grants the player invulnerability for a short time (invulnerability prevents the player from taking damage &amp; shooting).
+Damage scales with difficulty.
+It is not attracted to the player, but has a large hitbox.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.ParticleController.html">ParticleController</a></h4>
+      <section><p>A class to handle spawning and despawning particle instances.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.ParticleInstance.html">ParticleInstance</a></h4>
+      <section><p>Will appear as a collection of small colored rectangles dispersed around a point.
+They will move around and disappear after a certain amount of time.
+They may or may not collide with platforms.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.PhysicsBody.html">PhysicsBody</a></h4>
+      <section><p>A component that is affected by gravity and friction.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Player.html">Player</a></h4>
+      <section><p>Handles:</p>
+<ul>
+<li>Player movement, shooting.</li>
+<li>Drawing HUD overlay (hearts, score, etc.)</li>
+<li>Player collision with enemy/projectile, collectibles.</li>
+</ul>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Projectile.html">Projectile</a></h4>
+      <section><p>A simple collision body, that moves at a constant speed until it hits a wall.
+It has a damage strength and cannot damage its owner.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.ProjectileController.html">ProjectileController</a></h4>
+      <section><p>Handles spawning and despawning of projectiles</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.RendererExtensions.html">RendererExtensions</a></h4>
+      <section><p>Some extra rendering functions for drawing lines.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.RespawnAnchor.html">RespawnAnchor</a></h4>
+      <section><p>This item is different from the others as it's not really an item.
+&quot;Picking it up&quot; will move the players spawn point to this location.
+It's not attracted to the player, but has a decent pickup distance.</p>
+<p>This item's design is really subtle - it blends in with the level's background.
+Stars will spawn around it, though, so be on the look out for those.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Slime.html">Slime</a></h4>
+      <section><p>The most common, easiest to deal with enemy.
+Spawns on a platform and moves from side to side in a continuous loop.
+Doesn't shoot projectiles, is meant to damage the player by colliding with them.
+Movement speed &amp; health scale with difficulty.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.SmallHeart.html">SmallHeart</a></h4>
+      <section><p>Picking this item up restores one heart for the player (cannot go above the player's max health).
+It is not attracted to the player.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Spider.html">Spider</a></h4>
+      <section><p>A rare enemy, harmless if you take note of it.
+Spawns attached to ceilings, cannot move, but will drop on top of the player if they stand under it.
+Is meant to catch the player off guard, it's often positioned above key positions in the level.
+The spider will wait on the ceiling until a player walks under it, then it drops at gravity's speed, pauses for a while and then slowly rewinds again.
+Pause speed &amp; health scale with difficulty.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.WallShooter.html">WallShooter</a></h4>
+      <section><p>The second most common enemy.
+Spawns attached to walls, cannot move, but shoots projectiles at set intervals.
+On its own, it's nearly harmless, it's meant to restrict the player's movement and paired with other enemies it adds to the chaos.
+Shooting speed &amp; health scale with difficulty.</p>
+</section>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="DiamondHollow.Animator.Animation.html">Animator.Animation</a></h4>
+      <section><p>A struct holding information about an animation.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.DHGameComponent.Countdown.html">DHGameComponent.Countdown</a></h4>
+      <section><p>A record holding information about a countdown.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.LevelGenerator.Segment.html">LevelGenerator.Segment</a></h4>
+      <section><p>A segment is a 2D array of characters and can specify which segment group can follow (not currently used beyond the first segment).</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Particle.html">Particle</a></h4>
+      <section><p>A small single-colored rectangle.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.ParticleConstructor.html">ParticleConstructor</a></h4>
+      <section><p>ParticleConstructor is used to specify the properties of a particle instance.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.ProjectileConstructor.html">ProjectileConstructor</a></h4>
+      <section><p>ProjectileConstructor is used to specify the properties of a projectile.</p>
+</section>
+    <h3 id="enums">Enums
+  </h3>
+      <h4><a class="xref" href="DiamondHollow.Bird.Countdowns.html">Bird.Countdowns</a></h4>
+      <section><p>Countdowns for the bird's behavior.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Camera.CameraState.html">Camera.CameraState</a></h4>
+      <section><p>The state the camera is in.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Camera.Countdowns.html">Camera.Countdowns</a></h4>
+      <section><p>Countdown timers for the camera.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.CeilingShooter.Countdowns.html">CeilingShooter.Countdowns</a></h4>
+      <section><p>Countdowns for the ceiling shooter's behavior.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Corner.html">Corner</a></h4>
+      <section><p><code>0b1234</code>:</p>
+<pre><code>1---2
+|   |
+4---3</code></pre>
+</section>
+      <h4><a class="xref" href="DiamondHollow.DrawingLayers.html">DrawingLayers</a></h4>
+      <section><p>Order in which different groups of components are drawn.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.MouseButton.html">MouseButton</a></h4>
+      <section><p>A enum of mouse buttons.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Player.Countdowns.html">Player.Countdowns</a></h4>
+      <section><p>Player countdowns.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.ProjectileType.html">ProjectileType</a></h4>
+      <section><p>The type of the projectile, used to determine which texture to use.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Spider.Countdowns.html">Spider.Countdowns</a></h4>
+      <section><p>Countdowns for the spider's behavior.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.Spider.SpiderState.html">Spider.SpiderState</a></h4>
+      <section><p>States of the spider.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.TileType.html">TileType</a></h4>
+      <section><p>The textual representation of the game map. Level files use a grid of characters to represent the map.</p>
+</section>
+      <h4><a class="xref" href="DiamondHollow.WallShooter.Countdowns.html">WallShooter.Countdowns</a></h4>
+      <section><p>Countdowns for the wall shooter's behavior.</p>
+</section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

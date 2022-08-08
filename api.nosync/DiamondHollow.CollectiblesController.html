@@ -1,0 +1,464 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CollectiblesController
+   | Diamond Hollow </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CollectiblesController
+   | Diamond Hollow ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="DiamondHollow.CollectiblesController">
+  
+  
+  <h1 id="DiamondHollow_CollectiblesController" data-uid="DiamondHollow.CollectiblesController" class="text-break">Class CollectiblesController
+  </h1>
+  <div class="markdown level0 summary"><p>Handles spawning and despawning of collectibles.
+Registers item pickups with the player.
+And has a utility method for spawning a randomly dispersing cluster of diamonds.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="DiamondHollow.DHGameComponent.html">DHGameComponent</a></div>
+    <div class="level2"><span class="xref">CollectiblesController</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_Game">DHGameComponent.Game</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_Level">DHGameComponent.Level</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent__countdowns">DHGameComponent._countdowns</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_CreateCountdown_System_Int32_System_Int32_System_Boolean_System_Int32_Action_">DHGameComponent.CreateCountdown(Int32, Int32, Boolean, Int32, Action)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_AddCountdownCallback_System_Int32_Action_">DHGameComponent.AddCountdownCallback(Int32, Action)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_IsCountdownDone_System_Int32_">DHGameComponent.IsCountdownDone(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_GetCountdownProgress_System_Int32_">DHGameComponent.GetCountdownProgress(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_ResetCountdown_System_Int32_">DHGameComponent.ResetCountdown(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_Update_GameTime_">DHGameComponent.Update(GameTime)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="DiamondHollow.html">DiamondHollow</a></h6>
+  <h6><strong>Assembly</strong>: DiamondHollow.dll</h6>
+  <h5 id="DiamondHollow_CollectiblesController_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CollectiblesController : DHGameComponent</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="DiamondHollow_CollectiblesController__ctor_" data-uid="DiamondHollow.CollectiblesController.#ctor*"></a>
+  <h4 id="DiamondHollow_CollectiblesController__ctor_DiamondHollow_DiamondHollowGame_DiamondHollow_Level_" data-uid="DiamondHollow.CollectiblesController.#ctor(DiamondHollow.DiamondHollowGame,DiamondHollow.Level)">CollectiblesController(DiamondHollowGame, Level)</h4>
+  <div class="markdown level1 summary"><p>Creates a new collectibles controller and registers collectible animators with the level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CollectiblesController(DiamondHollowGame game, Level level)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.DiamondHollowGame.html">DiamondHollowGame</a></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>The game that the collectibles controller belongs to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.Level.html">Level</a></td>
+        <td><span class="parametername">level</span></td>
+        <td><p>The level that the collectibles controller belongs to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="DiamondHollow_CollectiblesController__collectibles" data-uid="DiamondHollow.CollectiblesController._collectibles">_collectibles</h4>
+  <div class="markdown level1 summary"><p>A list of all the collectibles in the level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">readonly List&lt;Collectible&gt; _collectibles</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="DiamondHollow.Collectible.html">Collectible</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="DiamondHollow_CollectiblesController_Despawn_" data-uid="DiamondHollow.CollectiblesController.Despawn*"></a>
+  <h4 id="DiamondHollow_CollectiblesController_Despawn_DiamondHollow_Collectible_" data-uid="DiamondHollow.CollectiblesController.Despawn(DiamondHollow.Collectible)">Despawn(Collectible)</h4>
+  <div class="markdown level1 summary"><p>Despawns the given collectible.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Despawn(Collectible collectible)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.Collectible.html">Collectible</a></td>
+        <td><span class="parametername">collectible</span></td>
+        <td><p>The collectible to despawn.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CollectiblesController_SpawnDiamond_" data-uid="DiamondHollow.CollectiblesController.SpawnDiamond*"></a>
+  <h4 id="DiamondHollow_CollectiblesController_SpawnDiamond_Point_" data-uid="DiamondHollow.CollectiblesController.SpawnDiamond(Point)">SpawnDiamond(Point)</h4>
+  <div class="markdown level1 summary"><p>Spawns a diamond at the given position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpawnDiamond(Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position to spawn the diamond at.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="DiamondHollow_CollectiblesController_SpawnDiamond_Point__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="DiamondHollow.Diamond.html">Diamond</a></div>
+  </div>
+  
+  
+  <a id="DiamondHollow_CollectiblesController_SpawnDiamondCluster_" data-uid="DiamondHollow.CollectiblesController.SpawnDiamondCluster*"></a>
+  <h4 id="DiamondHollow_CollectiblesController_SpawnDiamondCluster_Point_System_Int32_System_Single_" data-uid="DiamondHollow.CollectiblesController.SpawnDiamondCluster(Point,System.Int32,System.Single)">SpawnDiamondCluster(Point, Int32, Single)</h4>
+  <div class="markdown level1 summary"><p>Spawns a cluster of diamonds at the given position, dispersing at a random velocity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpawnDiamondCluster(Point position, int count, float dispersion = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position to spawn the diamonds at.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The number of diamonds to spawn.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">dispersion</span></td>
+        <td><p>The maximum dispersion of the diamonds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="DiamondHollow_CollectiblesController_SpawnDiamondCluster_Point_System_Int32_System_Single__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="DiamondHollow.Diamond.html">Diamond</a></div>
+  </div>
+  
+  
+  <a id="DiamondHollow_CollectiblesController_SpawnLargeHeart_" data-uid="DiamondHollow.CollectiblesController.SpawnLargeHeart*"></a>
+  <h4 id="DiamondHollow_CollectiblesController_SpawnLargeHeart_Point_" data-uid="DiamondHollow.CollectiblesController.SpawnLargeHeart(Point)">SpawnLargeHeart(Point)</h4>
+  <div class="markdown level1 summary"><p>Spawns a large heart at the given position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpawnLargeHeart(Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position to spawn the heart at.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="DiamondHollow_CollectiblesController_SpawnLargeHeart_Point__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="DiamondHollow.LargeHeart.html">LargeHeart</a></div>
+  </div>
+  
+  
+  <a id="DiamondHollow_CollectiblesController_SpawnNuke_" data-uid="DiamondHollow.CollectiblesController.SpawnNuke*"></a>
+  <h4 id="DiamondHollow_CollectiblesController_SpawnNuke_Point_" data-uid="DiamondHollow.CollectiblesController.SpawnNuke(Point)">SpawnNuke(Point)</h4>
+  <div class="markdown level1 summary"><p>Spawns a nuke at the given position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpawnNuke(Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position to spawn the nuke at.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="DiamondHollow_CollectiblesController_SpawnNuke_Point__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="DiamondHollow.Nuke.html">Nuke</a></div>
+  </div>
+  
+  
+  <a id="DiamondHollow_CollectiblesController_SpawnRespawnAnchor_" data-uid="DiamondHollow.CollectiblesController.SpawnRespawnAnchor*"></a>
+  <h4 id="DiamondHollow_CollectiblesController_SpawnRespawnAnchor_Point_" data-uid="DiamondHollow.CollectiblesController.SpawnRespawnAnchor(Point)">SpawnRespawnAnchor(Point)</h4>
+  <div class="markdown level1 summary"><p>Spawns a respawn anchor at the given position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpawnRespawnAnchor(Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position to spawn the anchor at.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="DiamondHollow_CollectiblesController_SpawnRespawnAnchor_Point__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="DiamondHollow.RespawnAnchor.html">RespawnAnchor</a></div>
+  </div>
+  
+  
+  <a id="DiamondHollow_CollectiblesController_SpawnSmallHeart_" data-uid="DiamondHollow.CollectiblesController.SpawnSmallHeart*"></a>
+  <h4 id="DiamondHollow_CollectiblesController_SpawnSmallHeart_Point_" data-uid="DiamondHollow.CollectiblesController.SpawnSmallHeart(Point)">SpawnSmallHeart(Point)</h4>
+  <div class="markdown level1 summary"><p>Spawns a small heart at the given position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SpawnSmallHeart(Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position to spawn the heart at.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="DiamondHollow_CollectiblesController_SpawnSmallHeart_Point__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="DiamondHollow.SmallHeart.html">SmallHeart</a></div>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

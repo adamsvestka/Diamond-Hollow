@@ -1,0 +1,505 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DHGameComponent
+   | Diamond Hollow </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DHGameComponent
+   | Diamond Hollow ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="DiamondHollow.DHGameComponent">
+  
+  
+  <h1 id="DiamondHollow_DHGameComponent" data-uid="DiamondHollow.DHGameComponent" class="text-break">Class DHGameComponent
+  </h1>
+  <div class="markdown level0 summary"><p>The base class for all game components, adds a countdown system</p>
+<h4 id="countdowns">Countdowns</h4>
+<p>Countdowns are timers used to execute a callback function after a certain amount of ticks.
+Countdowns are identifed by a numerical id, subclasses can define an enum of countdown names for this purpose.</p>
+<p>A countdown is created with the <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_CreateCountdown_System_Int32_System_Int32_System_Boolean_System_Int32_Action_">CreateCountdown(Int32, Int32, Boolean, Int32, Action)</a> method and can be used in a few ways:</p>
+<ul>
+<li>Countdowns can have a callback registered, which is called when the countdown is finished, additional callbacks can be added with <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_AddCountdownCallback_System_Int32_Action_">AddCountdownCallback(Int32, Action)</a>.</li>
+<li>The state of countdowns can be checked with <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_IsCountdownDone_System_Int32_">IsCountdownDone(Int32)</a> and <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_GetCountdownProgress_System_Int32_">GetCountdownProgress(Int32)</a> methods.</li>
+<li>Countdowns can automatically repeat or be reset manually with the <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_ResetCountdown_System_Int32_">ResetCountdown(Int32)</a> method.</li>
+</ul>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">DHGameComponent</span></div>
+      <div class="level2"><a class="xref" href="DiamondHollow.Animator.html">Animator</a></div>
+      <div class="level2"><a class="xref" href="DiamondHollow.Camera.html">Camera</a></div>
+      <div class="level2"><a class="xref" href="DiamondHollow.CollectiblesController.html">CollectiblesController</a></div>
+      <div class="level2"><a class="xref" href="DiamondHollow.CollisionBody.html">CollisionBody</a></div>
+      <div class="level2"><a class="xref" href="DiamondHollow.EnemyController.html">EnemyController</a></div>
+      <div class="level2"><a class="xref" href="DiamondHollow.Foreground.html">Foreground</a></div>
+      <div class="level2"><a class="xref" href="DiamondHollow.GameScene.html">GameScene</a></div>
+      <div class="level2"><a class="xref" href="DiamondHollow.Healthbar.html">Healthbar</a></div>
+      <div class="level2"><a class="xref" href="DiamondHollow.ParticleController.html">ParticleController</a></div>
+      <div class="level2"><a class="xref" href="DiamondHollow.ParticleInstance.html">ParticleInstance</a></div>
+      <div class="level2"><a class="xref" href="DiamondHollow.ProjectileController.html">ProjectileController</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="DiamondHollow.html">DiamondHollow</a></h6>
+  <h6><strong>Assembly</strong>: DiamondHollow.dll</h6>
+  <h5 id="DiamondHollow_DHGameComponent_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DHGameComponent : DrawableGameComponent</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="DiamondHollow_DHGameComponent__ctor_" data-uid="DiamondHollow.DHGameComponent.#ctor*"></a>
+  <h4 id="DiamondHollow_DHGameComponent__ctor_DiamondHollow_DiamondHollowGame_DiamondHollow_Level_" data-uid="DiamondHollow.DHGameComponent.#ctor(DiamondHollow.DiamondHollowGame,DiamondHollow.Level)">DHGameComponent(DiamondHollowGame, Level)</h4>
+  <div class="markdown level1 summary"><p>Create a new Diamond Hollow game component.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DHGameComponent(DiamondHollowGame game, Level level)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.DiamondHollowGame.html">DiamondHollowGame</a></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>The game this component is attached to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.Level.html">Level</a></td>
+        <td><span class="parametername">level</span></td>
+        <td><p>The level this component is attached to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="DiamondHollow_DHGameComponent__countdowns" data-uid="DiamondHollow.DHGameComponent._countdowns">_countdowns</h4>
+  <div class="markdown level1 summary"><p>A record of all countdowns this component has created.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Dictionary&lt;int, DHGameComponent.Countdown&gt; _countdowns</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="DiamondHollow.DHGameComponent.Countdown.html">DHGameComponent.Countdown</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_DHGameComponent_Level" data-uid="DiamondHollow.DHGameComponent.Level">Level</h4>
+  <div class="markdown level1 summary"><p>The <a class="xref" href="DiamondHollow.Level.html">Level</a> this component is attached to.
+Equivalent to <a class="xref" href="DiamondHollow.DiamondHollowGame.html#DiamondHollow_DiamondHollowGame_Level">Level</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Level Level</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.Level.html">Level</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="DiamondHollow_DHGameComponent_Game_" data-uid="DiamondHollow.DHGameComponent.Game*"></a>
+  <h4 id="DiamondHollow_DHGameComponent_Game" data-uid="DiamondHollow.DHGameComponent.Game">Game</h4>
+  <div class="markdown level1 summary"><p>The <a class="xref" href="DiamondHollow.DiamondHollowGame.html">DiamondHollowGame</a> this component is attached to.
+Overrides the <see cref="!:Microsoft.Xna.Framework.GameComponent.Game"></see> property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected DiamondHollowGame Game { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.DiamondHollowGame.html">DiamondHollowGame</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="DiamondHollow_DHGameComponent_AddCountdownCallback_" data-uid="DiamondHollow.DHGameComponent.AddCountdownCallback*"></a>
+  <h4 id="DiamondHollow_DHGameComponent_AddCountdownCallback_System_Int32_Action_" data-uid="DiamondHollow.DHGameComponent.AddCountdownCallback(System.Int32,Action)">AddCountdownCallback(Int32, Action)</h4>
+  <div class="markdown level1 summary"><p>Add a callback to an existing countdown.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddCountdownCallback(int id, Action callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The id of the countdown.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action</span></td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_DHGameComponent_CreateCountdown_" data-uid="DiamondHollow.DHGameComponent.CreateCountdown*"></a>
+  <h4 id="DiamondHollow_DHGameComponent_CreateCountdown_System_Int32_System_Int32_System_Boolean_System_Int32_Action_" data-uid="DiamondHollow.DHGameComponent.CreateCountdown(System.Int32,System.Int32,System.Boolean,System.Int32,Action)">CreateCountdown(Int32, Int32, Boolean, Int32, Action)</h4>
+  <div class="markdown level1 summary"><p>Create a new countdown.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateCountdown(int id, int duration, bool repeating, int offset = 0, Action callback = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>A new unique id for the countdown.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">duration</span></td>
+        <td><p>The duration of the countdown, in ticks.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">repeating</span></td>
+        <td><p>Whether the countdown should repeat automatically.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>The initial offset of the countdown, in ticks.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action</span></td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback to call when the countdown is finished.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_DHGameComponent_GetCountdownProgress_" data-uid="DiamondHollow.DHGameComponent.GetCountdownProgress*"></a>
+  <h4 id="DiamondHollow_DHGameComponent_GetCountdownProgress_System_Int32_" data-uid="DiamondHollow.DHGameComponent.GetCountdownProgress(System.Int32)">GetCountdownProgress(Int32)</h4>
+  <div class="markdown level1 summary"><p>Get the progress of a countdown.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float GetCountdownProgress(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The id of the countdown.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><p>The ratio of the countdown's progress, from 0 to 1.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_DHGameComponent_IsCountdownDone_" data-uid="DiamondHollow.DHGameComponent.IsCountdownDone*"></a>
+  <h4 id="DiamondHollow_DHGameComponent_IsCountdownDone_System_Int32_" data-uid="DiamondHollow.DHGameComponent.IsCountdownDone(System.Int32)">IsCountdownDone(Int32)</h4>
+  <div class="markdown level1 summary"><p>Check if a countdown is done.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool IsCountdownDone(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The id of the countdown.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the countdown is done.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="DiamondHollow_DHGameComponent_IsCountdownDone_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Only returns true once, subsequent calls return false.</p>
+</div>
+  
+  
+  <a id="DiamondHollow_DHGameComponent_ResetCountdown_" data-uid="DiamondHollow.DHGameComponent.ResetCountdown*"></a>
+  <h4 id="DiamondHollow_DHGameComponent_ResetCountdown_System_Int32_" data-uid="DiamondHollow.DHGameComponent.ResetCountdown(System.Int32)">ResetCountdown(Int32)</h4>
+  <div class="markdown level1 summary"><p>Restart a countdown.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ResetCountdown(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The id of the countdown.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_DHGameComponent_Update_" data-uid="DiamondHollow.DHGameComponent.Update*"></a>
+  <h4 id="DiamondHollow_DHGameComponent_Update_GameTime_" data-uid="DiamondHollow.DHGameComponent.Update(GameTime)">Update(GameTime)</h4>
+  <div class="markdown level1 summary"><p>Updates all countdowns.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Update(GameTime gameTime)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameTime</span></td>
+        <td><span class="parametername">gameTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1688 @@
+{
+  "homepages": [],
+  "source_base_path": "/github/workspace/Docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../CREDITS.md",
+      "output": {
+        ".html": {
+          "relative_path": "CREDITS.html",
+          "hash": "8tivi4nhWU0q+0DoYLak2g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Bird/Death.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Bird/Death.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Bird/Idle.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Bird/Idle.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/CeilingShooter/Death.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/CeilingShooter/Death.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/CeilingShooter/Hit.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/CeilingShooter/Hit.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/CeilingShooter/Idle.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/CeilingShooter/Idle.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/CeilingShooter/Shoot.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/CeilingShooter/Shoot.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Environment/Background.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Environment/Background.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Environment/Tileset.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Environment/Tileset.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Items/Bullet.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Items/Bullet.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Items/Diamond.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Items/Diamond.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Items/Fireball.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Items/Fireball.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Items/Gem.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Items/Gem.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Items/Heart1.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Items/Heart1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Items/Heart1Empty.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Items/Heart1Empty.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Items/Heart2.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Items/Heart2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Items/Star.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Items/Star.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Items/Swords.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Items/Swords.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Black/Crouch.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Black/Crouch.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Black/Death.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Black/Death.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Black/Idle.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Black/Idle.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Black/Jump.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Black/Jump.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Black/Run.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Black/Run.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Black/Static.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Black/Static.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Blue/Crouch.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Blue/Crouch.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Blue/Death.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Blue/Death.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Blue/Idle.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Blue/Idle.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Blue/Jump.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Blue/Jump.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Blue/Run.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Blue/Run.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Blue/Static.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Blue/Static.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Green/Crouch.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Green/Crouch.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Green/Death.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Green/Death.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Green/Idle.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Green/Idle.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Green/Jump.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Green/Jump.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Green/Run.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Green/Run.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Green/Static.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Green/Static.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Red/Crouch.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Red/Crouch.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Red/Death.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Red/Death.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Red/Idle.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Red/Idle.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Red/Jump.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Red/Jump.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Red/Run.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Red/Run.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Red/Static.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Red/Static.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Yellow/Crouch.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Yellow/Crouch.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Yellow/Death.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Yellow/Death.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Yellow/Idle.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Yellow/Idle.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Yellow/Jump.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Yellow/Jump.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Yellow/Run.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Yellow/Run.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Player/Yellow/Static.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Player/Yellow/Static.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Slime/Ability.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Slime/Ability.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Slime/AbilityFX.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Slime/AbilityFX.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Slime/Death.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Slime/Death.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Slime/Hit.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Slime/Hit.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Slime/Idle.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Slime/Idle.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Spider/Death.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Spider/Death.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Spider/Idle.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Spider/Idle.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/Spider/Move.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/Spider/Move.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/UI/Bar1.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/UI/Bar1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/UI/Bar2.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/UI/Bar2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/UI/Healthbar.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/UI/Healthbar.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/UI/HealthbarEmpty.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/UI/HealthbarEmpty.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/WallShooter/Death.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/WallShooter/Death.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/WallShooter/Hit.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/WallShooter/Hit.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/WallShooter/Idle.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/WallShooter/Idle.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Content/Sprites/WallShooter/Shoot.png",
+      "output": {
+        "resource": {
+          "relative_path": "Content/Sprites/WallShooter/Shoot.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Icon.bmp",
+      "output": {
+        "resource": {
+          "relative_path": "Icon.bmp"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Icon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "Icon.ico"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/GIFs/bird.gif",
+      "output": {
+        "resource": {
+          "relative_path": "Images/GIFs/bird.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/GIFs/ceilingshooter.gif",
+      "output": {
+        "resource": {
+          "relative_path": "Images/GIFs/ceilingshooter.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/GIFs/checkpoint.gif",
+      "output": {
+        "resource": {
+          "relative_path": "Images/GIFs/checkpoint.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/GIFs/diamond.gif",
+      "output": {
+        "resource": {
+          "relative_path": "Images/GIFs/diamond.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/GIFs/largeheart.gif",
+      "output": {
+        "resource": {
+          "relative_path": "Images/GIFs/largeheart.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/GIFs/nuke.gif",
+      "output": {
+        "resource": {
+          "relative_path": "Images/GIFs/nuke.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/GIFs/shooting.gif",
+      "output": {
+        "resource": {
+          "relative_path": "Images/GIFs/shooting.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/GIFs/slime.gif",
+      "output": {
+        "resource": {
+          "relative_path": "Images/GIFs/slime.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/GIFs/smallheart.gif",
+      "output": {
+        "resource": {
+          "relative_path": "Images/GIFs/smallheart.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/GIFs/spider.gif",
+      "output": {
+        "resource": {
+          "relative_path": "Images/GIFs/spider.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/GIFs/wallshooter.gif",
+      "output": {
+        "resource": {
+          "relative_path": "Images/GIFs/wallshooter.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/bottomleft.png",
+      "output": {
+        "resource": {
+          "relative_path": "Images/bottomleft.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/screenshot.png",
+      "output": {
+        "resource": {
+          "relative_path": "Images/screenshot.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "../Images/topleft.png",
+      "output": {
+        "resource": {
+          "relative_path": "Images/topleft.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Animator.Animation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Animator.Animation.html",
+          "hash": "nbSRn2lXzlWm3PvVPdRofw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Animator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Animator.html",
+          "hash": "PJ7tBkJjtSWaYi7IhsfV4g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Bird.Countdowns.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Bird.Countdowns.html",
+          "hash": "YK6dDXIFqS5phxe5ljhn7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Bird.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Bird.html",
+          "hash": "KDlryUpjShLqamFDsjzMBA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Camera.CameraState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Camera.CameraState.html",
+          "hash": "GQQzDRRsfS3eHKuHHVCvCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Camera.Countdowns.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Camera.Countdowns.html",
+          "hash": "vEKEtH6sX6274MGeis8tmA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Camera.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Camera.html",
+          "hash": "UsNdGVtWC2s19qWalpqugQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.CeilingShooter.Countdowns.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.CeilingShooter.Countdowns.html",
+          "hash": "aww/M9yj2sQEz48IJDLYqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.CeilingShooter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.CeilingShooter.html",
+          "hash": "oJfi00xUP7lg4/coJwlmMQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Collectible.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Collectible.html",
+          "hash": "kdRQLM/gk4qAGztVdC+Ikw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.CollectiblesController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.CollectiblesController.html",
+          "hash": "Yrz2geaCyTovnOl7gI+RCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.CollisionBody.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.CollisionBody.html",
+          "hash": "gE8DSlvvMeLWfP5MBlFk3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.CoordinateExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.CoordinateExtensions.html",
+          "hash": "qRlhosP2QWp0h0sDGcpuMQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Corner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Corner.html",
+          "hash": "hy9+ZBNgczLPF5tt0llH+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.DHGameComponent.Countdown.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.DHGameComponent.Countdown.html",
+          "hash": "A1XgFJ6QqyVUMwr9s1k8ZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.DHGameComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.DHGameComponent.html",
+          "hash": "lnbc1Ot06rdCDXw5qsuayQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Diamond.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Diamond.html",
+          "hash": "w/43fDRwJ+o+Gctx/YJ/5Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.DiamondHollowGame.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.DiamondHollowGame.html",
+          "hash": "yShspMHCYlnrTsgCDmWrdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.DrawingLayers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.DrawingLayers.html",
+          "hash": "LB+SjK8Uv0TuHzHl/ENofg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Enemy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Enemy.html",
+          "hash": "CLIz0ZWE8R6sohsCEV4blg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.EnemyController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.EnemyController.html",
+          "hash": "QM3o4K+9mINLvmDVLP/DsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Foreground.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Foreground.html",
+          "hash": "Ft6HAQ6wRpQH1DIEOzxAGg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.GameScene.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.GameScene.html",
+          "hash": "YNEUtRB2gwo6EEbGfYpWeA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Healthbar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Healthbar.html",
+          "hash": "yHkphWAYjBtxznZQikjYeQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Helpers.html",
+          "hash": "EM6kanUzqzwpJ9zEBuhwWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.LargeHeart.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.LargeHeart.html",
+          "hash": "S0mLej5/YNsnq1ye9qxtRg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Level.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Level.html",
+          "hash": "3bIY6c7qesoPa3l8Ig64Gg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.LevelGenerator.Segment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.LevelGenerator.Segment.html",
+          "hash": "1uY740Zxb5s64D7XhTS+sQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.LevelGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.LevelGenerator.html",
+          "hash": "b3YLwnYalnlLQjKQ4ivNiQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.MouseButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.MouseButton.html",
+          "hash": "7iEQIfVZw7vZ+ne2f2/Zbg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.MouseButtonExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.MouseButtonExtensions.html",
+          "hash": "E7HYZLTmrm4WIubAbW19dg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Nuke.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Nuke.html",
+          "hash": "y7dm547xDo8bZsOjX422WQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Particle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Particle.html",
+          "hash": "VPRdy4Yw/wC1RxzIf93AEQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.ParticleConstructor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.ParticleConstructor.html",
+          "hash": "KXq05YluzsZjdVYUvlzedA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.ParticleController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.ParticleController.html",
+          "hash": "VpWCxpoWc1GWpGhJDnNy8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.ParticleInstance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.ParticleInstance.html",
+          "hash": "1Jy/nGi8LhjstqGGGOYy7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.PhysicsBody.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.PhysicsBody.html",
+          "hash": "rZwPfmTAb/zumMmFeV085Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Player.Countdowns.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Player.Countdowns.html",
+          "hash": "ngtN+pu94CcFnWcAUj0MeA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Player.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Player.html",
+          "hash": "21W3jZIpU6+Gt3RRd0W+Rw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Projectile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Projectile.html",
+          "hash": "Kmf9yJiCz+KUS3cmp5+Iog=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.ProjectileConstructor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.ProjectileConstructor.html",
+          "hash": "h0QeCk7Oc+qDipkOkqkU/A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.ProjectileController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.ProjectileController.html",
+          "hash": "bbyuRcdueGA3f5EIo4kmZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.ProjectileType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.ProjectileType.html",
+          "hash": "0qn97EXPJU+DTQBaXtsFHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.RendererExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.RendererExtensions.html",
+          "hash": "xeUBINqptm2fbWVfDGIG2w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.RespawnAnchor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.RespawnAnchor.html",
+          "hash": "HMs6O0muCFdJc+yPoMgQUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Slime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Slime.html",
+          "hash": "/1cdzq8zSsPqiA4Igj2KWQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.SmallHeart.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.SmallHeart.html",
+          "hash": "PNQCkqmb4a/hhleD8O6How=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Spider.Countdowns.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Spider.Countdowns.html",
+          "hash": "f6sZGV8H1Rmnla09jK3l7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Spider.SpiderState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Spider.SpiderState.html",
+          "hash": "lzZ7H+vH1B/0WhiLljciNw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.Spider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.Spider.html",
+          "hash": "NdUVt11M+QlLZEowx6ZSQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.TileType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.TileType.html",
+          "hash": "qDTCyqPW1RRREKwBFaC9Hg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.WallShooter.Countdowns.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.WallShooter.Countdowns.html",
+          "hash": "9kKkZrCTjT1E7kuNJ4mCvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.WallShooter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.WallShooter.html",
+          "hash": "QbMXNUFqfRuyJJ84Xe6rUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api.nosync/DiamondHollow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/DiamondHollow.html",
+          "hash": "TVSW1HOT7Q3+p8WBXrQVQw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api.nosync/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api.nosync/toc.html",
+          "hash": "Fxhgs+3PPO0MVWNE/5d52A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/MonoGame.GameEvents.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/MonoGame.GameEvents.html",
+          "hash": "tE6xl3eva5Yd1mrSi5bmZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/MonoGame.Resources.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/MonoGame.Resources.html",
+          "hash": "TRQxnc/4INt0M2NVBTfcLw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/MonoGame.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/MonoGame.html",
+          "hash": "hhoo0WH3rgeXi6QQ8q9ZJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "ju3kjKf+1xuxhLCD/RhYgA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "how-to-play.md",
+      "output": {
+        ".html": {
+          "relative_path": "how-to-play.html",
+          "hash": "cmdH+17x/f+q62giKV2TMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "O5OHEmWxzUHsRKnmSP19rQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "TzKLHa/RsfuN9I2BymMTJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 6,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 54,
+          "skipped_file_count": 0
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

@@ -1,0 +1,518 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Enemy
+   | Diamond Hollow </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Enemy
+   | Diamond Hollow ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="DiamondHollow.Enemy">
+  
+  
+  <h1 id="DiamondHollow_Enemy" data-uid="DiamondHollow.Enemy" class="text-break">Class Enemy
+  </h1>
+  <div class="markdown level0 summary"><p>Handles animations, taking damage from projectiles and dropping loot on death.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="DiamondHollow.DHGameComponent.html">DHGameComponent</a></div>
+    <div class="level2"><a class="xref" href="DiamondHollow.CollisionBody.html">CollisionBody</a></div>
+    <div class="level3"><a class="xref" href="DiamondHollow.PhysicsBody.html">PhysicsBody</a></div>
+    <div class="level4"><span class="xref">Enemy</span></div>
+      <div class="level5"><a class="xref" href="DiamondHollow.Bird.html">Bird</a></div>
+      <div class="level5"><a class="xref" href="DiamondHollow.CeilingShooter.html">CeilingShooter</a></div>
+      <div class="level5"><a class="xref" href="DiamondHollow.Slime.html">Slime</a></div>
+      <div class="level5"><a class="xref" href="DiamondHollow.Spider.html">Spider</a></div>
+      <div class="level5"><a class="xref" href="DiamondHollow.WallShooter.html">WallShooter</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="DiamondHollow.PhysicsBody.html#DiamondHollow_PhysicsBody_Gravity">PhysicsBody.Gravity</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.PhysicsBody.html#DiamondHollow_PhysicsBody_Friction">PhysicsBody.Friction</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.PhysicsBody.html#DiamondHollow_PhysicsBody_IsOnGround">PhysicsBody.IsOnGround</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.PhysicsBody.html#DiamondHollow_PhysicsBody_Locked">PhysicsBody.Locked</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.PhysicsBody.html#DiamondHollow_PhysicsBody_Yeet_Vector2_">PhysicsBody.Yeet(Vector2)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.CollisionBody.html#DiamondHollow_CollisionBody__position">CollisionBody._position</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.CollisionBody.html#DiamondHollow_CollisionBody_Velocity">CollisionBody.Velocity</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.CollisionBody.html#DiamondHollow_CollisionBody_Size">CollisionBody.Size</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.CollisionBody.html#DiamondHollow_CollisionBody_DisableCollisions">CollisionBody.DisableCollisions</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.CollisionBody.html#DiamondHollow_CollisionBody_DisableCollisionBox">CollisionBody.DisableCollisionBox</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.CollisionBody.html#DiamondHollow_CollisionBody_Position">CollisionBody.Position</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.CollisionBody.html#DiamondHollow_CollisionBody_Bounds">CollisionBody.Bounds</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.CollisionBody.html#DiamondHollow_CollisionBody_Center">CollisionBody.Center</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.CollisionBody.html#DiamondHollow_CollisionBody_OnCollision">CollisionBody.OnCollision</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.CollisionBody.html#DiamondHollow_CollisionBody_OnProjectileHit">CollisionBody.OnProjectileHit</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.CollisionBody.html#DiamondHollow_CollisionBody_GetCollisionMask_Vector2__Vector2__System_Int32_">CollisionBody.GetCollisionMask(Vector2, Vector2, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_Game">DHGameComponent.Game</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_Level">DHGameComponent.Level</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent__countdowns">DHGameComponent._countdowns</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_CreateCountdown_System_Int32_System_Int32_System_Boolean_System_Int32_Action_">DHGameComponent.CreateCountdown(Int32, Int32, Boolean, Int32, Action)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_AddCountdownCallback_System_Int32_Action_">DHGameComponent.AddCountdownCallback(Int32, Action)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_IsCountdownDone_System_Int32_">DHGameComponent.IsCountdownDone(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_GetCountdownProgress_System_Int32_">DHGameComponent.GetCountdownProgress(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="DiamondHollow.DHGameComponent.html#DiamondHollow_DHGameComponent_ResetCountdown_System_Int32_">DHGameComponent.ResetCountdown(Int32)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="DiamondHollow.html">DiamondHollow</a></h6>
+  <h6><strong>Assembly</strong>: DiamondHollow.dll</h6>
+  <h5 id="DiamondHollow_Enemy_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Enemy : PhysicsBody</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="DiamondHollow_Enemy__ctor_" data-uid="DiamondHollow.Enemy.#ctor*"></a>
+  <h4 id="DiamondHollow_Enemy__ctor_DiamondHollow_DiamondHollowGame_DiamondHollow_EnemyController_System_Int32_Rectangle_" data-uid="DiamondHollow.Enemy.#ctor(DiamondHollow.DiamondHollowGame,DiamondHollow.EnemyController,System.Int32,Rectangle)">Enemy(DiamondHollowGame, EnemyController, Int32, Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Creates a new enemy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Enemy(DiamondHollowGame game, EnemyController controller, int maxHealth, Rectangle bounds)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.DiamondHollowGame.html">DiamondHollowGame</a></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>The game the enemy belongs to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.EnemyController.html">EnemyController</a></td>
+        <td><span class="parametername">controller</span></td>
+        <td><p>The enemy controller the enemy belongs to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">maxHealth</span></td>
+        <td><p>The enemy's max health.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><span class="parametername">bounds</span></td>
+        <td><p>The enemy's bounds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="DiamondHollow_Enemy__ctor_DiamondHollow_DiamondHollowGame_DiamondHollow_EnemyController_System_Int32_Rectangle__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The enemy's health is set to the max health.
+Instead of having a perpetual force applied to them, they receive an initial force and then bounce off of walls.</p>
+</div>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="DiamondHollow_Enemy_Animator" data-uid="DiamondHollow.Enemy.Animator">Animator</h4>
+  <div class="markdown level1 summary"><p>The enemy's animation controller.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animator Animator</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.Animator.html">Animator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Enemy_Controller" data-uid="DiamondHollow.Enemy.Controller">Controller</h4>
+  <div class="markdown level1 summary"><p>Handles spawning/despawning of enemies.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EnemyController Controller</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.EnemyController.html">EnemyController</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Enemy_DiamondDropCount" data-uid="DiamondHollow.Enemy.DiamondDropCount">DiamondDropCount</h4>
+  <div class="markdown level1 summary"><p>The number of diamonds the enemy drops when it dies.
+This can be overridden by subclasses and is affected by the difficulty modifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int DiamondDropCount</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Enemy_Healthbar" data-uid="DiamondHollow.Enemy.Healthbar">Healthbar</h4>
+  <div class="markdown level1 summary"><p>Handles drawing the enemy's healthbar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Healthbar Healthbar</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.Healthbar.html">Healthbar</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_Enemy_HeartDropChance" data-uid="DiamondHollow.Enemy.HeartDropChance">HeartDropChance</h4>
+  <div class="markdown level1 summary"><p>The chance of the enemy dropping a small heart item.
+This can be overridden by subclasses and is affected by the difficulty modifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float HeartDropChance</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="DiamondHollow_Enemy_Dead_" data-uid="DiamondHollow.Enemy.Dead*"></a>
+  <h4 id="DiamondHollow_Enemy_Dead" data-uid="DiamondHollow.Enemy.Dead">Dead</h4>
+  <div class="markdown level1 summary"><p>If the enemy is dead.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Dead { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Enemy_Health_" data-uid="DiamondHollow.Enemy.Health*"></a>
+  <h4 id="DiamondHollow_Enemy_Health" data-uid="DiamondHollow.Enemy.Health">Health</h4>
+  <div class="markdown level1 summary"><p>The enemy's current health.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Health { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_Enemy_MaxHealth_" data-uid="DiamondHollow.Enemy.MaxHealth*"></a>
+  <h4 id="DiamondHollow_Enemy_MaxHealth" data-uid="DiamondHollow.Enemy.MaxHealth">MaxHealth</h4>
+  <div class="markdown level1 summary"><p>The enemy's max health.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MaxHealth { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="DiamondHollow_Enemy_Die_" data-uid="DiamondHollow.Enemy.Die*"></a>
+  <h4 id="DiamondHollow_Enemy_Die" data-uid="DiamondHollow.Enemy.Die">Die()</h4>
+  <div class="markdown level1 summary"><p>Despawn the enemy, spawn some diamonds, maybe drop a heart and show some particles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Die()</code></pre>
+  </div>
+  
+  
+  <a id="DiamondHollow_Enemy_Update_" data-uid="DiamondHollow.Enemy.Update*"></a>
+  <h4 id="DiamondHollow_Enemy_Update_GameTime_" data-uid="DiamondHollow.Enemy.Update(GameTime)">Update(GameTime)</h4>
+  <div class="markdown level1 summary"><p>Check for collisions with the player. If so, play an attack animation and deal damage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Update(GameTime gameTime)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameTime</span></td>
+        <td><span class="parametername">gameTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="DiamondHollow.PhysicsBody.html#DiamondHollow_PhysicsBody_Update_GameTime_">PhysicsBody.Update(GameTime)</a></div>
+  <h5 id="DiamondHollow_Enemy_Update_GameTime__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="DiamondHollow.Player.html#DiamondHollow_Player_OnEnemyCollision_DiamondHollow_CollisionBody_">OnEnemyCollision(CollisionBody)</a></div>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

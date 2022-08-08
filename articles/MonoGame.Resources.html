@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Resources | Diamond Hollow </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Resources | Diamond Hollow ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="resources">Resources</h1>
+
+<p>All modern games have resources to work with. Resources are things like images, sounds, and models. These resources are usually kept in a separate directory from the source code and can be updated separately without recompiling the source code.</p>
+<p>To improve load speeds, MonoGame compiles resources into a binary format, which is then parsed at load time.</p>
+<h2 id="adding-resources">Adding resources</h2>
+<p><code>Content/Content.mgcb</code> is a file that contains a list of all the resources that are meant to be compiled. It's a simple text file and can be edited by hand, but it is recommended to use the <a href="https://docs.monogame.net/articles/tools/mgcb_editor.html">MonoGame Content Builder Editor</a>.</p>
+<p>This project was built with MonoGame <code>v3.8.0</code>. The MGCB Editor <code>v3.8.0</code> requires the <code>.NET 5 Runtime</code>.
+While you can install the MGCB Editor <code>v3.8.1</code>, which runs on the <code>.NET 6 Runtime</code>, it has not been tested.</p>
+<ol>
+<li><p>Install the MGCB Editor</p>
+<ul>
+<li><p><em>[Recommended]</em> Install the MonoGame templates for the dotnet CLI</p>
+<p>Windows / macOS / Linux</p>
+<pre><code class="lang-sh">dotnet new --install MonoGame.Templates.CSharp
+</code></pre>
+</li>
+<li><p>Or you can install the Visual Studio extension</p>
+<p>Only since v3.8.1, requires Visual Studio 2022, therefore only Windows / macOS.</p>
+<ul>
+<li><p>Windows</p>
+<ol>
+<li>Open Visual Studio 2022</li>
+<li>Navigate to <code>Extensions -&gt; Manage Extensions</code></li>
+<li>Search for <code>MonoGame</code></li>
+<li>Install the <code>MonoGame project templates</code> extension</li>
+</ol>
+</li>
+<li><p>macOS</p>
+<ol>
+<li>Download the extension from <a href="https://github.com/MonoGame/MonoGame/releases/tag/v3.8.1">https://github.com/MonoGame/MonoGame/releases/tag/v3.8.1</a> (titled <code>MonoGame.Templates.VSMacExtension_3.8.1.263.mpack</code>)</li>
+<li>Open Visual Studio 2022</li>
+<li>Navigate to <code>Visual Studio -&gt; Extensions...</code></li>
+<li>Click on <code>Install from file...</code></li>
+<li>Select the downloaded file and click <code>Install</code></li>
+</ol>
+</li>
+</ul>
+<p>For more information visit <a href="https://docs.monogame.net/articles/getting_started/0_getting_started.html">https://docs.monogame.net/articles/getting_started/0_getting_started.html</a></p>
+</li>
+</ul>
+</li>
+<li><p>Open <code>Content/Content.mgcb</code> in the MGCB editor</p>
+</li>
+<li><p>Use the New/Add Existing Item/Folder buttons to add resources to the project</p>
+</li>
+<li><p>Save the file</p>
+</li>
+</ol>
+<h2 id="building-resources">Building resources</h2>
+<p>After adding all the resources to <code>Content/Content.mgcb</code>, the resources have to be compiled. This should happen automatically when you build the project. If it doesn't or if you want to only compile the resources, you can do it manually.</p>
+<p>If you have the MGCB Editor installed, you can use the <code>Build</code> button. However, this doesn't reliably work on all platforms. It is recommended (and easier) to use the CLI program.</p>
+<ul>
+<li><p><em>[Recommended]</em> MonoGame Content Builder <em>(CLI)</em></p>
+<ol>
+<li><p>Install the MonoGame Content Builder</p>
+<pre><code class="lang-sh">dotnet tool install -g dotnet-mgcb
+</code></pre>
+</li>
+<li><p>Make sure the install location is in your <code>PATH</code></p>
+<ul>
+<li><p>Windows: <code>%USERPROFILE%\.dotnet\tools</code></p>
+</li>
+<li><p>macOS / Linux: <code>$HOME/.dotnet/tools</code></p>
+</li>
+</ul>
+</li>
+<li><p>Build the resources</p>
+<pre><code class="lang-sh">mgcb -r Content/Content.mgcb
+</code></pre>
+</li>
+</ol>
+</li>
+<li><p>MonoGame Content Builder Editor <em>(GUI)</em></p>
+<ol>
+<li><p>Open <code>Content/Content.mgcb</code> in the MGCB Editor</p>
+</li>
+<li><p>Click the <code>Build</code> button</p>
+</li>
+</ol>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/adamsvestka/Diamond-Hollow/blob/1480c0cbe2f6618ba49677cfadc18c909846c177/Docs/articles/MonoGame.Resources.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

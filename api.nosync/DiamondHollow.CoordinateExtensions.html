@@ -1,0 +1,1409 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CoordinateExtensions
+   | Diamond Hollow </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CoordinateExtensions
+   | Diamond Hollow ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="DiamondHollow.CoordinateExtensions">
+  
+  
+  <h1 id="DiamondHollow_CoordinateExtensions" data-uid="DiamondHollow.CoordinateExtensions" class="text-break">Class CoordinateExtensions
+  </h1>
+  <div class="markdown level0 summary"><p>A set of extension function for swithing between coordinate systems.</p>
+<ul>
+<li>Grid - A measurement in tiles, <code>0,0</code> is in the bottom left of the map, used for placing objects on the map.</li>
+<li>Default - A measurement in pixels, <code>0,0</code> is in the bottom left of the screen, used for collision bodies.</li>
+<li>Screen - A measurement in pixels, <code>0,0</code> is in the top left of the screen, takes the camera position into account, used for drawing.</li>
+</ul>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">CoordinateExtensions</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="DiamondHollow.html">DiamondHollow</a></h6>
+  <h6><strong>Assembly</strong>: DiamondHollow.dll</h6>
+  <h5 id="DiamondHollow_CoordinateExtensions_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class CoordinateExtensions : object</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="DiamondHollow_CoordinateExtensions__game" data-uid="DiamondHollow.CoordinateExtensions._game">_game</h4>
+  <div class="markdown level1 summary"><p>A reference to the game, used for the window height and camera position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">static DiamondHollowGame _game</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.DiamondHollowGame.html">DiamondHollowGame</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_CoordinateExtensions__random" data-uid="DiamondHollow.CoordinateExtensions._random">_random</h4>
+  <div class="markdown level1 summary"><p>A random number generator, used in <a class="xref" href="DiamondHollow.CoordinateExtensions.html#DiamondHollow_CoordinateExtensions_RandomOffset_Vector2_System_Single_">RandomOffset(Vector2, Single)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">static Random _random</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Random</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="DiamondHollow_CoordinateExtensions__tileSize" data-uid="DiamondHollow.CoordinateExtensions._tileSize">_tileSize</h4>
+  <div class="markdown level1 summary"><p>Size of a tile in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">static Point _tileSize</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_CameraOffset_" data-uid="DiamondHollow.CoordinateExtensions.CameraOffset*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_CameraOffset" data-uid="DiamondHollow.CoordinateExtensions.CameraOffset">CameraOffset</h4>
+  <div class="markdown level1 summary"><p>The camera position in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">static int CameraOffset
+{
+}</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_ScreenHeight_" data-uid="DiamondHollow.CoordinateExtensions.ScreenHeight*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_ScreenHeight" data-uid="DiamondHollow.CoordinateExtensions.ScreenHeight">ScreenHeight</h4>
+  <div class="markdown level1 summary"><p>The height of the window in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">static int ScreenHeight
+{
+}</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions__tileSize_Y_" data-uid="DiamondHollow.CoordinateExtensions._tileSize#Y*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions__tileSize_Y" data-uid="DiamondHollow.CoordinateExtensions._tileSize#Y">_tileSize.Y()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">v.Y*_tileSize.Y()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">v.Y</span>*</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions__tileSize_Y_" data-uid="DiamondHollow.CoordinateExtensions._tileSize#Y*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions__tileSize_Y" data-uid="DiamondHollow.CoordinateExtensions._tileSize#Y">_tileSize.Y()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">v.Y*_tileSize.Y()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">v.Y</span>*</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_Corners_" data-uid="DiamondHollow.CoordinateExtensions.Corners*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_Corners_Rectangle_DiamondHollow_Corner_" data-uid="DiamondHollow.CoordinateExtensions.Corners(Rectangle,DiamondHollow.Corner)">Corners(Rectangle, Corner)</h4>
+  <div class="markdown level1 summary"><p>Return positions of the corners of the rectangle, can be masked to only select some of the corners.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;Point&gt; Corners(this Rectangle r, Corner mask = default(Corner))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><span class="parametername">r</span></td>
+        <td><p>The rectangle to get the corners from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.Corner.html">Corner</a></td>
+        <td><span class="parametername">mask</span></td>
+        <td><p>The mask of the corners to return.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">Point</span>&gt;</td>
+        <td><p>The corners of the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_FromGrid_" data-uid="DiamondHollow.CoordinateExtensions.FromGrid*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_FromGrid_Point_" data-uid="DiamondHollow.CoordinateExtensions.FromGrid(Point)">FromGrid(Point)</h4>
+  <div class="markdown level1 summary"><p>Convert a grid position to a default position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point FromGrid(this Point p)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The grid position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><p>The default position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_FromGrid_" data-uid="DiamondHollow.CoordinateExtensions.FromGrid*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_FromGrid_Vector2_" data-uid="DiamondHollow.CoordinateExtensions.FromGrid(Vector2)">FromGrid(Vector2)</h4>
+  <div class="markdown level1 summary"><p>Convert a grid position to a default position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector2 FromGrid(this Vector2 v)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">v</span></td>
+        <td><p>The grid position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><p>The default position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_Grow_" data-uid="DiamondHollow.CoordinateExtensions.Grow*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_Grow_Rectangle_System_Int32_" data-uid="DiamondHollow.CoordinateExtensions.Grow(Rectangle,System.Int32)">Grow(Rectangle, Int32)</h4>
+  <div class="markdown level1 summary"><p>Scale a rectangle by a scalar in all directions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle Grow(this Rectangle r, int s)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><span class="parametername">r</span></td>
+        <td><p>The rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">s</span></td>
+        <td><p>The scalar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><p>The scaled rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_Half_" data-uid="DiamondHollow.CoordinateExtensions.Half*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_Half_Point_" data-uid="DiamondHollow.CoordinateExtensions.Half(Point)">Half(Point)</h4>
+  <div class="markdown level1 summary"><p>Half the size of a point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point Half(this Point p)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The point.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><p>The half point.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_Initialize_" data-uid="DiamondHollow.CoordinateExtensions.Initialize*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_Initialize_DiamondHollow_DiamondHollowGame_Point_" data-uid="DiamondHollow.CoordinateExtensions.Initialize(DiamondHollow.DiamondHollowGame,Point)">Initialize(DiamondHollowGame, Point)</h4>
+  <div class="markdown level1 summary"><p>Initialize the extension functions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Initialize(DiamondHollowGame game, Point tileSize)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="DiamondHollow.DiamondHollowGame.html">DiamondHollowGame</a></td>
+        <td><span class="parametername">game</span></td>
+        <td><p>The game, used for the window height and camera position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">tileSize</span></td>
+        <td><p>The size of a tile in pixels.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_Length_" data-uid="DiamondHollow.CoordinateExtensions.Length*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_Length_Point_" data-uid="DiamondHollow.CoordinateExtensions.Length(Point)">Length(Point)</h4>
+  <div class="markdown level1 summary"><p>Get the length from the origin to a point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float Length(this Point p)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The point.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><p>The length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_LengthSquared_" data-uid="DiamondHollow.CoordinateExtensions.LengthSquared*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_LengthSquared_Point_" data-uid="DiamondHollow.CoordinateExtensions.LengthSquared(Point)">LengthSquared(Point)</h4>
+  <div class="markdown level1 summary"><p>Get the squared length from the origin to a point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int LengthSquared(this Point p)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The point.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>The squared length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_MakeTile_" data-uid="DiamondHollow.CoordinateExtensions.MakeTile*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_MakeTile_Point_" data-uid="DiamondHollow.CoordinateExtensions.MakeTile(Point)">MakeTile(Point)</h4>
+  <div class="markdown level1 summary"><p>Create a rectangle from a position, using the <a class="xref" href="DiamondHollow.CoordinateExtensions.html#DiamondHollow_CoordinateExtensions__tileSize">_tileSize</a> as the width and height.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle MakeTile(this Point p)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><p>The rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_Offset_" data-uid="DiamondHollow.CoordinateExtensions.Offset*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_Offset_Point_System_Int32_System_Int32_" data-uid="DiamondHollow.CoordinateExtensions.Offset(Point,System.Int32,System.Int32)">Offset(Point, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Offset a position by an amount on the X and Y axis.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point Offset(this Point p, int x, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The amount to offset by on the X axis.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The amount to offset by on the Y axis.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><p>The offset position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_OffsetX_" data-uid="DiamondHollow.CoordinateExtensions.OffsetX*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_OffsetX_Point_System_Int32_" data-uid="DiamondHollow.CoordinateExtensions.OffsetX(Point,System.Int32)">OffsetX(Point, Int32)</h4>
+  <div class="markdown level1 summary"><p>Offset a position by an amount on the X axis.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point OffsetX(this Point p, int x)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The amount to offset by on the X axis.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><p>The offset position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_OffsetX_" data-uid="DiamondHollow.CoordinateExtensions.OffsetX*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_OffsetX_Rectangle_System_Int32_" data-uid="DiamondHollow.CoordinateExtensions.OffsetX(Rectangle,System.Int32)">OffsetX(Rectangle, Int32)</h4>
+  <div class="markdown level1 summary"><p>Offset a rectangle by an amount on the X axis.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle OffsetX(this Rectangle r, int x)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><span class="parametername">r</span></td>
+        <td><p>The rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The amount to offset by on the X axis.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><p>The offset rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_OffsetY_" data-uid="DiamondHollow.CoordinateExtensions.OffsetY*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_OffsetY_Point_System_Int32_" data-uid="DiamondHollow.CoordinateExtensions.OffsetY(Point,System.Int32)">OffsetY(Point, Int32)</h4>
+  <div class="markdown level1 summary"><p>Offset a position by an amount on the Y axis.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point OffsetY(this Point p, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The amount to offset by on the Y axis.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><p>The offset position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_OffsetY_" data-uid="DiamondHollow.CoordinateExtensions.OffsetY*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_OffsetY_Rectangle_System_Int32_" data-uid="DiamondHollow.CoordinateExtensions.OffsetY(Rectangle,System.Int32)">OffsetY(Rectangle, Int32)</h4>
+  <div class="markdown level1 summary"><p>Offset a rectangle by an amount on the Y axis.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle OffsetY(this Rectangle r, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><span class="parametername">r</span></td>
+        <td><p>The rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The amount to offset by on the Y axis.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><p>The offset rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_RandomOffset_" data-uid="DiamondHollow.CoordinateExtensions.RandomOffset*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_RandomOffset_Point_System_Single_" data-uid="DiamondHollow.CoordinateExtensions.RandomOffset(Point,System.Single)">RandomOffset(Point, Single)</h4>
+  <div class="markdown level1 summary"><p>Return a random point inside the circle.
+A convenience function for <a class="xref" href="DiamondHollow.CoordinateExtensions.html#DiamondHollow_CoordinateExtensions_RandomOffset_Vector2_System_Single_">RandomOffset(Vector2, Single)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point RandomOffset(this Point p, float distance = 1F)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The center of the circle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">distance</span></td>
+        <td><p>The radius of the circle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><p>A random point inside the circle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_RandomOffset_" data-uid="DiamondHollow.CoordinateExtensions.RandomOffset*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_RandomOffset_Vector2_System_Single_" data-uid="DiamondHollow.CoordinateExtensions.RandomOffset(Vector2,System.Single)">RandomOffset(Vector2, Single)</h4>
+  <div class="markdown level1 summary"><p>Return a random point inside the circle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector2 RandomOffset(this Vector2 v, float distance = 1F)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">v</span></td>
+        <td><p>The center of the circle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">distance</span></td>
+        <td><p>The radius of the circle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><p>A random point inside the circle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_Scale_" data-uid="DiamondHollow.CoordinateExtensions.Scale*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_Scale_Point_System_Int32_" data-uid="DiamondHollow.CoordinateExtensions.Scale(Point,System.Int32)">Scale(Point, Int32)</h4>
+  <div class="markdown level1 summary"><p>Multiplies a position by a scalar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point Scale(this Point p, int s)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">s</span></td>
+        <td><p>The scalar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><p>The scaled position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_SnapToGrid_" data-uid="DiamondHollow.CoordinateExtensions.SnapToGrid*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_SnapToGrid_Point_" data-uid="DiamondHollow.CoordinateExtensions.SnapToGrid(Point)">SnapToGrid(Point)</h4>
+  <div class="markdown level1 summary"><p>Snap a default position to the grid.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point SnapToGrid(this Point p)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The default position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><p>The adjusted default position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_SnapToGrid_" data-uid="DiamondHollow.CoordinateExtensions.SnapToGrid*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_SnapToGrid_Vector2_" data-uid="DiamondHollow.CoordinateExtensions.SnapToGrid(Vector2)">SnapToGrid(Vector2)</h4>
+  <div class="markdown level1 summary"><p>Snap a default position to the grid.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector2 SnapToGrid(this Vector2 v)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">v</span></td>
+        <td><p>The default position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><p>The adjusted default position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_ToGrid_" data-uid="DiamondHollow.CoordinateExtensions.ToGrid*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_ToGrid_Point_" data-uid="DiamondHollow.CoordinateExtensions.ToGrid(Point)">ToGrid(Point)</h4>
+  <div class="markdown level1 summary"><p>Convert a default position to a grid position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point ToGrid(this Point p)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The default position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><p>The grid position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_ToGrid_" data-uid="DiamondHollow.CoordinateExtensions.ToGrid*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_ToGrid_Vector2_" data-uid="DiamondHollow.CoordinateExtensions.ToGrid(Vector2)">ToGrid(Vector2)</h4>
+  <div class="markdown level1 summary"><p>Convert a default position to a grid position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector2 ToGrid(this Vector2 v)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">v</span></td>
+        <td><p>The default position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><p>The grid position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_ToScreen_" data-uid="DiamondHollow.CoordinateExtensions.ToScreen*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_ToScreen_Point_" data-uid="DiamondHollow.CoordinateExtensions.ToScreen(Point)">ToScreen(Point)</h4>
+  <div class="markdown level1 summary"><p>Convert a default position to a screen position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point ToScreen(this Point p)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><span class="parametername">p</span></td>
+        <td><p>The default position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Point</span></td>
+        <td><p>The screen position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="DiamondHollow_CoordinateExtensions_ToScreen_" data-uid="DiamondHollow.CoordinateExtensions.ToScreen*"></a>
+  <h4 id="DiamondHollow_CoordinateExtensions_ToScreen_Rectangle_" data-uid="DiamondHollow.CoordinateExtensions.ToScreen(Rectangle)">ToScreen(Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Convert a default positioned rectangle to a screen positioned rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle ToScreen(this Rectangle r)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><span class="parametername">r</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rectangle</span></td>
+        <td><p>The screen position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
